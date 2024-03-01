@@ -4,11 +4,11 @@ from functionality import start  # Import the starty function from functions mod
 
 # Function to be called when Start button is clicked
 def call_start():
-    if start_level<=2:
+    if selected_option<=2:
         start_level= selected_option+1
         print("Function call_start() is called.",start_level)
         start(start_level, False)  # Call the starty function from functions module
-    elif start_level == 3:
+    elif selected_option == 3:
         print("Custom-Level start")
         print("Feature in development")
         #level selector here
