@@ -3,10 +3,15 @@ import sys
 from functionality import start  # Import the starty function from functions module
 
 # Function to be called when Start button is clicked
-def kjuy():
-    hyit= selected_option+1
-    print("Function kjuy() is called.",hyit)
-    start(hyit, False)  # Call the starty function from functions module
+def call_start():
+    if start_level<=2:
+        start_level= selected_option+1
+        print("Function call_start() is called.",start_level)
+        start(start_level, False)  # Call the starty function from functions module
+    elif start_level == 3:
+        print("Custom-Level start")
+        print("Feature in development")
+        #level selector here
 
 # Initializing the constructor
 pygame.init()
@@ -46,7 +51,7 @@ background_x = 0  # Initialize background_x outside the loop
 
 # Dropdown variables
 dropdown_rect = pygame.Rect(res[0] - 160, 10, 150, 30)
-dropdown_options = ['Level 1', 'Level 2', 'Level 3']
+dropdown_options = ['Level 1', 'Level 2', 'Level 3', "Custom"]
 selected_option = 0
 
 while running:
@@ -60,7 +65,7 @@ while running:
         elif ev.type == pygame.MOUSEBUTTONDOWN:
             if button_rect.collidepoint(ev.pos):
                 # Call the function when Start button is clicked
-                kjuy()
+                call_start()
 
             elif dropdown_rect.collidepoint(ev.pos):
                 # Increment the selected level when level box is clicked
