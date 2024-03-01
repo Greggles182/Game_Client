@@ -10,7 +10,7 @@ def kjuy():
 
 # Initializing the constructor
 pygame.init()
-
+#edit
 # Screen resolution
 res = (720, 500)
 
