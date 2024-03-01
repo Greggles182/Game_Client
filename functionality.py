@@ -530,4 +530,4 @@ def start(lvl, MM, cst_ldata=[]):
     pygame.quit()
 
 
-start(1, True)
+#start(1, True)
