@@ -1,7 +1,6 @@
 import pygame
 from pygame.locals import *
-import pickle
-from os import path
+from os import *
 
 
 def start(lvl, MM, cst_ldata=[]):
@@ -498,17 +497,16 @@ def start(lvl, MM, cst_ldata=[]):
         level += 1
         if level <= max_levels:
           #reset level
-          start(level, False)
+          start(level, False, score)
           game_over = 0
         else:
           draw_text('YOU WIN!', font, blue, (screen_width // 2) - 140,
                     screen_height // 2)
-          if restart_button.draw():
-            level = 1
+          if restart_button.draw(): #if player restarts game fully - need to set to exit
             #reset level
-            start(level, False)  #world = reset_level(level)
             game_over = 0
             score = 0
+            start(level, False)  #world = reset_level(level)
 
     for event in pygame.event.get():
       if event.type == pygame.QUIT:

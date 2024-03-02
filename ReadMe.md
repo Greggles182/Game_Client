@@ -20,6 +20,8 @@ Jobs:
 -Sam--lvl2, bit of function
 -Greg--lvl1, function, graphics
 FileTree:
+/img images
+/music music files
 main.py - MainMenu and level imports
 functionality.py - Functionality for characters
 lvl1 - level 1 - imports functionality.py
