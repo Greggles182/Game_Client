@@ -33,7 +33,7 @@ def start(lvl, MM, cst_ldata=[]):
   blue = (0, 0, 255)
 
   #load images
-  sun_img = pygame.image.load('img/sun.png')
+  #sun_img = pygame.image.load('img/sun.png')
   bg_img = pygame.image.load('img/sky.png')
   restart_img = pygame.image.load('img/restart_btn.png')
   start_img = pygame.image.load('img/start_btn.png')
@@ -456,7 +456,7 @@ def start(lvl, MM, cst_ldata=[]):
     clock.tick(fps)
 
     screen.blit(bg_img, (0, 0))
-    screen.blit(sun_img, (100, 100))
+    #screen.blit(sun_img, (100, 100))
 
     if main_menu == True:
       if exit_button.draw():
