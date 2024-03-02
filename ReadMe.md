@@ -3,16 +3,18 @@ ReadMe:
 Tips:
   alt+7=•
 ☺☻♥♦♣♠•◘○◙♂♀♪♫☼►◄↕‼¶§▬↨↑↓→←∟↔▲
+✓ (copy)
 Ideas:
   •Platformer
   •Donkey Kong
-  •
 Things to do:
-  1.Background
-  2.function.py run all command
-  3.admin
-  4.level only work when you compleat previous one
-  5.background music
+  1. Background
+  2. function.py run all command ✓
+  3. admin mode
+  4. level only work when you complete previous one 
+  5. background music ✓
+  6. add a level editor
+  7. Graphics
 Jobs:
 -Rory--lvl3, Main menu
 -Sam--lvl2, bit of function
