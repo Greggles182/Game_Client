@@ -30,7 +30,8 @@ def start(lvl, MM, cst_ldata=[]):
 
   #define colours
   white = (255, 255, 255)
-  blue = (0, 0, 255)
+  red = (255, 0, 0)
+  lime = (0, 255, 0)
 
   #load images
   #sun_img = pygame.image.load('img/sun.png')
@@ -38,6 +39,7 @@ def start(lvl, MM, cst_ldata=[]):
   restart_img = pygame.image.load('img/restart_btn.png')
   start_img = pygame.image.load('img/start_btn.png')
   exit_img = pygame.image.load('img/exit_btn.png')
+  exit2_img = pygame.image.load('img/exit2_btn.png')
   #levelload
   level_1_data = [
       [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -267,7 +269,7 @@ def start(lvl, MM, cst_ldata=[]):
 
       elif game_over == -1:
         self.image = self.dead_image
-        draw_text('GAME OVER!', font, blue, (screen_width // 2) - 200,
+        draw_text('GAME OVER!', font, red, (screen_width // 2) - 200,
                   screen_height // 2)
         if self.rect.y > 200:
           self.rect.y -= 5
@@ -446,7 +448,7 @@ def start(lvl, MM, cst_ldata=[]):
   restart_button = Button(screen_width // 2 - 190, screen_height // 2 + 100,
                           restart_img)
   exit_button_smol = Button(screen_width // 2 + 50, screen_height // 2 + 100,
-                            restart_img)
+                            exit2_img)
   start_button = Button(screen_width // 2 - 350, screen_height // 2, start_img)
   exit_button = Button(screen_width // 2 + 150, screen_height // 2, exit_img)
 
@@ -484,7 +486,8 @@ def start(lvl, MM, cst_ldata=[]):
       game_over = player.update(game_over)
       #if player has died
       if game_over == -1:
-        exit_button_smol.draw()
+        if exit_button_smol.draw():
+          run = False
         if restart_button.draw():
           #level_data = [] # The reason the previous code failed.
           start(level, False)
@@ -500,7 +503,7 @@ def start(lvl, MM, cst_ldata=[]):
           start(level, False, score)
           game_over = 0
         else:
-          draw_text('YOU WIN!', font, blue, (screen_width // 2) - 140,
+          draw_text('YOU WIN!', font, lime, (screen_width // 2) - 140,
                     screen_height // 2)
           if restart_button.draw(): #if player restarts game fully - need to set to exit
             #reset level
@@ -514,7 +517,7 @@ def start(lvl, MM, cst_ldata=[]):
 
     pygame.display.update()
 
-  pygame.quit()
+  return True
 
 
 #start(1, True)
