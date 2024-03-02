@@ -2,8 +2,8 @@ import pygame
 from pygame.locals import *
 from os import *
 
-
 def start(lvl, MM, cst_ldata=[]):
+  print("starting with Level "+str(lvl))
   pygame.init()
 
   clock = pygame.time.Clock()
@@ -24,8 +24,7 @@ def start(lvl, MM, cst_ldata=[]):
   game_over = 0
   main_menu = MM
   print(main_menu)
-  level = 1
-  max_levels = 3
+  max_lvls = 3
   score = 0
 
   #define colours
@@ -40,31 +39,14 @@ def start(lvl, MM, cst_ldata=[]):
   start_img = pygame.image.load('img/start_btn.png')
   exit_img = pygame.image.load('img/exit_btn.png')
   exit2_img = pygame.image.load('img/exit2_btn.png')
-  #levelload
-  level_1_data = [
-      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-      [1, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 1],
-      [1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 2, 2, 1],
-      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 7, 0, 5, 0, 0, 0, 1],
-      [1, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 1],
-      [1, 7, 0, 0, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-      [1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 7, 0, 0, 0, 0, 1],
-      [1, 0, 2, 0, 0, 7, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-      [1, 0, 0, 2, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-       1],  #[1, 0, 0, 2, 0, 0, 4, 0, 0, 0, 0, 3, 0, 0, 3, 0, 0, 0, 0, 1],
-      [1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1],
-      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 7, 0, 0, 0, 0, 2, 0, 1],
-      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 2, 2, 2, 2, 2, 1],
-      [1, 0, 0, 0, 0, 0, 2, 2, 2, 6, 6, 6, 6, 6, 1, 1, 1, 1, 1, 1],
-      [1, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-      [1, 0, 0, 0, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-      [1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+  #lvlload
+  #20x9
+  lvl_1_data = [
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 7, 7, 0, 0, 0, 0, 0, 6, 6, 6, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 6, 6, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 
+0, 6, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 2, 0, 0, 0, 0, 0, 0, 7, 7, 7, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 7, 7, 7, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 2, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   ]
-  level_2_data = [
+  lvl_2_data = [
       [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
       [1, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 1],
@@ -86,7 +68,7 @@ def start(lvl, MM, cst_ldata=[]):
       [1, 0, 0, 0, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       [1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   ]
-  level_3_data = [
+  lvl_3_data = [
       [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
       [1, 8, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
       [1, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 1],
@@ -112,13 +94,13 @@ def start(lvl, MM, cst_ldata=[]):
   cst_ldata = []
   #end testing
   if lvl == 1:
-    level_data = level_1_data
+    lvl_data = lvl_1_data
   elif lvl == 2:
-    level_data = level_2_data
+    lvl_data = lvl_2_data
   elif lvl == 3:
-    level_data = level_3_data
-  elif lvl == "cst":  #custom level
-    level_data = cst_ldata
+    lvl_data = lvl_3_data
+  elif lvl == "cst":  #custom lvl
+    lvl_data = cst_ldata
   else:
     print("We have not made. That level yet. ")
     raise ValueError
@@ -442,7 +424,7 @@ def start(lvl, MM, cst_ldata=[]):
   score_coin = Coin(tile_size // 2, tile_size // 2)
   coin_group.add(score_coin)
   #important, this bit is
-  world = World(level_data)
+  world = World(lvl_data)
 
   #create buttons
   restart_button = Button(screen_width // 2 - 190, screen_height // 2 + 100,
@@ -489,27 +471,28 @@ def start(lvl, MM, cst_ldata=[]):
         if exit_button_smol.draw():
           run = False
         if restart_button.draw():
-          #level_data = [] # The reason the previous code failed.
-          start(level, False)
+          #lvl_data = [] # The reason the previous code failed.
+          print("Restarting with Level "+str(lvl))
+          start(lvl, False)
           game_over = 0
           score = 0
 
-      #if player has completed the level
+      #if player has completed the lvl
       if game_over == 1:
-        #reset game and go to next level
-        level += 1
-        if level <= max_levels:
-          #reset level
-          start(level, False, score)
+        #reset game and go to next lvl
+        lvl += 1
+        if lvl <= max_lvls:
+          #reset lvl
+          start(lvl, False, score)
           game_over = 0
         else:
           draw_text('YOU WIN!', font, lime, (screen_width // 2) - 140,
                     screen_height // 2)
           if restart_button.draw(): #if player restarts game fully - need to set to exit
-            #reset level
+            #reset lvl
             game_over = 0
             score = 0
-            start(level, False)  #world = reset_level(level)
+            start(lvl, False)  #world = reset_lvl(lvl)
 
     for event in pygame.event.get():
       if event.type == pygame.QUIT:
@@ -519,5 +502,198 @@ def start(lvl, MM, cst_ldata=[]):
 
   return True
 
+def leveldesign():
+  clock = pygame.time.Clock()
+  FPS = 60
 
-#start(1, True)
+  #game window
+  SCREEN_WIDTH = 640
+  SCREEN_HEIGHT = 640
+  LOWER_MARGIN = 100
+  SIDE_MARGIN = 320
+
+  screen = pygame.display.set_mode((SCREEN_WIDTH + SIDE_MARGIN, SCREEN_HEIGHT + LOWER_MARGIN))
+  pygame.display.set_caption('Level Editor')
+
+
+  #define game variables
+  ROWS = 20
+  MAX_COLS = 20
+  TILE_SIZE = SCREEN_HEIGHT // ROWS
+  TILE_TYPES = 8
+  current_tile = 0
+  scroll = 0
+
+
+  #load images
+  pine1_img = pygame.image.load('img2/Background/pine1.png').convert_alpha()
+  pine2_img = pygame.image.load('img2/Background/pine2.png').convert_alpha()
+  mountain_img = pygame.image.load('img2/Background/mountain.png').convert_alpha()
+  sky_img = pygame.image.load('img2/Background/background.png').convert_alpha()
+  #store tiles in a list
+  img_list = []
+  for x in range(TILE_TYPES):
+    img = pygame.image.load(f'img2/tile/{x}.png').convert_alpha()
+    img = pygame.transform.scale(img, (TILE_SIZE, TILE_SIZE))
+    img_list.append(img)
+
+  save_img = pygame.image.load('img2/save_btn.png').convert_alpha()
+  load_img = pygame.image.load('img2/load_btn.png').convert_alpha()
+
+
+  #define colours
+  GREEN = (144, 201, 120)
+  WHITE = (255, 255, 255)
+  RED = (200, 25, 25)
+
+  #define font
+  font = pygame.font.SysFont('Futura', 30)
+
+  #create empty tile list
+  world_data = []
+  for row in range(ROWS):
+    r = [-1] * MAX_COLS
+    world_data.append(r)
+
+  #create ground
+  for tile in range(0, MAX_COLS):
+    world_data[ROWS - 1][tile] = 0
+
+  class Button():
+    def __init__(self,x, y, image, scale):
+      width = image.get_width()
+      height = image.get_height()
+      self.image = pygame.transform.scale(image, (int(width * scale), int(height * scale)))
+      self.rect = self.image.get_rect()
+      self.rect.topleft = (x, y)
+      self.clicked = False
+
+    def draw(self, surface):
+      action = False
+
+      #get mouse position
+      pos = pygame.mouse.get_pos()
+
+      #check mouseover and clicked conditions
+      if self.rect.collidepoint(pos):
+        if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
+          action = True
+          self.clicked = True
+
+      if pygame.mouse.get_pressed()[0] == 0:
+        self.clicked = False
+
+      #draw button
+      surface.blit(self.image, (self.rect.x, self.rect.y))
+
+      return action
+
+  #function for outputting text onto the screen
+  # def draw_text(text, font, text_col, x, y):
+  # 	img = font.render(text, True, text_col)
+  # 	screen.blit(img, (x, y))
+
+
+  #create function for drawing background
+  def draw_bg():
+    screen.fill(GREEN)
+    width = sky_img.get_width()
+    for x in range(4):
+      screen.blit(sky_img, ((x * width) - scroll * 0.5, 0))
+      #screen.blit(mountain_img, ((x * width) - scroll * 0.6, SCREEN_HEIGHT - mountain_img.get_height() - 300))
+      #screen.blit(pine1_img, ((x * width) - scroll * 0.7, SCREEN_HEIGHT - pine1_img.get_height() - 150))
+      #screen.blit(pine2_img, ((x * width) - scroll * 0.8, SCREEN_HEIGHT - pine2_img.get_height()))
+
+  #draw grid
+  def draw_grid():
+    #vertical lines
+    for c in range(MAX_COLS + 1):
+      pygame.draw.line(screen, WHITE, (c * TILE_SIZE - scroll, 0), (c * TILE_SIZE - scroll, SCREEN_HEIGHT))
+    #horizontal lines
+    for c in range(ROWS + 1):
+      pygame.draw.line(screen, WHITE, (0, c * TILE_SIZE), (SCREEN_WIDTH, c * TILE_SIZE))
+
+
+  #function for drawing the world tiles
+  def draw_world():
+    for y, row in enumerate(world_data):
+      for x, tile in enumerate(row):
+        if tile >= 0:
+          screen.blit(img_list[tile], (x * TILE_SIZE - scroll, y * TILE_SIZE))
+
+
+
+  #create buttons
+  save_button = Button(SCREEN_WIDTH // 2, SCREEN_HEIGHT + LOWER_MARGIN - 50, save_img, 1)
+  load_button = Button(SCREEN_WIDTH // 2 + 200, SCREEN_HEIGHT + LOWER_MARGIN - 50, load_img, 1)
+  #make a button list
+  button_list = []
+  button_col = 0
+  button_row = 0
+  for i in range(len(img_list)):
+    tile_button = Button(SCREEN_WIDTH + (75 * button_col) + 50, 75 * button_row + 50, img_list[i], 1)
+    button_list.append(tile_button)
+    button_col += 1
+    if button_col == 3:
+      button_row += 1
+      button_col = 0
+
+
+  run = True
+  while run:
+
+    clock.tick(FPS)
+
+    draw_bg()
+    draw_grid()
+    draw_world()
+
+    # draw_text(f'Level: {level}', font, WHITE, 10, SCREEN_HEIGHT + LOWER_MARGIN - 90)
+    # draw_text('Press UP or DOWN to change level', font, WHITE, 10, SCREEN_HEIGHT + LOWER_MARGIN - 60)
+
+    #save and load data
+    if save_button.draw(screen):
+      import copy
+      Mod_world_data = copy.deepcopy(world_data)
+      for row in range(ROWS):
+        for col in range(MAX_COLS):
+          Mod_world_data[row][col] += 1
+      print(Mod_world_data)
+    #draw tile panel and tiles
+    pygame.draw.rect(screen, GREEN, (SCREEN_WIDTH, 0, SIDE_MARGIN, SCREEN_HEIGHT))
+
+    #choose a tile
+    button_count = 0
+    for button_count, i in enumerate(button_list):
+      if i.draw(screen):
+        current_tile = button_count
+
+    #highlight the selected tile
+    pygame.draw.rect(screen, RED, button_list[current_tile].rect, 3)
+
+    #add new tiles to the screen
+    #get mouse position
+    pos = pygame.mouse.get_pos()
+    x = (pos[0] + scroll) // TILE_SIZE
+    y = pos[1] // TILE_SIZE
+
+    #check that the coordinates are within the tile area
+    if pos[0] < SCREEN_WIDTH and pos[1] < SCREEN_HEIGHT:
+      #update tile value
+      if pygame.mouse.get_pressed()[0] == 1:
+        if world_data[y][x] != current_tile:
+          world_data[y][x] = current_tile
+      if pygame.mouse.get_pressed()[2] == 1:
+        world_data[y][x] = -1
+
+
+    for event in pygame.event.get():
+      if event.type == pygame.QUIT:
+        run = False
+
+    pygame.display.update()
+
+
+    #Designs a single level.
+  return []
+
