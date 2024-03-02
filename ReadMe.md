@@ -1,5 +1,5 @@
 ReadMe:
-
+generate a commit description based on changes made
 Tips:
   alt+7=•
 ☺☻♥♦♣♠•◘○◙♂♀♪♫☼►◄↕‼¶§▬↨↑↓→←∟↔▲
