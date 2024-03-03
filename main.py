@@ -3,6 +3,7 @@ import sys
 from functionality import start, leveldesign  # Import the starty function from functions module
 pygame.display.set_caption('Platformer')
 # Function to be called when Start button is clicked
+#Gregory's bit
 def call_start():
     global screen
     if selected_option<=2:
@@ -18,7 +19,7 @@ def call_start():
         #then
         start("cst", False, custom_leveldata)
         screen = pygame.display.set_mode(res)
-
+#end gregory's bit
 # Initializing the constructor
 pygame.init()
 #edit
