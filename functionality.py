@@ -469,7 +469,7 @@ def start(lvl, MM, cst_ldata=[]):
       #if player has died
       if game_over == -1:
         if exit_button_smol.draw():
-          run = False
+          exit()
         if restart_button.draw():
           #lvl_data = [] # The reason the previous code failed.
           print("Restarting with Level "+str(lvl))
