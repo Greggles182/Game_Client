@@ -7,21 +7,22 @@ Ideas:
   •Platformer
   •Donkey Kong
 Things to do:
-  1. Finish Main Menu
+  1. Finish Main Menu ✓
   2. functionality.py run all command ✓
-  3. admin mode
+  3. add a level editor ✓
   4. More games?
   5. background music ✓
-  6. add a level editor
+  6. 
   7. 
   8. 
   9. 
   10. 
  Graphics:
-  1. 2 more main menu images (image2 and image3)
+  1. 2 more main menu images (image2 and image3) - ✓ only 1 image is being used, but the menu looks good
   2. Player
   3. Background for the levels ✓
   4. Platforms and blocks ✓
+  5. Level editor ✓
 Jobs:
 -Rory--lvl3, Main menu
 -Sam--lvl2, bit of function

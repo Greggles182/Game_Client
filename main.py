@@ -37,7 +37,7 @@ dropdown_font = pygame.font.SysFont(None, 24)  # Font for the dropdown text
 
 # Rendering the button text
 button_text = font.render('Start', True, (255, 255, 255))
-
+exit_text = font.render('Exit', True, (255, 255, 255))
 # Create a list of image filenames
 image_filenames = ['img/image1.png', 'img/image2.png', 'img/image3.png']  # Image filenames here
 
@@ -74,12 +74,13 @@ while running:
             if button_rect.collidepoint(ev.pos):
                 # Call the function when Start button is clicked
                 call_start()
-
             elif dropdown_rect.collidepoint(ev.pos):
                 # Increment the selected level when level box is clicked
                 selected_option = (selected_option + 1) % len(dropdown_options)
-
-        # ... (other event handling)
+            elif exit_rect.collidepoint(ev.pos):
+                # Exit game when exit button is clickedq
+                running = False
+                exit()
 
     # Update the position of the background
     background_x -= 2  # Adjust the scrolling speed as needed
@@ -90,6 +91,22 @@ while running:
 
     # Get the center of the screen
     screen_center_x, screen_center_y = screen.get_rect().center
+
+    exit_width, exit_height = 140, 40
+    exit_x = screen_center_x - exit_width / 2
+    exit_y = screen_center_y + 190 - exit_height / 2
+    exit_text_width, exit_text_height = exit_text.get_size()
+    exit_text_x = exit_x + (exit_width - exit_text_width) / 2
+    exit_text_y = exit_y + (exit_height - exit_text_height) / 2
+    exit_rect = pygame.Rect(exit_x, exit_y, exit_width, exit_height)
+    pygame.draw.rect(screen, (100, 100, 100), exit_rect)
+    screen.blit(exit_text, (exit_text_x, exit_text_y))
+    #Game Title:
+    # Define a font for the main menu text
+    main_menu_font = pygame.font.SysFont(None, 72)  # Font for the main menu text with size 72
+
+    # Render the main menu text
+    main_menu_text = main_menu_font.render("Main Menu", True, (255, 255, 255))  # Render the main menu text
 
     # Calculate the position of the button based on the screen center
     button_width, button_height = 140, 40
@@ -124,7 +141,7 @@ while running:
     #Mainmenu is referenced of the button.
     # Draw the dropdown below to the button
     dropdown_rect.x = button_x
-    dropdown_rect.y = button_y - button_height + 150 # Adjust the distance between the button and dropdown
+    dropdown_rect.y = button_y - button_height + 130 # Adjust the distance between the button and dropdown
     pygame.draw.rect(screen, (100, 100, 100), dropdown_rect)
     dropdown_text = dropdown_font.render(dropdown_options[selected_option], True, (255, 255, 255))
     screen.blit(dropdown_text, (dropdown_rect.x + 5, dropdown_rect.y + 5))
