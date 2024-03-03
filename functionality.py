@@ -42,26 +42,27 @@ def start(lvl, MM, cst_ldata):
     exit2_img = pygame.image.load('img/exit2_btn.png')
     #lvlload
     #20x9
-    lvl_1_data = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                  [0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                  [0, 0, 0, 0, 0, 0, 0, 7, 7, 0, 0, 0, 0, 0, 6, 6, 6, 0, 0, 0],
-                  [0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0],
-                  [0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 6, 6, 0, 0, 0, 0],
-                  [0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0],
-                  [0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                  [0, 0, 2, 0, 0, 0, 0, 0, 0, 7, 7, 7, 0, 0, 0, 0, 0, 0, 0, 0],
-                  [0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 7, 7, 7, 0, 0, 0, 0, 0],
-                  [0, 0, 0, 0, 0, 0, 2, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                  [0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0],
-                  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0],
-                  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                  [0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
+    lvl_1_data = [
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 7, 7, 0, 0, 0, 0, 0, 6, 6, 6, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 6, 6, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 2, 0, 0, 0, 0, 0, 0, 7, 7, 7, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 7, 7, 7, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 2, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
     lvl_2_data = [
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
@@ -73,8 +74,8 @@ def start(lvl, MM, cst_ldata):
         [1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 7, 0, 0, 0, 0, 1],
         [1, 0, 2, 0, 0, 7, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-        [1, 0, 0, 2, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-         1],  #[1, 0, 0, 2, 0, 0, 4, 0, 0, 0, 0, 3, 0, 0, 3, 0, 0, 0, 0, 1],
+        [1, 0, 0, 2, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],  
+        #[1, 0, 0, 2, 0, 0, 4, 0, 0, 0, 0, 3, 0, 0, 3, 0, 0, 0, 0, 1],
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1],
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 7, 0, 0, 0, 0, 2, 0, 1],
@@ -96,8 +97,8 @@ def start(lvl, MM, cst_ldata):
         [1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 7, 0, 0, 0, 0, 1],
         [1, 0, 2, 0, 0, 7, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-        [1, 0, 0, 2, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-         1],  #[1, 0, 0, 2, 0, 0, 4, 0, 0, 0, 0, 3, 0, 0, 3, 0, 0, 0, 0, 1],
+        [1, 0, 0, 2, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+        #[1, 0, 0, 2, 0, 0, 4, 0, 0, 0, 0, 3, 0, 0, 3, 0, 0, 0, 0, 1],
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1],
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 7, 0, 0, 0, 0, 2, 0, 1],
@@ -108,9 +109,6 @@ def start(lvl, MM, cst_ldata):
         [1, 0, 0, 8, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
         [1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     ]
-    #testing
-    cst_ldata = []
-    #end testing
     if lvl == 1:
         lvl_data = lvl_1_data
     elif lvl == 2:
@@ -118,7 +116,6 @@ def start(lvl, MM, cst_ldata):
     elif lvl == 3:
         lvl_data = lvl_3_data
     elif lvl == "cst":  #custom lvl
-        print(cst_ldata)
         lvl_data = cst_ldata
     else:
         print("We have not made. That level yet. ")
@@ -501,30 +498,44 @@ def start(lvl, MM, cst_ldata):
                 if exit_button_smol.draw():
                     exit()
                 if restart_button.draw():
-                    #lvl_data = [] # The reason the previous code failed.
-                    print("Restarting with Level " + str(lvl))
-                    start(lvl, False, [])
-                    game_over = 0
-                    score = 0
+                    if lvl == "cst":
+                        print("Restarting custom level")
+                        start("cst", False, cst_ldata)
+                    elif isinstance(lvl, int):
+                      print("Restarting with Level " + str(lvl))
+                      start(lvl, False, [])
 
             #if player has completed the lvl
             if game_over == 1:
                 #reset game and go to next lvl
-                lvl += 1
-                if lvl <= max_lvls:
-                    #reset lvl
-                    start(lvl, False, [])
-                    game_over = 0
-                else:
+                if isinstance(lvl, int):
+                  lvl += 1
+                  if lvl <= max_lvls:
+                      #reset lvl
+                      start(lvl, False, [])
+                      game_over = 0
+                  else:
+                      draw_text('YOU WIN!', font, lime,
+                                (screen_width // 2) - 140, screen_height // 2)
+                      if exit_button_smol.draw():
+                        exit()
+                      if restart_button.draw():
+                          #reset lvl
+                          lvl = 1
+                          game_over = 0
+                          score = 0
+                          start(lvl, False, [])
+                elif lvl ==  "cst":
                     draw_text('YOU WIN!', font, lime,
-                              (screen_width // 2) - 140, screen_height // 2)
-                    if restart_button.draw(
-                    ):  #if player restarts game fully - need to set to exit
+                                (screen_width // 2) - 140, screen_height // 2)
+                    if exit_button_smol.draw():
+                      exit()
+                    if restart_button.draw():
                         #reset lvl
                         game_over = 0
                         score = 0
-                        start(lvl, False, [])  #world = reset_lvl(lvl)
-
+                        print("Restarting custom level")
+                        start("cst", False, cst_ldata)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
@@ -684,17 +695,13 @@ def leveldesign():
         draw_grid()
         draw_world()
 
-        # draw_text(f'Level: {level}', font, WHITE, 10, SCREEN_HEIGHT + LOWER_MARGIN - 90)
-        # draw_text('Press UP or DOWN to change level', font, WHITE, 10, SCREEN_HEIGHT + LOWER_MARGIN - 60)
-
-        #save and load data
+        #run levelbuilder
         if save_button.draw(screen):
             import copy
             Mod_world_data = copy.deepcopy(world_data)
             for row in range(ROWS):
                 for col in range(MAX_COLS):
                     Mod_world_data[row][col] += 1
-            print("generated world data: " + str(Mod_world_data))
             return Mod_world_data
         #draw tile panel and tiles
         pygame.draw.rect(screen, GREEN,

@@ -17,7 +17,7 @@ def call_start():
         #level selector here
         custom_leveldata = leveldesign()
         #then
-        print("Mainmenu cst-ldata: " + str(custom_leveldata))
+        print("cst-ldata: " + str(custom_leveldata))
         start("cst", False, custom_leveldata)
         screen = pygame.display.set_mode(res)
 #end gregory's bit
