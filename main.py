@@ -9,7 +9,7 @@ def call_start():
     if selected_option<=2:
         start_level = selected_option+1
         print("Function call_start() is called.",start_level)
-        start(start_level, False)  # Call the starty function from functions module
+        start(start_level, False, [])  # Call the starty function from functions module
         screen = pygame.display.set_mode(res)
     elif selected_option == 3:
         print("Custom-Level start")
@@ -17,6 +17,7 @@ def call_start():
         #level selector here
         custom_leveldata = leveldesign()
         #then
+        print("Mainmenu cst-ldata: " + str(custom_leveldata))
         start("cst", False, custom_leveldata)
         screen = pygame.display.set_mode(res)
 #end gregory's bit

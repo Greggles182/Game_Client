@@ -2,7 +2,7 @@ import pygame
 from pygame.locals import *
 from os import *
 
-def start(lvl, MM, cst_ldata=[]):
+def start(lvl, MM, cst_ldata):
   print("starting with Level "+str(lvl))
   pygame.init()
 
@@ -100,6 +100,7 @@ def start(lvl, MM, cst_ldata=[]):
   elif lvl == 3:
     lvl_data = lvl_3_data
   elif lvl == "cst":  #custom lvl
+    print(cst_ldata)
     lvl_data = cst_ldata
   else:
     print("We have not made. That level yet. ")
@@ -473,7 +474,7 @@ def start(lvl, MM, cst_ldata=[]):
         if restart_button.draw():
           #lvl_data = [] # The reason the previous code failed.
           print("Restarting with Level "+str(lvl))
-          start(lvl, False)
+          start(lvl, False, [])
           game_over = 0
           score = 0
 
@@ -483,7 +484,7 @@ def start(lvl, MM, cst_ldata=[]):
         lvl += 1
         if lvl <= max_lvls:
           #reset lvl
-          start(lvl, False, score)
+          start(lvl, False, [])
           game_over = 0
         else:
           draw_text('YOU WIN!', font, lime, (screen_width // 2) - 140,
@@ -492,7 +493,7 @@ def start(lvl, MM, cst_ldata=[]):
             #reset lvl
             game_over = 0
             score = 0
-            start(lvl, False)  #world = reset_lvl(lvl)
+            start(lvl, False, [])  #world = reset_lvl(lvl)
 
     for event in pygame.event.get():
       if event.type == pygame.QUIT:
@@ -658,7 +659,8 @@ def leveldesign():
       for row in range(ROWS):
         for col in range(MAX_COLS):
           Mod_world_data[row][col] += 1
-      print(Mod_world_data)
+      print("generated world data: " + str(Mod_world_data))
+      return Mod_world_data
     #draw tile panel and tiles
     pygame.draw.rect(screen, GREEN, (SCREEN_WIDTH, 0, SIDE_MARGIN, SCREEN_HEIGHT))
 
@@ -695,5 +697,4 @@ def leveldesign():
 
 
     #Designs a single level.
-  return []
 
