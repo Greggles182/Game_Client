@@ -10,7 +10,7 @@ def call_start():
         print("Function call_start() is called.",start_level)
         start(start_level, False)  # Call the starty function from functions module
         screen = pygame.display.set_mode(res)
-    elif selected_option == 4:
+    elif selected_option == 3:
         print("Custom-Level start")
         print("Feature in development")
         #level selector here
