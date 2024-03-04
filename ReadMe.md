@@ -37,3 +37,12 @@ lvl2 - level 2 - imports functionality.py
 lvl3 - level 3 - imports functionality.py
 ...
 
+0 = air,
+1 = stone
+2 = full platform,
+3 = enemy,
+4 = x platform,
+5 = y moving platform,
+6 = Lava,
+7 = Coin,
+8 = Exit,
