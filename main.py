@@ -1,13 +1,13 @@
 import pygame
 import sys
-from functionality import start, leveldesign  # Import the starty function from functions module
+from functionality import start, leveldesign  # Import the starty function from functions module_leve = selected_option+1l
 pygame.display.set_caption('Platformer')
 # Function to be called when Start button is clicked
 #Gregory's bit
 def call_start():
     global screen
     if selected_option<=2:
-        start_level = selected_option+1
+        start
         print("Function call_start() is called.",start_level)
         start(start_level, False, [])  # Call the starty function from functions module
         screen = pygame.display.set_mode(res)
