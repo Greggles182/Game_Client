@@ -1,6 +1,6 @@
 import pygame
 import sys
-from functionality import start, leveldesign  # Import the starty function from functions module
+from functionality import start, leveldesign  # Import the starty function from functions module_leve = selected_option+1l
 pygame.display.set_caption('Platformer')
 # Function to be called when Start button is clicked
 #Gregory's bit
