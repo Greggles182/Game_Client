@@ -7,7 +7,7 @@ pygame.display.set_caption('Platformer')
 def call_start():
     global screen
     if selected_option<=2:
-        start
+        start_level = selected_option+1
         print("Function call_start() is called.",start_level)
         start(start_level, False, [])  # Call the starty function from functions module
         screen = pygame.display.set_mode(res)
