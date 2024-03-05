@@ -1,27 +1,6 @@
 #DOWNLOAD THIS
 import os
-def cli(Ldata=[
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-        [1, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 1],
-        [1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 2, 2, 1],
-        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 7, 0, 5, 0, 0, 0, 1],
-        [1, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 1],
-        [1, 7, 0, 0, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-        [1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 7, 0, 0, 0, 0, 1],
-        [1, 0, 2, 0, 0, 7, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-        [1, 0, 0, 2, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],  
-        [1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1],
-        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 7, 0, 0, 0, 0, 2, 0, 1],
-        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 2, 2, 2, 2, 2, 1],
-        [1, 0, 0, 0, 0, 0, 2, 2, 2, 6, 6, 6, 6, 6, 1, 1, 1, 1, 1, 1],
-        [1, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 0, 0, 0, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-    ]):
+def cli(Ldata):
     print("""Welcome to the LevelEditor CLI!
           Please type a number below to trigger the command
           1: Export the current level to file
@@ -39,7 +18,18 @@ def cli(Ldata=[
         fname = input("What filename do you want to export to? ")
         PATH = f'./levels/{fname}.txt'
         if os.path.isfile(PATH): # and os.access(PATH, os.R_OK):
-            print("File exists and is readable")
+            cont = input("File exists - do you want to continue? Y/N: ")
+            if cont.lower() == 'y':
+                print("FileCheck - OK")
+                print(f"Writing to {fname}.txt...")
+                with open(PATH, "w") as FILE:
+                    FILE.write(str(Ldata))
+                    print(str(Ldata))
+                    FILE.close()
+                input("Success. Press enter to close the CLI")
+                exit()
+            else:
+                pass
         else:
             print("FileCheck - OK")
             print(f"Writing to {fname}.txt...")
@@ -48,7 +38,7 @@ def cli(Ldata=[
                 print(str(Ldata))
                 FILE.close()
             input("Success. Press enter to close the CLI")
-            return True
+            exit()
     elif  Opt == 2:
         from os import listdir
         from os.path import isfile, join
@@ -65,7 +55,7 @@ def cli(Ldata=[
             if nfname <= 0 or nfname > len(LISTFILES):
                 print("That was an invalid option.")
                 raise ValueError
-            nfname = LISTFILES[nfname]
+            nfname = LISTFILES[nfname-1]
             FPATH = PATH + nfname
             if os.path.isfile(FPATH) and os.access(FPATH, os.R_OK):
                 print("File exists and is readable")
@@ -74,20 +64,21 @@ def cli(Ldata=[
                     DATA = eval(DATA)
                     print(DATA)
                     print(type(DATA))
-                    return DATA
+                    return True, DATA
             else:
                 print("Either the file is missing or not readable")
+                exit()
         else:
             print("That was an invalid option.")
             raise ValueError
     elif Opt == 3:
         print(Ldata)
-        return Ldata
+        return True, Ldata
     elif Opt == 4:
         LDLIST = input("Enter a valid level data list: ")
         LDLIST = eval(LDLIST)
-        return LDLIST
+        return False, LDLIST
     elif Opt == 5:
-        return True
+        exit()
 if __name__ == "__main__":
-    cli()
+    cli([])
