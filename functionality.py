@@ -545,6 +545,7 @@ def start(lvl, MM, cst_ldata):
     return True
 
 def leveldesign():
+    import LevelInput
     clock = pygame.time.Clock()
     FPS = 60
 
@@ -701,10 +702,23 @@ def leveldesign():
                 for col in range(MAX_COLS):
                     Mod_world_data[row][col] += 1
             return Mod_world_data
+        
+        if load_button.draw(screen):
+            import copy
+            Mod_world_data = copy.deepcopy(world_data)
+            for row in range(ROWS):
+                for col in range(MAX_COLS):
+                    Mod_world_data[row][col] += 1
+            response = LevelInput.cli(Mod_world_data)
+            if response == True:
+                print("Exiting...")
+                exit()
+            elif type(response) is list:
+                return response
         #draw tile panel and tiles
         pygame.draw.rect(screen, GREEN,
                          (SCREEN_WIDTH, 0, SIDE_MARGIN, SCREEN_HEIGHT))
-
+        
         #choose a tile
         button_count = 0
         for button_count, i in enumerate(button_list):
