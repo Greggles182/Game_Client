@@ -13,7 +13,6 @@ def call_start():
         screen = pygame.display.set_mode(res)
     elif selected_option == 3:
         print("Custom-Level start")
-        print("Feature in development")
         #level selector here
         custom_leveldata = leveldesign()
         #then
@@ -67,7 +66,7 @@ while running:
 
     for ev in pygame.event.get():
         if ev.type == pygame.QUIT:
-            running = False
+            quit()
 
         # Check for button click
         elif ev.type == pygame.MOUSEBUTTONDOWN:

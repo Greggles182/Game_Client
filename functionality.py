@@ -4,6 +4,7 @@ from os import *
 
 
 def start(lvl, MM, cst_ldata):
+    print(type(lvl))
     print("starting with Level " + str(lvl))
     pygame.init()
 
@@ -470,7 +471,7 @@ def start(lvl, MM, cst_ldata):
 
         if main_menu == True:
             if exit_button.draw():
-                run = False
+                quit()
             if start_button.draw():
                 main_menu = False
         else:
@@ -543,7 +544,6 @@ def start(lvl, MM, cst_ldata):
         pygame.display.update()
 
     return True
-
 
 def leveldesign():
     clock = pygame.time.Clock()
@@ -737,3 +737,17 @@ def leveldesign():
         pygame.display.update()
 
         #Designs a single level.
+if __name__ == "__main__":
+    sel_option = input("Enter level number (1-3) or 'cst' to continue: ")
+    if sel_option == "cst":
+        print("Custom-Level start")
+        #level selector here
+        custom_leveldata = leveldesign()
+        #then
+        print("cst-ldata: " + str(custom_leveldata))
+        start("cst", False, custom_leveldata)
+    elif int(sel_option)<=3:
+        sel_option = int(sel_option)
+        print("Function call_start() is called.",sel_option)
+        start(sel_option, False, [])  # Call the starty function from functions module
+    
