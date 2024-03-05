@@ -5,7 +5,7 @@ def cli(Ldata):
           Please type a number below to trigger the command
           1: Export the current level to file
           2: Load a level file
-          3: Print seed for current level, and begin.
+          3: Print seed for current level.
           4: Paste in a level seed (must be valid)
           5: Exit the program.
           """)
@@ -64,7 +64,7 @@ def cli(Ldata):
                     DATA = eval(DATA)
                     print(DATA)
                     print(type(DATA))
-                    return True, DATA
+                    return DATA
             else:
                 print("Either the file is missing or not readable")
                 exit()
@@ -73,11 +73,11 @@ def cli(Ldata):
             raise ValueError
     elif Opt == 3:
         print(Ldata)
-        return True, Ldata
+        return Ldata
     elif Opt == 4:
         LDLIST = input("Enter a valid level data list: ")
         LDLIST = eval(LDLIST)
-        return False, LDLIST
+        return LDLIST
     elif Opt == 5:
         exit()
 if __name__ == "__main__":
