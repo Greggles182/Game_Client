@@ -26,8 +26,8 @@ def cli(Ldata=[
           Please type a number below to trigger the command
           1: Export the current level to file
           2: Load a level file
-          3: Paste in a level seed
-          4: Print seed for current level, and begin it.
+          3: Print seed for current level, and begin.
+          4: Paste in a level seed (must be valid)
           5: Exit the program.
           """)
     Opt = input("Type 1-5 then press Enter to proceed: ")
@@ -80,5 +80,14 @@ def cli(Ldata=[
         else:
             print("That was an invalid option.")
             raise ValueError
+    elif Opt == 3:
+        print(Ldata)
+        return Ldata
+    elif Opt == 4:
+        LDLIST = input("Enter a valid level data list: ")
+        LDLIST = eval(LDLIST)
+        return LDLIST
+    elif Opt == 5:
+        return True
 if __name__ == "__main__":
     cli()

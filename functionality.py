@@ -1,5 +1,6 @@
 import pygame
 from pygame.locals import *
+from pygame.font import *
 from os import *
 
 
@@ -7,7 +8,7 @@ def start(lvl, MM, cst_ldata):
     print(type(lvl))
     print("starting with Level " + str(lvl))
     pygame.init()
-
+    pygame.font.init()
     clock = pygame.time.Clock()
     fps = 60
 
@@ -545,6 +546,7 @@ def start(lvl, MM, cst_ldata):
     return True
 
 def leveldesign():
+    pygame.font.init()
     import LevelInput
     clock = pygame.time.Clock()
     FPS = 60
