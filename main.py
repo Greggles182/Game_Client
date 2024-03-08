@@ -9,7 +9,7 @@ def call_start():
     global screen
     if selected_option==4:
       print("Mulytiplay")
-      pygame.quit()
+      
       yehaa()
     else:
       if selected_option<=2:
