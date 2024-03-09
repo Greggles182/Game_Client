@@ -436,7 +436,7 @@ def start(lvl, MM, cst_ldata):
             self.rect.x = x
             self.rect.y = y
 
-    player = Player(100, screen_height - 130, {'jump': pygame.K_SPACE, 'left': pygame.K_LEFT, 'right': pygame.K_RIGHT})
+    player = Player(100, screen_height - 130, {'jump': pygame.K_DOWN, 'left': pygame.K_LEFT, 'right': pygame.K_RIGHT})
     player2 = Player(100, screen_height - 130, {'jump': pygame.K_s, 'left': pygame.K_a, 'right': pygame.K_d})
 
 
@@ -483,7 +483,7 @@ def start(lvl, MM, cst_ldata):
                 platform_group.update()
                 #update score
                 #check if a coin has been collected
-                if pygame.sprite.spritecollide(player, coin_group, True):
+                if pygame.sprite.spritecollide(player or player2, coin_group, True):
                     score += 1
                 draw_text('X ' + str(score) + "   Level: " + str(lvl), font_score, white, tile_size - 10,
                           10)
