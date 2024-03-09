@@ -1,25 +1,31 @@
 import pygame
 import sys
+from multiplayer import *
 from functionality import start, leveldesign  # Import the starty function from functions module_leve = selected_option+1l
 pygame.display.set_caption('Platformer')
 # Function to be called when Start button is clicked
 #Gregory's bit
 def call_start():
     global screen
-    if selected_option<=2:
-        start_level = selected_option+1
-        print("Function call_start() is called.",start_level)
-        start(start_level, False, [])  # Call the starty function from functions module
-        screen = pygame.display.set_mode(res)
-    elif selected_option == 3:
-        print("Custom-Level start")
-        #level selector here
-        custom_leveldata = leveldesign()
-        #then
-        print("cst-ldata: " + str(custom_leveldata))
-        start("cst", False, custom_leveldata)
-        screen = pygame.display.set_mode(res)
-#end gregory's bit
+    if selected_option==4:
+      print("Mulytiplay")
+      
+      yehaa()
+    else:
+      if selected_option<=2:
+          start_level = selected_option+1
+          print("Function call_start() is called.",start_level)
+          start(start_level, False, [])  # Call the starty function from functions module
+          screen = pygame.display.set_mode(res)
+      elif selected_option == 3:
+          print("Custom-Level start")
+          #level selector here
+          custom_leveldata = leveldesign()
+          #then
+          print("cst-ldata: " + str(custom_leveldata))
+          start("cst", False, custom_leveldata)
+          screen = pygame.display.set_mode(res)
+  #end gregory's bit
 # Initializing the constructor
 pygame.init()
 #edit
@@ -58,7 +64,7 @@ background_x = 0  # Initialize background_x outside the loop
 
 # Dropdown variables
 dropdown_rect = pygame.Rect(res[0] - 160, 10, 150, 30)
-dropdown_options = ['Level 1', 'Level 2', 'Level 3', "Custom"]
+dropdown_options = ['Level 1', 'Level 2', 'Level 3', "Custom","Multiplayer"]
 selected_option = 0
 
 while running:
