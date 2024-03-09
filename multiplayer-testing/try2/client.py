@@ -12,5 +12,6 @@ async def hello():
         print(f">>> {name}")
         greeting = await websocket.recv()
         print(f"<<< {greeting}")
+        await asyncio.Future()
 if __name__ == "__main__":
     asyncio.run(hello())
