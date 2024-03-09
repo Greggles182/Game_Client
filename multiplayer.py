@@ -1,5 +1,6 @@
 import pygame
-import sys# Import the starty function from functions module_leve = selected_option+1l
+import sys
+from local_functionality import start, leveldesign# Import the starty function from functions module_leve = selected_option+1l
 def yehaa():
   def hiyuy(s_op):
     print("HI")
@@ -8,7 +9,9 @@ def yehaa():
     if s_op==1:
       #GREGADDCODE
       print("#gregaddcode")
-  pygame.display.set_caption('Platformer')
+    if s_op == 0:
+      start(1, False, [])
+      pygame.display.set_caption('Platformer')
   pygame.init()
   #edit
   # Screen resolution
