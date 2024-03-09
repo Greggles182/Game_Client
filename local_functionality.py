@@ -437,6 +437,7 @@ def start(lvl, MM, cst_ldata):
             self.rect.y = y
 
     player = Player(100, screen_height - 130, {'jump': pygame.K_SPACE, 'left': pygame.K_LEFT, 'right': pygame.K_RIGHT})
+    player2 = Player(100, screen_height - 130, {'jump': pygame.K_s, 'left': pygame.K_a, 'right': pygame.K_d})
 
 
 
@@ -493,7 +494,7 @@ def start(lvl, MM, cst_ldata):
             coin_group.draw(screen)
             exit_group.draw(screen)
 
-            game_over = player.update(game_over)
+            game_over = player.update(game_over) or player2.update(game_over)
             #if player has died
             if game_over == -1:
                 if exit_button_smol.draw():
