@@ -483,10 +483,14 @@ def start(lvl, MM, cst_ldata):
                 platform_group.update()
                 #update score
                 #check if a coin has been collected
-                if pygame.sprite.spritecollide(player or player2, coin_group, True):
+                if pygame.sprite.spritecollide(player, coin_group, True):
                     score += 1
                 draw_text('X ' + str(score) + "   Level: " + str(lvl), font_score, white, tile_size - 10,
                           10)
+              if pygame.sprite.spritecollide(player2, coin_group, True):
+                score += 1
+              draw_text('X ' + str(score) + "   Level: " + str(lvl), font_score, white, tile_size - 10,
+                      10)
 
             blob_group.draw(screen)
             platform_group.draw(screen)
