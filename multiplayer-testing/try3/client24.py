@@ -1,6 +1,7 @@
 import requests
 
-SERVER_URL = 'http://localhost:5000'
+#SERVER_URL = 'http://localhost:5000'
+SERVER_URL = 'http://gregglesthegreat.pythonanywhere.com/'
 
 def get_variable(variable_name):
     response = requests.get(f'{SERVER_URL}/get_variable?name={variable_name}')
@@ -15,6 +16,8 @@ def update_variable(variable_name, value):
         print('Failed to update variable')
 
 # Example usage:
-new_value = 203
-var_value = get_variable('example_variable')
+var_value = str(get_variable('example_variable'))
+print("Currently: " + var_value)
+new_value = input("Enter a new value for example_variable: ")
+
 update_variable('example_variable', new_value)
