@@ -436,8 +436,8 @@ def start(lvl, MM, cst_ldata):
             self.rect.x = x
             self.rect.y = y
 
-    player = Player(100, screen_height - 130, {'jump': pygame.K_DOWN, 'left': pygame.K_LEFT, 'right': pygame.K_RIGHT})
-    player2 = Player(100, screen_height - 130, {'jump': pygame.K_s, 'left': pygame.K_a, 'right': pygame.K_d})
+    player = Player(100, screen_height - 130, {'jump': pygame.K_UP, 'left': pygame.K_LEFT, 'right': pygame.K_RIGHT})
+    player2 = Player(100, screen_height - 130, {'jump': pygame.K_w, 'left': pygame.K_a, 'right': pygame.K_d})
 
 
 

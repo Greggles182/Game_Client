@@ -10,7 +10,7 @@ Things to do:
   1. Finish Main Menu ✓
   2. functionality.py run all command ✓
   3. add a level editor ✓
-  4. More games?
+  4. More games?✗
   5. background music ✓
   6. 
   7. 
