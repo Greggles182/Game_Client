@@ -565,7 +565,7 @@ def leveldesign():
     ROWS = 20
     MAX_COLS = 20
     TILE_SIZE = SCREEN_HEIGHT // ROWS
-    TILE_TYPES = 8
+    TILE_TYPES = 9
     current_tile = 0
     scroll = 0
 
@@ -702,7 +702,8 @@ def leveldesign():
             Mod_world_data = copy.deepcopy(world_data)
             for row in range(ROWS):
                 for col in range(MAX_COLS):
-                    Mod_world_data[row][col] += 1
+                    if (Mod_world_data[row][col] == -1):
+                        Mod_world_data[row][col] = 0
             return Mod_world_data
         
         if load_button.draw(screen):
