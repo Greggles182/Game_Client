@@ -5,7 +5,7 @@ def Setup():
         SERVER_URL = input("Enter server URL or press Enter to use default: ")
         if  SERVER_URL == "":
             SERVER_URL = "http://gregglesthegreat.pythonanywhere.com/"
-        PlayingQ = str(webclient.get_variable("http://gregglesthegreat.pythonanywhere.com/","b_pgp_Playing"))
+        PlayingQ = str(webclient.get_variable(SERVER_URL,"b_pgp_Playing"))
         if PlayingQ == "None" or PlayingQ == "0":
             print("PlayerCheck complete")
             playersQ = int(input("How many players do you want(2-4): "))
@@ -13,11 +13,13 @@ def Setup():
                 print ("Invalid number of players!")
                 Setup()
             print("Connecting...")
-            webclient.update_variable("http://gregglesthegreat.pythonanywhere.com/","i_pgp_Players", playersQ)
+            webclient.update_variable(SERVER_URL,"i_pgp_Players", playersQ)
             cstQ = input("Do you want to start the normal levels (1) or custom ones (2): ")
-            webclient.update_variable("http://gregglesthegreat.pythonanywhere.com/","b_pgp_Custom", cstQ)
+            webclient.update_variable(SERVER_URL,"b_pgp_Custom", cstQ)
             if cstQ == "1":
                 pass
             elif cstQ == "2":
-                pass
+                print("Please draw a level in the opened window.")
+                from functionality import leveldesign
+                webclient.update_variable(SERVER_URL,"l_pgp_level-data", leveldesign())
 Setup()
