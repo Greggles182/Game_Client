@@ -156,36 +156,35 @@ def start(lvl, MM, cst_ldata):
 
             return action
 
-    class Player():
-
-        def __init__(self, x, y):
+    class Player(pygame.sprite.Sprite):
+          def __init__(self, x, y, keys):
+            pygame.sprite.Sprite.__init__(self)
             self.reset(x, y)
+            self.keys = keys
 
-        def update(self, game_over):
+          def update(self, game_over):
             dx = 0
             dy = 0
             walk_cooldown = 5
             col_thresh = 20
 
             if game_over == 0:
-                #get keypresses
+                # get keypresses
                 key = pygame.key.get_pressed()
-                if key[pygame.
-                       K_SPACE] and self.jumped == False and self.in_air == False:
+                if key[self.keys["jump"]] and not self.jumped and not self.in_air:
                     self.vel_y = -15
                     self.jumped = True
-                if key[pygame.K_SPACE] == False:
+                if not key[self.keys["jump"]]:
                     self.jumped = False
-                if key[pygame.K_LEFT]:
+                if key[self.keys["left"]]:
                     dx -= 5
                     self.counter += 1
                     self.direction = -1
-                if key[pygame.K_RIGHT]:
+                if key[self.keys["right"]]:
                     dx += 5
                     self.counter += 1
                     self.direction = 1
-                if key[pygame.K_LEFT] == False and key[
-                        pygame.K_RIGHT] == False:
+                if not key[self.keys["left"]] and not key[self.keys["right"]]:
                     self.counter = 0
                     self.index = 0
                     if self.direction == 1:
@@ -193,7 +192,7 @@ def start(lvl, MM, cst_ldata):
                     if self.direction == -1:
                         self.image = self.images_left[self.index]
 
-                #handle animation
+                # handle animation
                 if self.counter > walk_cooldown:
                     self.counter = 0
                     self.index += 1
@@ -204,69 +203,69 @@ def start(lvl, MM, cst_ldata):
                     if self.direction == -1:
                         self.image = self.images_left[self.index]
 
-                #add gravity
+                # add gravity
                 self.vel_y += 1
                 if self.vel_y > 10:
                     self.vel_y = 10
                 dy += self.vel_y
 
-                #check for collision
+                # check for collision
                 self.in_air = True
                 for tile in world.tile_list:
-                    #check for collision in x direction
+                    # check for collision in x direction
                     if tile[1].colliderect(self.rect.x + dx, self.rect.y,
                                            self.width, self.height):
                         dx = 0
-                    #check for collision in y direction
+                    # check for collision in y direction
                     if tile[1].colliderect(self.rect.x, self.rect.y + dy,
                                            self.width, self.height):
-                        #check if below the ground i.e. jumping
+                        # check if below the ground i.e. jumping
                         if self.vel_y < 0:
                             dy = tile[1].bottom - self.rect.top
                             self.vel_y = 0
-                        #check if above the ground i.e. falling
+                        # check if above the ground i.e. falling
                         elif self.vel_y >= 0:
                             dy = tile[1].top - self.rect.bottom
                             self.vel_y = 0
                             self.in_air = False
 
-                #check for collision with enemies
+                # check for collision with enemies
                 if pygame.sprite.spritecollide(self, blob_group, False):
                     game_over = -1
 
-                #check for collision with lava
+                # check for collision with lava
                 if pygame.sprite.spritecollide(self, lava_group, False):
                     game_over = -1
 
-                #check for collision with exit
+                # check for collision with exit
                 if pygame.sprite.spritecollide(self, exit_group, False):
                     game_over = 1
 
-                #check for collision with platforms
+                # check for collision with platforms
                 for platform in platform_group:
-                    #collision in the x direction
+                    # collision in the x direction
                     if platform.rect.colliderect(self.rect.x + dx, self.rect.y,
                                                  self.width, self.height):
                         dx = 0
-                    #collision in the y direction
+                    # collision in the y direction
                     if platform.rect.colliderect(self.rect.x, self.rect.y + dy,
                                                  self.width, self.height):
-                        #check if below platform
+                        # check if below platform
                         if abs((self.rect.top + dy) -
                                platform.rect.bottom) < col_thresh:
                             self.vel_y = 0
                             dy = platform.rect.bottom - self.rect.top
-                        #check if above platform
+                        # check if above platform
                         elif abs((self.rect.bottom + dy) -
                                  platform.rect.top) < col_thresh:
                             self.rect.bottom = platform.rect.top - 1
                             self.in_air = False
                             dy = 0
-                        #move sideways with the platform
+                        # move sideways with the platform
                         if platform.move_x != 0:
                             self.rect.x += platform.move_direction
 
-                #update player coordinates
+                # update player coordinates
                 self.rect.x += dx
                 self.rect.y += dy
 
@@ -277,12 +276,11 @@ def start(lvl, MM, cst_ldata):
                 if self.rect.y > 200:
                     self.rect.y -= 5
 
-            #draw player onto screen
+            # draw player onto screen
             screen.blit(self.image, self.rect)
 
             return game_over
-
-        def reset(self, x, y):
+          def reset(self, x, y):
             self.images_right = []
             self.images_left = []
             self.index = 0
@@ -438,7 +436,10 @@ def start(lvl, MM, cst_ldata):
             self.rect.x = x
             self.rect.y = y
 
-    player = Player(100, screen_height - 130)
+    player = Player(100, screen_height - 130, {"jump": pygame.K_UP, "left": pygame.K_LEFT, "right": pygame.K_RIGHT})
+    player2 = Player(100, screen_height - 130, {"jump": pygame.K_w, "left": pygame.K_a, "right": pygame.K_d})
+
+
 
     blob_group = pygame.sprite.Group()
     platform_group = pygame.sprite.Group()
@@ -486,6 +487,10 @@ def start(lvl, MM, cst_ldata):
                     score += 1
                 draw_text("X " + str(score) + "   Level: " + str(lvl), font_score, white, tile_size - 10,
                           10)
+                if pygame.sprite.spritecollide(player2, coin_group, True):
+                  score += 1
+                  draw_text("X " + str(score) + "   Level: " + str(lvl), font_score, white, tile_size - 10,
+                      10)
 
             blob_group.draw(screen)
             platform_group.draw(screen)
@@ -493,7 +498,7 @@ def start(lvl, MM, cst_ldata):
             coin_group.draw(screen)
             exit_group.draw(screen)
 
-            game_over = player.update(game_over)
+            game_over = player.update(game_over) or player2.update(game_over)
             #if player has died
             if game_over == -1:
                 if exit_button_smol.draw():
@@ -751,4 +756,3 @@ if __name__ == "__main__":
         sel_option = int(sel_option)
         print("Function call_start() is called.",sel_option)
         start(sel_option, False, [])  # Call the starty function from functions module
-    

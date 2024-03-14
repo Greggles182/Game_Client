@@ -59,7 +59,7 @@ class UIElement(Sprite):
         return self.rects[1] if self.mouse_over else self.rects[0]
 
     def update(self, mouse_pos, mouse_up):
-        """ Updates the mouse_over variable and returns the button's
+        """ Updates the mouse_over variable and returns the button"s
             action value when clicked.
         """
         if self.rect.collidepoint(mouse_pos):

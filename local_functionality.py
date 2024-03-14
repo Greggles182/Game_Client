@@ -16,11 +16,11 @@ def start(lvl, MM, cst_ldata):
     screen_height = 1000
 
     screen = pygame.display.set_mode((screen_width, screen_height))
-    pygame.display.set_caption('Platformer')
+    pygame.display.set_caption("Platformer")
 
     #define font
-    font = pygame.font.SysFont('Bauhaus 93', 70)
-    font_score = pygame.font.SysFont('Bauhaus 93', 30)
+    font = pygame.font.SysFont("Bauhaus 93", 70)
+    font_score = pygame.font.SysFont("Bauhaus 93", 30)
 
     #define game variables
     tile_size = 50
@@ -36,12 +36,12 @@ def start(lvl, MM, cst_ldata):
     lime = (0, 255, 0)
 
     #load images
-    #sun_img = pygame.image.load('img/sun.png')
-    bg_img = pygame.image.load('img/sky.png')
-    restart_img = pygame.image.load('img/restart_btn.png')
-    start_img = pygame.image.load('img/start_btn.png')
-    exit_img = pygame.image.load('img/exit_btn.png')
-    exit2_img = pygame.image.load('img/exit2_btn.png')
+    #sun_img = pygame.image.load("img/sun.png")
+    bg_img = pygame.image.load("img/sky.png")
+    restart_img = pygame.image.load("img/restart_btn.png")
+    start_img = pygame.image.load("img/start_btn.png")
+    exit_img = pygame.image.load("img/exit_btn.png")
+    exit2_img = pygame.image.load("img/exit2_btn.png")
     #lvlload
     #20x9
     # There are two functionalities because I accidentaly deleted something.
@@ -171,20 +171,20 @@ def start(lvl, MM, cst_ldata):
             if game_over == 0:
                 # get keypresses
                 key = pygame.key.get_pressed()
-                if key[self.keys['jump']] and not self.jumped and not self.in_air:
+                if key[self.keys["jump"]] and not self.jumped and not self.in_air:
                     self.vel_y = -15
                     self.jumped = True
-                if not key[self.keys['jump']]:
+                if not key[self.keys["jump"]]:
                     self.jumped = False
-                if key[self.keys['left']]:
+                if key[self.keys["left"]]:
                     dx -= 5
                     self.counter += 1
                     self.direction = -1
-                if key[self.keys['right']]:
+                if key[self.keys["right"]]:
                     dx += 5
                     self.counter += 1
                     self.direction = 1
-                if not key[self.keys['left']] and not key[self.keys['right']]:
+                if not key[self.keys["left"]] and not key[self.keys["right"]]:
                     self.counter = 0
                     self.index = 0
                     if self.direction == 1:
@@ -271,7 +271,7 @@ def start(lvl, MM, cst_ldata):
 
             elif game_over == -1:
                 self.image = self.dead_image
-                draw_text('GAME OVER!', font, red, (screen_width // 2) - 200,
+                draw_text("GAME OVER!", font, red, (screen_width // 2) - 200,
                           screen_height // 2)
                 if self.rect.y > 200:
                     self.rect.y -= 5
@@ -286,12 +286,12 @@ def start(lvl, MM, cst_ldata):
             self.index = 0
             self.counter = 0
             for num in range(1, 5):
-                img_right = pygame.image.load(f'img/guy{num}.png')
+                img_right = pygame.image.load(f"img/guy{num}.png")
                 img_right = pygame.transform.scale(img_right, (40, 80))
                 img_left = pygame.transform.flip(img_right, True, False)
                 self.images_right.append(img_right)
                 self.images_left.append(img_left)
-            self.dead_image = pygame.image.load('img/ghost.png')
+            self.dead_image = pygame.image.load("img/ghost.png")
             self.image = self.images_right[self.index]
             self.rect = self.image.get_rect()
             self.rect.x = x
@@ -309,8 +309,8 @@ def start(lvl, MM, cst_ldata):
             self.tile_list = []
 
             #load images
-            dirt_img = pygame.image.load('img/dirt.png')
-            grass_img = pygame.image.load('img/grass.png')
+            dirt_img = pygame.image.load("img/dirt.png")
+            grass_img = pygame.image.load("img/grass.png")
 
             row_count = 0
             for row in data:
@@ -367,7 +367,7 @@ def start(lvl, MM, cst_ldata):
 
         def __init__(self, x, y):
             pygame.sprite.Sprite.__init__(self)
-            self.image = pygame.image.load('img/blob.png')
+            self.image = pygame.image.load("img/blob.png")
             self.rect = self.image.get_rect()
             self.rect.x = x
             self.rect.y = y
@@ -385,7 +385,7 @@ def start(lvl, MM, cst_ldata):
 
         def __init__(self, x, y, move_x, move_y):
             pygame.sprite.Sprite.__init__(self)
-            img = pygame.image.load('img/platform.png')
+            img = pygame.image.load("img/platform.png")
             self.image = pygame.transform.scale(img,
                                                 (tile_size, tile_size // 2))
             self.rect = self.image.get_rect()
@@ -408,7 +408,7 @@ def start(lvl, MM, cst_ldata):
 
         def __init__(self, x, y):
             pygame.sprite.Sprite.__init__(self)
-            img = pygame.image.load('img/lava.png')
+            img = pygame.image.load("img/lava.png")
             self.image = pygame.transform.scale(img,
                                                 (tile_size, tile_size // 2))
             self.rect = self.image.get_rect()
@@ -419,7 +419,7 @@ def start(lvl, MM, cst_ldata):
 
         def __init__(self, x, y):
             pygame.sprite.Sprite.__init__(self)
-            img = pygame.image.load('img/coin.png')
+            img = pygame.image.load("img/coin.png")
             self.image = pygame.transform.scale(
                 img, (tile_size // 2, tile_size // 2))
             self.rect = self.image.get_rect()
@@ -429,15 +429,15 @@ def start(lvl, MM, cst_ldata):
 
         def __init__(self, x, y):
             pygame.sprite.Sprite.__init__(self)
-            img = pygame.image.load('img/exit.png')
+            img = pygame.image.load("img/exit.png")
             self.image = pygame.transform.scale(
                 img, (tile_size, int(tile_size * 1.5)))
             self.rect = self.image.get_rect()
             self.rect.x = x
             self.rect.y = y
 
-    player = Player(100, screen_height - 130, {'jump': pygame.K_UP, 'left': pygame.K_LEFT, 'right': pygame.K_RIGHT})
-    player2 = Player(100, screen_height - 130, {'jump': pygame.K_w, 'left': pygame.K_a, 'right': pygame.K_d})
+    player = Player(100, screen_height - 130, {"jump": pygame.K_UP, "left": pygame.K_LEFT, "right": pygame.K_RIGHT})
+    player2 = Player(100, screen_height - 130, {"jump": pygame.K_w, "left": pygame.K_a, "right": pygame.K_d})
 
 
 
@@ -485,11 +485,11 @@ def start(lvl, MM, cst_ldata):
                 #check if a coin has been collected
                 if pygame.sprite.spritecollide(player, coin_group, True):
                     score += 1
-                draw_text('X ' + str(score) + "   Level: " + str(lvl), font_score, white, tile_size - 10,
+                draw_text("X " + str(score) + "   Level: " + str(lvl), font_score, white, tile_size - 10,
                           10)
                 if pygame.sprite.spritecollide(player2, coin_group, True):
                   score += 1
-                  draw_text('X ' + str(score) + "   Level: " + str(lvl), font_score, white, tile_size - 10,
+                  draw_text("X " + str(score) + "   Level: " + str(lvl), font_score, white, tile_size - 10,
                       10)
 
             blob_group.draw(screen)
@@ -521,7 +521,7 @@ def start(lvl, MM, cst_ldata):
                       start(lvl, False, [])
                       game_over = 0
                   else:
-                      draw_text('YOU WIN!', font, lime,
+                      draw_text("YOU WIN!", font, lime,
                                 (screen_width // 2) - 140, screen_height // 2)
                       if exit_button_smol.draw():
                         exit()
@@ -532,7 +532,7 @@ def start(lvl, MM, cst_ldata):
                           score = 0
                           start(lvl, False, [])
                 elif lvl ==  "cst":
-                    draw_text('YOU WIN!', font, lime,
+                    draw_text("YOU WIN!", font, lime,
                                 (screen_width // 2) - 140, screen_height // 2)
                     if exit_button_smol.draw():
                       exit()
@@ -564,31 +564,31 @@ def leveldesign():
 
     screen = pygame.display.set_mode(
         (SCREEN_WIDTH + SIDE_MARGIN, SCREEN_HEIGHT + LOWER_MARGIN))
-    pygame.display.set_caption('Level Editor')
+    pygame.display.set_caption("Level Editor")
 
     #define game variables
     ROWS = 20
     MAX_COLS = 20
     TILE_SIZE = SCREEN_HEIGHT // ROWS
-    TILE_TYPES = 8
+    TILE_TYPES = 9
     current_tile = 0
     scroll = 0
 
     #load images
-    #pine1_img = pygame.image.load('img2/Background/pine1.png').convert_alpha()
-    #pine2_img = pygame.image.load('img2/Background/pine2.png').convert_alpha()
-    #mountain_img = pygame.image.load('img2/Background/mountain.png').convert_alpha()
+    #pine1_img = pygame.image.load("img2/Background/pine1.png").convert_alpha()
+    #pine2_img = pygame.image.load("img2/Background/pine2.png").convert_alpha()
+    #mountain_img = pygame.image.load("img2/Background/mountain.png").convert_alpha()
     sky_img = pygame.image.load(
-        'img2/Background/background.png').convert_alpha()
+        "img2/Background/background.png").convert_alpha()
     #store tiles in a list
     img_list = []
     for x in range(TILE_TYPES):
-        img = pygame.image.load(f'img2/tile/{x}.png').convert_alpha()
+        img = pygame.image.load(f"img2/tile/{x}.png").convert_alpha()
         img = pygame.transform.scale(img, (TILE_SIZE, TILE_SIZE))
         img_list.append(img)
 
-    save_img = pygame.image.load('img2/save_btn.png').convert_alpha()
-    load_img = pygame.image.load('img2/load_btn.png').convert_alpha()
+    save_img = pygame.image.load("img2/save_btn.png").convert_alpha()
+    load_img = pygame.image.load("img2/load_btn.png").convert_alpha()
 
     #define colours
     GREEN = (144, 201, 120)
@@ -596,17 +596,17 @@ def leveldesign():
     RED = (200, 25, 25)
 
     #define font
-    font = pygame.font.SysFont('Futura', 30)
+    font = pygame.font.SysFont("Futura", 30)
 
     #create empty tile list
     world_data = []
     for row in range(ROWS):
-        r = [-1] * MAX_COLS
+        r = [0] * MAX_COLS
         world_data.append(r)
 
     #create ground
     for tile in range(0, MAX_COLS):
-        world_data[ROWS - 1][tile] = 0
+        world_data[ROWS - 1][tile] = 2
 
     class Button():
 
@@ -703,12 +703,7 @@ def leveldesign():
 
         #run levelbuilder
         if save_button.draw(screen):
-            import copy
-            Mod_world_data = copy.deepcopy(world_data)
-            for row in range(ROWS):
-                for col in range(MAX_COLS):
-                    Mod_world_data[row][col] += 1
-            return Mod_world_data
+            return world_data
         
         if load_button.draw(screen):
             rsp = LevelInput.cli(world_data)
@@ -749,7 +744,7 @@ def leveldesign():
 
         #Designs a single level.
 if __name__ == "__main__":
-    sel_option = input("Enter level number (1-3) or 'cst' to continue: ")
+    sel_option = input('Enter level number (1-3) or "cst" to continue: ')
     if sel_option == "cst":
         print("Custom-Level start")
         #level selector here

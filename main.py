@@ -2,9 +2,9 @@ import pygame
 import sys
 from multiplayer import *
 from functionality import start, leveldesign  # Import the starty function from functions module_leve = selected_option+1l
-pygame.display.set_caption('Platformer')
+pygame.display.set_caption("Platformer")
 # Function to be called when Start button is clicked
-#Gregory's bit
+#Gregory"s bit
 def call_start():
     global screen
     if selected_option==4:
@@ -25,7 +25,7 @@ def call_start():
           print("cst-ldata: " + str(custom_leveldata))
           start("cst", False, custom_leveldata)
           screen = pygame.display.set_mode(res)
-  #end gregory's bit
+  #end gregory"s bit
 # Initializing the constructor
 pygame.init()
 #edit
@@ -41,16 +41,16 @@ font = pygame.font.SysFont(None, 36)  # Font for the button text
 dropdown_font = pygame.font.SysFont(None, 24)  # Font for the dropdown text
 
 # Rendering the button text
-button_text = font.render('Start', True, (255, 255, 255))
-exit_text = font.render('Exit', True, (255, 255, 255))
+button_text = font.render("Start", True, (255, 255, 255))
+exit_text = font.render("Exit", True, (255, 255, 255))
 # Create a list of image filenames
-image_filenames = ['img/image1.png', 'img/image2.png', 'img/image3.png']  # Image filenames here
+image_filenames = ["img/image1.png", "img/image2.png", "img/image3.png"]  # Image filenames here
 
 # Load images
 images = [pygame.image.load(filename).convert() for filename in image_filenames]
 
 # Load background music
-pygame.mixer.music.load('music/audio.mp3')  # Replace 'background_music.mp3' with your music file
+pygame.mixer.music.load("music/audio.mp3")  # Replace "background_music.mp3" with your music file
 pygame.mixer.music.set_volume(0.5)  # Set the volume (0.0 to 1.0)
 pygame.mixer.music.play(-1)  # -1 indicates loop indefinitely
 
@@ -64,7 +64,7 @@ background_x = 0  # Initialize background_x outside the loop
 
 # Dropdown variables
 dropdown_rect = pygame.Rect(res[0] - 160, 10, 150, 30)
-dropdown_options = ['Level 1', 'Level 2', 'Level 3', "Custom","Multiplayer"]
+dropdown_options = ["Level 1", "Level 2", "Level 3", "Custom","Multiplayer"]
 selected_option = 0
 
 while running:

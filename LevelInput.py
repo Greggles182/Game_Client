@@ -16,10 +16,10 @@ def cli(Ldata):
         raise ValueError
     elif  Opt == 1:
         fname = input("What filename do you want to export to? ")
-        PATH = f'./levels/{fname}.txt'
+        PATH = f"./levels/{fname}.txt"
         if os.path.isfile(PATH): # and os.access(PATH, os.R_OK):
             cont = input("File exists - do you want to continue? Y/N: ")
-            if cont.lower() == 'y':
+            if cont.lower() == "y":
                 print("FileCheck - OK")
                 print(f"Writing to {fname}.txt...")
                 with open(PATH, "w") as FILE:
@@ -42,7 +42,7 @@ def cli(Ldata):
     elif  Opt == 2:
         from os import listdir
         from os.path import isfile, join
-        PATH = './levels/'
+        PATH = "./levels/"
         LISTFILES = [f for f in listdir(PATH) if isfile(join(PATH, f))]
         #print(LISTFILES)
         a = 1
@@ -59,7 +59,7 @@ def cli(Ldata):
             FPATH = PATH + nfname
             if os.path.isfile(FPATH) and os.access(FPATH, os.R_OK):
                 print("File exists and is readable")
-                with open (FPATH,'r') as FDATA:
+                with open (FPATH,"r") as FDATA:
                     DATA = FDATA.read()
                     DATA = eval(DATA)
                     print(DATA)
