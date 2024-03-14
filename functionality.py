@@ -596,12 +596,12 @@ def leveldesign():
     #create empty tile list
     world_data = []
     for row in range(ROWS):
-        r = [2] * MAX_COLS
+        r = [0] * MAX_COLS
         world_data.append(r)
 
     #create ground
     for tile in range(0, MAX_COLS):
-        world_data[ROWS - 1][tile] = 0
+        world_data[ROWS - 1][tile] = 2
 
     class Button():
 
@@ -698,13 +698,7 @@ def leveldesign():
 
         #run levelbuilder
         if save_button.draw(screen):
-            import copy
-            Mod_world_data = copy.deepcopy(world_data)
-            for row in range(ROWS):
-                for col in range(MAX_COLS):
-                    if (Mod_world_data[row][col] == -1):
-                        Mod_world_data[row][col] = 0
-            return Mod_world_data
+            return world_data
         
         if load_button.draw(screen):
             rsp = LevelInput.cli(world_data)
