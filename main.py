@@ -48,6 +48,42 @@ image_filenames = ["img/image1.png", "img/image2.png", "img/image3.png"]  # Imag
 
 # Load images
 images = [pygame.image.load(filename).convert() for filename in image_filenames]
+# Function to draw text on button
+def draw_text(text, font, color, surface, x, y):
+    textobj = font.render(text, 1, color)
+    textrect = textobj.get_rect()
+    textrect.center = (x, y)
+    surface.blit(textobj, textrect)
+# Function to perform action when button is clicked
+def button_action():
+    print("Button clicked!")
+WIDTH, HEIGHT = 800, 600
+# Define some colors
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+GRAY = (200, 200, 200)
+
+# Define button properties
+BUTTON_WIDTH = 200
+BUTTON_HEIGHT = 50
+BUTTON_COLOR = GRAY
+BUTTON_TEXT_COLOR = BLACK
+BUTTON_TEXT_SIZE = 30
+# Function to create a button
+def create_button(x, y, width, height, color, text, text_color, action=None):
+    mouse = pygame.mouse.get_pos()
+    click = pygame.mouse.get_pressed()
+
+    if x < mouse[0] < x + width and y < mouse[1] < y + height:
+        pygame.draw.rect(screen, BLACK, (x, y, width, height))
+        if click[0] == 1 and action is not None:
+            action()
+    else:
+        pygame.draw.rect(screen, color, (x, y, width, height))
+
+    font = pygame.font.SysFont(None, BUTTON_TEXT_SIZE)
+    draw_text(text, font, text_color, screen, x + width / 2, y + height / 2)
+# Create a button
 
 # Load background music
 pygame.mixer.music.load("music/audio.mp3")  # Replace "background_music.mp3" with your music file
@@ -161,6 +197,7 @@ while running:
 
         # Wait for the specified delay
         #pygame.time.delay(delay)
+    create_button(540,10, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), "Sign-in", WHITE, button_action)
 
     # updates the frames of the game
     pygame.display.flip()
