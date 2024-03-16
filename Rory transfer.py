@@ -40,7 +40,7 @@ def update_variable():
     if variable_name == "d_pgp_LOGIN":
         import pickle
         with open('filename.pickle', 'wb') as handle:
-            pickle.dump(data, handle, protocol=pickle.HIGHEST_PROTOCOL)
+            pickle.dump(value, handle, protocol=pickle.HIGHEST_PROTOCOL)
             handle.close()
     variables[variable_name] = value
     return 'Variable updated successfully'

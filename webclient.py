@@ -28,7 +28,7 @@ if __name__ == "__main__":
     print("Currently: " + var_value)
     print(f"Took {timed} milliseconds")
     # new_value = input("Enter a new value for example_variable: ")
-    new_value = {'muffin' : 'lolz', 'foo' : 'kitty'}
+    new_value = {'muffin' : 'HELLoo', 'foo' : 'kitty'}
     start = time.time()
     update_variable(SERVER_URL,"d_pgp_LOGIN", new_value)
     end = time.time()
