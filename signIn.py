@@ -1,3 +1,11 @@
+def hiytu():
+  import pickle
+  # Save variable to a file
+  with open('nameu.pkl', 'wb') as f:
+      pickle.dump("", f)
+  # Save variable to a file
+  with open('rlog.pkl', 'wb') as f:
+    pickle.dump(0, f)
 def signinuytio():
   import pygame
   import sys
@@ -119,6 +127,9 @@ def signinuytio():
           # Save variable to a file
           with open('nameu.pkl', 'wb') as f:
               pickle.dump(username, f)
+          # Save variable to a file
+          with open('rlog.pkl', 'wb') as f:
+            pickle.dump("1", f)
           # Run another Python file
           subprocess.run(["python", "main.py"])
         

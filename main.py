@@ -5,6 +5,8 @@ from multiplayer import *
 import os, sys, webclient, time
 import pickle
 from functionality import start, leveldesign  # Import the starty function from functions module_leve = selected_option+1l
+
+hiytu()
 pygame.display.set_caption("Platformer")
 # Function to be called when Start button is clicked
 #server URL
@@ -15,7 +17,7 @@ def call_start():
     if selected_option==4:
       print("Mulytiplay")
       
-      yehaa()
+      Main()
     else:
       if selected_option<=2:
           start_level = selected_option+1
@@ -203,10 +205,12 @@ while running:
         # Wait for the specified delay
         #pygame.time.delay(delay)
     # Load variable from the file
-    with open('nameu.json', 'r') as f:
-        loaded_variable = json.load(f)
-    ytt=webclient.get_variable(SERVER_URL, "ytt2")
-    un=
+    with open('nameu.pkl', 'rb') as f:
+      loaded_variable1 = pickle.load(f)
+    un=loaded_variable1
+    with open('rlog.pkl', 'rb') as f:
+      loaded_variablet = pickle.load(f)
+    ytt=loaded_variablet
     if ytt == 0:
       create_button(540,10, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), "Sign-in", WHITE, signinuytio)
     else:
