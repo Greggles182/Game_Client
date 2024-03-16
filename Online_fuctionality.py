@@ -4,6 +4,7 @@ from pygame.font import *
 from os import *
 from OnlineCLI import *
 import webclient
+import json 
 #https://youtu.be/l4-0_nayHac
 
 def start(lvl, MM, cst_ldata, players):
@@ -311,18 +312,22 @@ def start(lvl, MM, cst_ldata, players):
             self.num = num
 
           def update(self, game_over):
+            dx = self.dx
+            dy = self.dy
             import threading
             #[x, y, self.direction]
             def get_data():
-                global playerdata
-                playerdata = eval(webclient.get_variable(SERVER_URL,f"l_pgp_Player{self.num}"))
+                global dx
+                global dy
+                global direction
+                print(self.num)
+                playerdata = json.loads(str(webclient.get_variable(SERVER_URL,f"l_pgp_Player{self.num}")))
+                print(playerdata) 
+                dx = playerdata[0]
+                dy = playerdata[1]
+                direction = playerdata[2]
             x = threading.Thread(target=get_data)
             x.start()
-            print(x)
-            print(x.threading.result())
-            dx = playerdata[0]
-            dy = playerdata[1]
-            self.direction = playerdata[2]
 
             walk_cooldown = 5
 
@@ -350,6 +355,7 @@ def start(lvl, MM, cst_ldata, players):
                 # # check for collision with exit
                 # if pygame.sprite.spritecollide(self, exit_group, False):
                 #     game_over = 1
+                
                 # update player coordinates
                 self.rect.x = dx
                 self.rect.y = dy
@@ -388,6 +394,8 @@ def start(lvl, MM, cst_ldata, players):
             self.jumped = False
             self.direction = 0
             self.in_air = True
+            self.dx = 0
+            self.dy = 0
     class World():
 
         def __init__(self, data):
@@ -584,7 +592,8 @@ def start(lvl, MM, cst_ldata, players):
             coin_group.draw(screen)
             exit_group.draw(screen)
 
-            game_over = player.update(game_over) or player2.update(game_over)
+            game_over = player.update(game_over)
+            player2.update(game_over)
             #if player has died
             if game_over == -1:
                 if exit_button_smol.draw():
@@ -592,10 +601,10 @@ def start(lvl, MM, cst_ldata, players):
                 if restart_button.draw():
                     if lvl == "cst":
                         print("Restarting custom level")
-                        start("cst", False, cst_ldata)
+                        start("cst", False, cst_ldata, players)
                     elif isinstance(lvl, int):
                       print("Restarting with Level " + str(lvl))
-                      start(lvl, False, [])
+                      start(lvl, False, [], players)
 
             #if player has completed the lvl
             if game_over == 1:
@@ -604,7 +613,7 @@ def start(lvl, MM, cst_ldata, players):
                   lvl += 1
                   if lvl <= max_lvls:
                       #reset lvl
-                      start(lvl, False, [])
+                      start(lvl, False, [], players)
                       game_over = 0
                   else:
                       draw_text("YOU WIN!", font, lime,
@@ -616,7 +625,7 @@ def start(lvl, MM, cst_ldata, players):
                           lvl = 1
                           game_over = 0
                           score = 0
-                          start(lvl, False, [])
+                          start(lvl, False, [], players)
                 elif lvl ==  "cst":
                     draw_text("YOU WIN!", font, lime,
                                 (screen_width // 2) - 140, screen_height // 2)
@@ -642,12 +651,17 @@ def Begin():
     level = int(webclient.get_variable(SERVER_URL,"b_pgp_Custom"))
     if level == 1:
         start(1, False, [], int(webclient.get_variable(SERVER_URL,"i_pgp_Players")))
-    elif level ==2:
-        start("cst", False, eval(webclient.get_variable(SERVER_URL,"l_pgp_level-data")), int(webclient.get_variable(SERVER_URL,"i_pgp_Players")))
+    elif level == 2:
+        print(type(webclient.get_variable(SERVER_URL,"l_pgp_level-data")))
+        start("cst", False, eval(str(webclient.get_variable(SERVER_URL,"l_pgp_level-data"))), int(webclient.get_variable(SERVER_URL,"i_pgp_Players")))
+
 if __name__ == "__main__":
+    global SERVER_URL  # Declare SERVER_URL as global
     SERVER_URL = Setup()
+    print(SERVER_URL) 
     level = int(webclient.get_variable(SERVER_URL,"b_pgp_Custom"))
     if level == 1:
         start(1, False, [], int(webclient.get_variable(SERVER_URL,"i_pgp_Players")))
-    elif level ==2:
-        start("cst", False, eval(webclient.get_variable(SERVER_URL,"l_pgp_level-data")), int(webclient.get_variable(SERVER_URL,"i_pgp_Players")))
+    elif level == 2:
+        print(type(webclient.get_variable(SERVER_URL,"l_pgp_level-data")))
+        start("cst", False, eval(str(webclient.get_variable(SERVER_URL,"l_pgp_level-data"))), int(webclient.get_variable(SERVER_URL,"i_pgp_Players")))

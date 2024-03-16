@@ -1,5 +1,6 @@
 import threading
 import webclient
+import time
 #[x, y, self.direction]
 SERVER_URL = "http://gregglesthegreat.pythonanywhere.com/"
 num = 2
@@ -19,6 +20,10 @@ def get_data():
 x = threading.Thread(target=get_data)
 x.start()
 print(x)
-while True:
+i = 0
+while playerdata == [0, 0, 0]:
+    i += 1
+    print(i)
     print(playerdata)   
     print(str(dx) + ", " + str(dy) + ", " + str(direction))
+    time.sleep(0.1)
