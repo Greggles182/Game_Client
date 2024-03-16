@@ -1,7 +1,7 @@
 import pygame
 import sys
 from signIn import *
-from multiplayer import *
+import multiplayer
 from functionality import start, leveldesign  # Import the starty function from functions module_leve = selected_option+1l
 pygame.display.set_caption("Platformer")
 # Function to be called when Start button is clicked
@@ -10,8 +10,7 @@ def call_start():
     global screen
     if selected_option==4:
       print("Mulytiplay")
-      
-      yehaa()
+      multiplayer.Main()
     else:
       if selected_option<=2:
           start_level = selected_option+1

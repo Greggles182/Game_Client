@@ -17,7 +17,21 @@ def update_variable(SERVER_URL,variable_name, value):
 
 # Example usage:
 if __name__ == "__main__":
-    var_value = str(get_variable("http://gregglesthegreat.pythonanywhere.com/","l_pgp_Player2"))
+    import time
+    SERVER_URL = input("Enter server URL or press Enter to use default: ")
+    if  SERVER_URL == "":
+        SERVER_URL = "http://gregglesthegreat.pythonanywhere.com/"
+    start = time.time()
+    var_value = str(get_variable(SERVER_URL,"Testing"))
+    end = time.time()
+    timed = (end-start)*1000
     print("Currently: " + var_value)
+    print(f"Took {timed} milliseconds")
     new_value = input("Enter a new value for example_variable: ")
-    update_variable("http://gregglesthegreat.pythonanywhere.com/","l_pgp_Player2", new_value)
+    start = time.time()
+    update_variable(SERVER_URL,"Testing", new_value)
+    end = time.time()
+    timed = (end-start)*1000
+    print(f"Took {timed} milliseconds")
+
+

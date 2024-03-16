@@ -2,11 +2,11 @@ import pygame
 import sys
 from local_functionality import start
 from functionality import leveldesign # Import the starty function from functions module_leve = selected_option+1l
+import subprocess
 def Main():
   def Enter(s_op):
-    print("HI")
     if s_op==2:
-      return True
+      subprocess.run(["python", "main.py"])
     if s_op==1:
       from Online_fuctionality import Begin
       Begin()

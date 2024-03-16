@@ -311,11 +311,18 @@ def start(lvl, MM, cst_ldata, players):
             self.num = num
 
           def update(self, game_over):
+            import threading
             #[x, y, self.direction]
-            self.playerdata = eval(webclient.get_variable(SERVER_URL,f"l_pgp_Player{self.num}"))
-            dx = self.playerdata[0]
-            dy = self.playerdata[1]
-            self.direction = self.playerdata[2]
+            def get_data():
+                global playerdata
+                playerdata = eval(webclient.get_variable(SERVER_URL,f"l_pgp_Player{self.num}"))
+            x = threading.Thread(target=get_data)
+            x.start()
+            print(x)
+            print(x.threading.result())
+            dx = playerdata[0]
+            dy = playerdata[1]
+            self.direction = playerdata[2]
 
             walk_cooldown = 5
 
