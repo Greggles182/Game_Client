@@ -14,7 +14,8 @@ def Setup():
             playersQ = int(input("How many players do you want(2-4): "))
             if playersQ < 2 or playersQ > 4:
                 print("Invalid number of players!")
-                Setup()  # Recursively call Setup() on invalid input
+                returned = Setup()  # Recursively call Setup() on invalid input
+                return returned
             else:
                 print("Connecting...")
                 webclient.update_variable(SERVER_URL, "i_pgp_LobbyPlayers", "1")
@@ -28,11 +29,15 @@ def Setup():
                         webclient.update_variable(SERVER_URL, "l_pgp_level-data", leveldesign())
                 else:
                     print("Invalid input!")
+                    returned = Setup()
+                    return returned
                 print("Waiting for players...")
                 webclient.update_variable(SERVER_URL, "b_pgp_Playing", "1")
                 print("Game has begun!")
         else:
             print("A game is currently in progress on this URL.")
+            returned = Setup()
+            return returned
     elif funct == 2:
         SERVER_URL = input("Enter server URL or press Enter to use default: ")
         if SERVER_URL == "":
@@ -50,8 +55,24 @@ def Setup():
                     print("Game has begun!")
                 else:
                     print("Invalid input!")
+                    returned = Setup()
+                    return returned
+            elif cj.lower() == "n":
+                print("Ok. Exiting.")
+                returned = Setup()
+                return returned
+            else:
+                print("Illegal Input!")
+                returned = Setup()
+                return returned
         else:
             print("Game cannot be joined at this point in time. Please try again later.")
+            returned = Setup()
+            return returned
+    else:
+        print("Invalid Option! Try Again.")
+        returned = Setup()
+        return returned
     return SERVER_URL
 
 if __name__ == "__main__":

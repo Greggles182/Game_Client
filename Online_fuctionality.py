@@ -311,23 +311,43 @@ def start(lvl, MM, cst_ldata, players):
             self.reset(x, y)
             self.num = num
 
-          def update(self, game_over):
+          async def update(self, game_over):
+            import asyncio
             dx = self.dx
             dy = self.dy
-            import threading
-            #[x, y, self.direction]
-            def get_data():
-                global dx
-                global dy
-                global direction
-                print(self.num)
-                playerdata = json.loads(str(webclient.get_variable(SERVER_URL,f"l_pgp_Player{self.num}")))
-                print(playerdata) 
-                dx = playerdata[0]
-                dy = playerdata[1]
-                direction = playerdata[2]
-            x = threading.Thread(target=get_data)
-            x.start()
+            async def fetch_player_data(self):
+                async def get_data(self):
+                    # Assuming webclient.get_variable is a coroutine
+                    player_data_json = await webclient.get_variable(SERVER_URL, f"l_pgp_Player{self.num}")
+                    player_data_list = json.loads(player_data_json)
+                    return player_data_list
+                player_data = await self.get_data()
+                self.dx = player_data[0]
+                self.dy = player_data[1]
+                self.direction = player_data[2]
+
+            # import threading
+            # #[x, y, self.direction]
+            # def get_data():
+            #     global dx
+            #     global dy
+            #     global direction
+            #     print(self.num)
+            #     playerdata = json.loads(str(webclient.get_variable(SERVER_URL,f"l_pgp_Player{self.num}")))
+            #     print(playerdata) 
+            #     dx = playerdata[0]
+            #     dy = playerdata[1]
+            #     direction = playerdata[2]
+            # x = threading.Thread(target=get_data)
+            # x.start()
+            # Run the fetching process asynchronously
+            task = asyncio.create_task(self.fetch_player_data())
+            # Other update code can proceed while fetching is in progress
+            await asyncio.sleep(0)  # Allows other tasks to run
+            # Assuming other update code
+            # Access self.dx, self.dy, self.direction as needed
+            # End of other update code
+            await task  # Wait for the fetch_player_data task to complete
 
             walk_cooldown = 5
 
@@ -593,7 +613,8 @@ def start(lvl, MM, cst_ldata, players):
             exit_group.draw(screen)
 
             game_over = player.update(game_over)
-            player2.update(game_over)
+            async def playerUpdate():
+                await player2.update(game_over)
             #if player has died
             if game_over == -1:
                 if exit_button_smol.draw():
