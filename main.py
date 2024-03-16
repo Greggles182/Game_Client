@@ -103,7 +103,7 @@ background_x = 0  # Initialize background_x outside the loop
 dropdown_rect = pygame.Rect(res[0] - 160, 10, 150, 30)
 dropdown_options = ["Level 1", "Level 2", "Level 3", "Custom","Multiplayer"]
 selected_option = 0
-
+#thihh
 while running:
     clock.tick(30)  # Adjusted the clock speed for smooth rendering
 
