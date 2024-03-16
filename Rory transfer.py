@@ -4,7 +4,6 @@ from flask import Flask, request, jsonify, render_template
 app = Flask(__name__)
 variables = {}
 
-
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -34,12 +33,24 @@ def get_variable():
 
 @app.route('/update_variable', methods=['POST'])
 def update_variable():
+    global i
     data = request.json
     variable_name = data['name']
     value = data['value']
+    if variable_name == "d_pgp_LOGIN":
+        import pickle
+        with open('filename.pickle', 'wb') as handle:
+            pickle.dump(data, handle, protocol=pickle.HIGHEST_PROTOCOL)
+            handle.close()
     variables[variable_name] = value
     return 'Variable updated successfully'
 
-
+@app.route('/load_backup', methods=['GET'])
+def load_backup():
+    import pickle
+    with open('filename.pickle', 'rb') as handle:
+        a = pickle.load(handle)
+        variables["d_pgp_LOGIN"] = a
+    return "Sucess! Variables loaded from backup."
 if __name__ == '__main__':
     app.run(debug=True)

@@ -23,7 +23,7 @@ def signinuytio():
   pygame.init()
 
   # Creating a dictionary
-  my_dict = webclient.get_variable(SERVER_URL,"dict1")
+  my_dict = webclient.get_variable(SERVER_URL,"d_pgp_LOGIN")
 
   # Set up display
   WIDTH, HEIGHT = 750, 500

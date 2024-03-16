@@ -22,14 +22,15 @@ if __name__ == "__main__":
     if  SERVER_URL == "":
         SERVER_URL = "http://gregglesthegreat.pythonanywhere.com/"
     start = time.time()
-    var_value = str(get_variable(SERVER_URL,"l_pgp_Player2"))
+    var_value = str(get_variable(SERVER_URL,"d_pgp_LOGIN"))
     end = time.time()
     timed = (end-start)*1000
     print("Currently: " + var_value)
     print(f"Took {timed} milliseconds")
-    new_value = input("Enter a new value for example_variable: ")
+    # new_value = input("Enter a new value for example_variable: ")
+    new_value = {'muffin' : 'lolz', 'foo' : 'kitty'}
     start = time.time()
-    update_variable(SERVER_URL,"l_pgp_Player2", new_value)
+    update_variable(SERVER_URL,"d_pgp_LOGIN", new_value)
     end = time.time()
     timed = (end-start)*1000
     print(f"Took {timed} milliseconds")
