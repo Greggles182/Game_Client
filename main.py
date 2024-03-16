@@ -2,9 +2,13 @@ import pygame
 import sys
 from signIn import *
 from multiplayer import *
+import os, sys, webclient, time
+import pickle
 from functionality import start, leveldesign  # Import the starty function from functions module_leve = selected_option+1l
 pygame.display.set_caption("Platformer")
 # Function to be called when Start button is clicked
+#server URL
+SERVER_URL = "http://gregglesthegreat.pythonanywhere.com/"
 #Gregory"s bit
 def call_start():
     global screen
@@ -198,7 +202,16 @@ while running:
 
         # Wait for the specified delay
         #pygame.time.delay(delay)
-    create_button(540,10, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), "Sign-in", WHITE, signinuytio)
+    # Load variable from the file
+    with open('nameu.json', 'r') as f:
+        loaded_variable = json.load(f)
+    ytt=webclient.get_variable(SERVER_URL, "ytt2")
+    un=
+    if ytt == 0:
+      create_button(540,10, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), "Sign-in", WHITE, signinuytio)
+    else:
+      create_button(540,10, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), un, WHITE, signinuytio)
+
 
     # updates the frames of the game
     pygame.display.flip()
