@@ -123,7 +123,7 @@ def signinuytio():
           print("worked")
           # Save variable to a file
           with open('rlog.pkl', 'wb') as f:
-            pickle.dump([1,username, f)
+            pickle.dump([1,username], f)
           # Run another Python file
           subprocess.run(["python", "main.py"])
         
