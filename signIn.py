@@ -1,16 +1,29 @@
+def hiytu():
+  import pickle
+  # Save variable to a file
+  with open('nameu.pkl', 'wb') as f:
+      pickle.dump("", f)
+  # Save variable to a file
+  with open('rlog.pkl', 'wb') as f:
+    pickle.dump(0, f)
 def signinuytio():
   import pygame
   import sys
   import subprocess
+  import os, sys, webclient, time
+  import pickle
 
 
+  #server URL
+  SERVER_URL = "http://gregglesthegreat.pythonanywhere.com/"
+
+
+  
   # Initialize Pygame
   pygame.init()
 
   # Creating a dictionary
-  my_dict = {
-      "sauvage": ["letest"]
-  }
+  my_dict = webclient.get_variable(SERVER_URL,"dict1")
 
   # Set up display
   WIDTH, HEIGHT = 750, 500
@@ -111,6 +124,12 @@ def signinuytio():
         stored_password = my_dict[username][0]
         if stored_password == password:
           print("worked")
+          # Save variable to a file
+          with open('nameu.pkl', 'wb') as f:
+              pickle.dump(username, f)
+          # Save variable to a file
+          with open('rlog.pkl', 'wb') as f:
+            pickle.dump("1", f)
           # Run another Python file
           subprocess.run(["python", "main.py"])
         
