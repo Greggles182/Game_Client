@@ -12,14 +12,46 @@ def Setup():
             if not (playersQ >= 2 and playersQ  <= 4):
                 print ("Invalid number of players!")
                 Setup()
-            print("Connecting...")
-            webclient.update_variable(SERVER_URL,"i_pgp_Players", playersQ)
-            cstQ = input("Do you want to start the normal levels (1) or custom ones (2): ")
-            webclient.update_variable(SERVER_URL,"b_pgp_Custom", cstQ)
-            if cstQ == "1":
-                pass
-            elif cstQ == "2":
-                print("Please draw a level in the opened window.")
-                from functionality import leveldesign
-                webclient.update_variable(SERVER_URL,"l_pgp_level-data", leveldesign())
-Setup()
+            else:
+                print("Connecting...")
+                webclient.update_variable(SERVER_URL,"i_pgp_LobbyPlayers", "1")
+                webclient.update_variable(SERVER_URL,"i_pgp_Players", playersQ)
+                cstQ = input("Do you want to start normal levels (1) or custom ones (2): ")
+                webclient.update_variable(SERVER_URL,"b_pgp_Custom", cstQ)
+                if cstQ == "1":
+                    pass
+                elif cstQ == "2":
+                    print("Please draw a level in the opened window.")
+                    from functionality import leveldesign
+                    webclient.update_variable(SERVER_URL,"l_pgp_level-data", leveldesign())
+                print("Waiting for players...")
+                webclient.update_variable(SERVER_URL,"b_pgp_Playing", "1")
+                begin = False
+                while begin == False:
+                    if int(webclient.get_variable(SERVER_URL,"i_pgp_Players")) == int(webclient.get_variable(SERVER_URL,"i_pgp_LobbyPlayers")):
+                        webclient.update_variable(SERVER_URL,"b_pgp_Playing", "2")
+                        begin == True
+                        print("Game has begun!")
+                        return SERVER_URL
+    elif funct == 2:
+        SERVER_URL = input("Enter server URL or press Enter to use default: ")
+        if  SERVER_URL == "":
+            SERVER_URL = "http://gregglesthegreat.pythonanywhere.com/"
+        if str(webclient.get_variable(SERVER_URL,"b_pgp_Playing")) =="1":
+            print("Game is currently lobbying...")
+            cj = input("Confirm join (y/n): ")
+            if cj.lower() =="y":
+                if int(webclient.get_variable(SERVER_URL,"i_pgp_Players")) > int(webclient.get_variable(SERVER_URL,"i_pgp_LobbyPlayers")):
+                    print("Joining Game...")
+                    webclient.update_variable(SERVER_URL,"i_pgp_LobbyPlayers", int(webclient.get_variable(SERVER_URL,"i_pgp_LobbyPlayers"))+1)
+                    print("Waiting for game to begin...")
+                    while str(webclient.get_variable(SERVER_URL,"b_pgp_Playing")) =="1":
+                        pass
+                    print("Game has begun!")
+                    return SERVER_URL
+            else:
+                Setup()
+        else:
+            print("Game cannot be joined at this point in time. Please try again later.")
+            Setup()
+# Setup()
