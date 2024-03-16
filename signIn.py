@@ -1,6 +1,8 @@
 def signinuytio():
   import pygame
   import sys
+  import subprocess
+
 
   # Initialize Pygame
   pygame.init()
@@ -109,6 +111,8 @@ def signinuytio():
         stored_password = my_dict[username][0]
         if stored_password == password:
           print("worked")
+          # Run another Python file
+          subprocess.run(["python", "main.py"])
         
 
 

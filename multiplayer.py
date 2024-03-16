@@ -1,11 +1,13 @@
 import pygame
 import sys
+import subprocess
 from local_functionality import start, leveldesign# Import the starty function from functions module_leve = selected_option+1l
 def yehaa():
   def hiyuy(s_op):
     print("HI")
     if s_op==2:
-      pygame.quit()
+      # Run another Python file
+      subprocess.run(["python", "main.py"])
     if s_op==1:
       #GREGADDCODE
       print("#gregaddcode")
