@@ -6,7 +6,9 @@ import os, sys, webclient, time
 import pickle
 from functionality import start, leveldesign  # Import the starty function from functions module_leve = selected_option+1l
 
-
+# with open('rlog.pkl', 'wb') as handle:
+#     pickle.dump([1,"Greggles",0], handle, protocol=pickle.HIGHEST_PROTOCOL)
+#     handle.close()
 with open('rlog.pkl', 'rb') as handle:
     a = pickle.load(handle)
     print(type(a))
@@ -211,9 +213,9 @@ while running:
         #pygame.time.delay(delay)
     # Load variable from the file
     with open('rlog.pkl', 'rb') as f:
-      loaded_variablet = pickle.load(f)
-    ytt=loaded_variablet[0]
-    un=loaded_variablet[1]
+        loaded_variablet = pickle.load(f)
+    ytt=str(loaded_variablet[0])
+    un=str(loaded_variablet[1])
     if ytt == 0:
       create_button(540,10, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), "Sign-in", WHITE, signinuytio)
     else:
