@@ -1,14 +1,15 @@
 import pygame
 import sys
-from local_functionality import start, leveldesign# Import the starty function from functions module_leve = selected_option+1l
-def yehaa():
-  def hiyuy(s_op):
+from local_functionality import start
+from functionality import leveldesign # Import the starty function from functions module_leve = selected_option+1l
+def Main():
+  def Enter(s_op):
     print("HI")
     if s_op==2:
-      pygame.quit()
+      return True
     if s_op==1:
-      #GREGADDCODE
-      print("#gregaddcode")
+      from Online_fuctionality import Begin
+      Begin()
     if s_op == 0:
       start(1, False, [])
       pygame.display.set_caption("Platformer")
@@ -63,7 +64,7 @@ def yehaa():
           elif ev.type == pygame.MOUSEBUTTONDOWN:
               if button_rect.collidepoint(ev.pos):
                   # Call the function when Start button is clicked
-                  hiyuy(selected_option)
+                  Enter(selected_option)
               elif dropdown_rect.collidepoint(ev.pos):
                   # Increment the selected level when level box is clicked
                   selected_option = (selected_option + 1) % len(dropdown_options)
@@ -154,3 +155,5 @@ def yehaa():
   sys.exit()
   #hi
 #heeeeeeeeeeeelllllllloooooooo    wooorrrlllllddddd!!!!!!!!!!!!!!!!!!1
+if __name__ == "__main__":
+   Main()

@@ -17,7 +17,7 @@ def update_variable(SERVER_URL,variable_name, value):
 
 # Example usage:
 if __name__ == "__main__":
-    var_value = str(get_variable("http://gregglesthegreat.pythonanywhere.com/","example_variable"))
+    var_value = str(get_variable("http://gregglesthegreat.pythonanywhere.com/","l_pgp_Player2"))
     print("Currently: " + var_value)
     new_value = input("Enter a new value for example_variable: ")
-    update_variable("http://gregglesthegreat.pythonanywhere.com/","example_variable", new_value)
+    update_variable("http://gregglesthegreat.pythonanywhere.com/","l_pgp_Player2", new_value)
