@@ -752,6 +752,4 @@ if __name__ == "__main__":
         sel_option = int(sel_option)
         print("Function call_start() is called.",sel_option)
         start(sel_option, False, [])  # Call the starty function from functions module
-    elif sel_option=="4":
-        update_PlayerCoins(1)
     
