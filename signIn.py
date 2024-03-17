@@ -21,6 +21,7 @@ def signinuytio():
 
   # Creating a dictionary
   my_dict = webclient.get_variable(SERVER_URL,"d_pgp_LOGIN")
+  print(my_dict)
 
   # Set up display
   WIDTH, HEIGHT = 750, 500
@@ -118,7 +119,7 @@ def signinuytio():
       # print("Password:", "***")
       if username in my_dict:
     # Retrieve the password associated with the username
-        stored_password = my_dict[username][0]
+        stored_password =  my_dict[username][0]
         if stored_password == password:
           print("worked")
           # Save variable to a file
