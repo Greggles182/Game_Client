@@ -106,7 +106,7 @@ def signupio():
 
 
   # Create clickable text
-  sign_in_text = ClickableText(175, 420, "Already have an account? Sign-in!", BLUE, signupio)
+  sign_in_text = ClickableText(175, 420, "Already have an account? Sign-in!", BLUE, signinuytio)
 
   # Main loop
   running = True
@@ -116,34 +116,37 @@ def signupio():
       # Draw background image
       screen.blit(background_img, (0, 0))
 
-      #Check for right username and password
-      username = username_box.text
-      password = password_box.text
-      # print("Username:", username)
-      # print("Password:", "***")
-      if username in my_dict:
-    # Retrieve the password associated with the username
-        stored_password =  my_dict[username][0]
-        if stored_password == password:
-          print("worked")
-          # Save variable to a file
-          with open('rlog.pkl', 'wb') as f:
-            pickle.dump([1,username], f)   
-          # Stop all sound effects
-          pygame.mixer.stop()
-          pygame.mixer.music.stop()
-          # Run another Python file
-          subprocess.run(["python", "main.py"])
-        
-
-
       # Event handling
       for event in pygame.event.get():
           if event.type == pygame.QUIT:
               running = False
+          elif event.type == pygame.KEYDOWN:
+              # Check if the Enter key is pressed
+              if event.key == pygame.K_RETURN or event.key == pygame.K_KP_ENTER:
+                 #Check for right username and password
+                 username = username_box.text
+                 password = password_box.text
+                 # print("Username:", username)
+                 # print("Password:", "***")
+                 if (not(username in my_dict)):
+                     my_dict[username] = [password, "0"]
+                     print(my_dict)
+                     webclient.update_variable(SERVER_URL,"d_pgp_LOGIN", my_dict)
+                     my_test= webclient.get_variable(SERVER_URL,"d_pgp_LOGIN")
+                     print(my_test)
+                     pygame.mixer.stop()
+                     pygame.mixer.music.stop()
+                    #  Run another Python file
+                     subprocess.run(["python", "main.py"])
+                 else:
+                     print("Username already in use")
+                    
+    
+        
           username_box.handle_event(event)
           password_box.handle_event(event)
           sign_in_text.handle_event(event)
+          
         # Function for sign-in action
       def si2gninuytio():
          print("Sign-in function triggered")
@@ -276,7 +279,7 @@ def signinuytio(gop=None):
 
 
   # Create clickable text
-  sign_in_text = ClickableText(175, 420, "Already have an account? Sign-up!", BLUE, signupio)
+  sign_in_text = ClickableText(175, 420, "Don't have an account? Sign-up!", BLUE, signupio)
 
   # Main loop
   running = True
