@@ -23,7 +23,6 @@ def signupio():
 
   # Creating a dictionary
   my_dict = webclient.get_variable(SERVER_URL,"d_pgp_LOGIN")
-  print(my_dict)
 
   # Set up display
   WIDTH, HEIGHT = 750, 500
@@ -130,10 +129,8 @@ def signupio():
                  # print("Password:", "***")
                  if (not(username in my_dict)):
                      my_dict[username] = [password, "0"]
-                     print(my_dict)
                      webclient.update_variable(SERVER_URL,"d_pgp_LOGIN", my_dict)
                      my_test= webclient.get_variable(SERVER_URL,"d_pgp_LOGIN")
-                     print(my_test)
                      pygame.mixer.stop()
                      pygame.mixer.music.stop()
                     #  Run another Python file
@@ -149,7 +146,6 @@ def signupio():
           
         # Function for sign-in action
       def si2gninuytio():
-         print("Sign-in function triggered")
          pygame.display.set_caption("Signup Menu")
          signinuytio("Signup Form:")
 
@@ -196,7 +192,6 @@ def signinuytio(gop=None):
 
   # Creating a dictionary
   my_dict = webclient.get_variable(SERVER_URL,"d_pgp_LOGIN")
-  print(my_dict)
 
   # Set up display
   WIDTH, HEIGHT = 750, 500
@@ -298,7 +293,6 @@ def signinuytio(gop=None):
     # Retrieve the password associated with the username
         stored_password =  my_dict[username][0]
         if stored_password == password:
-          print("worked")
           # Save variable to a file
           with open('rlog.pkl', 'wb') as f:
             pickle.dump([1,username], f)   
@@ -319,7 +313,6 @@ def signinuytio(gop=None):
           sign_in_text.handle_event(event)
         # Function for sign-in action
       def si2gninuytio():
-         print("Sign-in function triggered")
          pygame.display.set_caption("Signup Menu")
          signinuytio("Signup Form:")
 
@@ -330,7 +323,6 @@ def signinuytio(gop=None):
       password_box.draw(screen)
 
       # Add labels
-      print(gop)
       title_label = font.render("Sign-in Form:", True, BLACK)
       username_label = font.render("Username:", True, BLACK)
       password_label = font.render("Password:", True, BLACK)
