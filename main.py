@@ -11,8 +11,6 @@ from functionality import start, leveldesign  # Import the starty function from 
 #     handle.close()
 with open('rlog.pkl', 'rb') as handle:
     a = pickle.load(handle)
-    print(type(a))
-    print(a)
     handle.close()
 pygame.display.set_caption("Platformer")
 # Function to be called when Start button is clicked
@@ -22,7 +20,6 @@ SERVER_URL = "http://gregglesthegreat.pythonanywhere.com/"
 def call_start():
     global screen
     if selected_option==4:
-      print("Mulytiplay")
       
       multiplayer.Main()
     else:
@@ -74,8 +71,6 @@ def draw_text(text, font, color, surface, x, y):
         print("Error rendering text:", e)
     
 # Function to perform action when button is clicked
-def button_action():
-    print("Button clicked!")
 WIDTH, HEIGHT = 800, 600
 # Define some colors
 WHITE = (255, 255, 255)
@@ -237,12 +232,10 @@ while running:
     #drop down menu:%
     def dropdownhelll():
           my_dictp = webclient.get_variable(SERVER_URL,"d_pgp_LOGIN")
-          print(un)
           try:
               my_coinds = my_dictp[un][1]
           except KeyError:
               my_coinds = "Error"
-          print(my_coinds)
           ayouu=("Coinds:"+str(my_coinds))
           create_button(540,55, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), ayouu, WHITE)
           create_button(540,102, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), "Log-out", WHITE, signoutt)
