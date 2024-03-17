@@ -64,10 +64,15 @@ image_filenames = ["img/image1.png", "img/image2.png", "img/image3.png"]  # Imag
 images = [pygame.image.load(filename).convert() for filename in image_filenames]
 # Function to draw text on button
 def draw_text(text, font, color, surface, x, y):
-    textobj = font.render(text, 1, color)
-    textrect = textobj.get_rect()
-    textrect.center = (x, y)
-    surface.blit(textobj, textrect)
+    try:
+        textobj = font.render(text, True, color)
+        textrect = textobj.get_rect(center=(x, y))
+        textrect.center = (x, y)
+        surface.blit(textobj, textrect)
+        surface.blit(textobj, textrect)
+    except Exception as e:
+        print("Error rendering text:", e)
+    
 # Function to perform action when button is clicked
 def button_action():
     print("Button clicked!")
@@ -100,7 +105,9 @@ def create_button(x, y, width, height, color, text, text_color, action=None):
 # Create a button
 
 # Load background music
-pygame.mixer.music.load("music/audio.mp3")  # Replace "background_music.mp3" with your music file
+pygame.mixer.stop()
+pygame.mixer.music.load("music/audio.mp3")
+pygame.mixer.stop()  # Replace "background_music.mp3" with your music file
 pygame.mixer.music.set_volume(0.5)  # Set the volume (0.0 to 1.0)
 pygame.mixer.music.play(-1)  # -1 indicates loop indefinitely
 
@@ -112,6 +119,20 @@ delay = 500  # milliseconds
 
 background_x = 0  # Initialize background_x outside the loop
 
+#sign-oute
+def signoutt():
+    # Save variable to a file
+          with open('rlog.pkl', 'wb') as f:
+            pickle.dump([0,""], f)
+#drop down menu:%
+def dropdownhelll():
+          my_dictp = webclient.get_variable(SERVER_URL,"d_pgp_LOGIN")
+          print(un)
+          my_coinds = my_dictp[un][1]
+          print(my_coinds)
+          ayouu=("Coinds:"+str(my_coinds))
+          create_button(540,55, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), ayouu, WHITE)
+          create_button(540,102, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), "Log-out", WHITE, signoutt)
 # Dropdown variables
 dropdown_rect = pygame.Rect(res[0] - 160, 10, 150, 30)
 dropdown_options = ["Level 1", "Level 2", "Level 3", "Custom","Multiplayer"]
@@ -137,6 +158,10 @@ while running:
                 running = False
                 exit()
 
+    # Get the mouse position
+    mouse_x, mouse_y = pygame.mouse.get_pos()
+    if (mouse_x>=550 and mouse_x<=800)and(mouse_y>=10 and mouse_y<=200):
+        dropdownhelll()
     # Update the position of the background
     background_x -= 2  # Adjust the scrolling speed as needed
 
@@ -219,7 +244,7 @@ while running:
     if ytt == 0:
       create_button(540,10, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), "Sign-in", WHITE, signinuytio)
     else:
-      create_button(540,10, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), un, WHITE, signinuytio)
+      create_button(540,10, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), un, WHITE, dropdownhelll)
 
 
     # updates the frames of the game
