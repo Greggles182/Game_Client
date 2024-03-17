@@ -39,7 +39,7 @@ def update_variable():
     value = data['value']
     if variable_name == "d_pgp_LOGIN":
         import pickle
-        with open('filename.pickle', 'wb') as handle:
+        with open('Backup.pickle', 'wb') as handle:
             pickle.dump(value, handle, protocol=pickle.HIGHEST_PROTOCOL)
             handle.close()
     variables[variable_name] = value
@@ -48,7 +48,7 @@ def update_variable():
 @app.route('/load_backup', methods=['GET'])
 def load_backup():
     import pickle
-    with open('filename.pickle', 'rb') as handle:
+    with open('Backup.pickle', 'rb') as handle:
         a = pickle.load(handle)
         variables["d_pgp_LOGIN"] = a
     return "Sucess! Variables loaded from backup."
