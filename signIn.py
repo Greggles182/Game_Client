@@ -124,7 +124,10 @@ def signinuytio():
           print("worked")
           # Save variable to a file
           with open('rlog.pkl', 'wb') as f:
-            pickle.dump([1,username], f)
+            pickle.dump([1,username], f)   
+          # Stop all sound effects
+          pygame.mixer.stop()
+          pygame.mixer.music.stop()
           # Run another Python file
           subprocess.run(["python", "main.py"])
         
