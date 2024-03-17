@@ -310,10 +310,8 @@ def start(lvl, MM, cst_ldata, players):
             self.reset(x, y)
             self.num = num
 
-          async def update(self, game_over):
+          def update(self, x, y, direction):
             
-            
-
             walk_cooldown = 5
 
             if game_over == 0:
@@ -324,9 +322,9 @@ def start(lvl, MM, cst_ldata, players):
                     self.index += 1
                     if self.index >= len(self.images_right):
                         self.index = 0
-                    if self.direction == 1:
+                    if direction == 1:
                         self.image = self.images_right[self.index]
-                    if self.direction == -1:
+                    if direction == -1:
                         self.image = self.images_left[self.index]
 
                 # # check for collision with enemies
@@ -342,8 +340,8 @@ def start(lvl, MM, cst_ldata, players):
                 #     game_over = 1
                 
                 # update player coordinates
-                self.rect.x = dx
-                self.rect.y = dy
+                self.rect.x = x
+                self.rect.y = y
 
 
             # elif game_over == -1:
@@ -543,7 +541,8 @@ def start(lvl, MM, cst_ldata, players):
 
 
     def Update():
-        mptfetch.start_player_update_thread(SERVER_URL, players, currentplayer)
+        PlayerInfo = mptfetch.start_player_update_thread(SERVER_URL, players, PlayerN)
+        player2.update()
     run = True
     while run:
 
@@ -581,8 +580,7 @@ def start(lvl, MM, cst_ldata, players):
             exit_group.draw(screen)
 
             game_over = player.update(game_over)
-            async def playerUpdate():
-                await player2.update(game_over)
+            Update()
             #if player has died
             if game_over == -1:
                 if exit_button_smol.draw():
@@ -635,8 +633,9 @@ def start(lvl, MM, cst_ldata, players):
     return True
 
 def Begin():
-    global SERVER_URL
-    SERVER_URL = Setup()
+    global PlayerN
+    global SERVER_URL  # Declare SERVER_URL as global
+    PlayerN, SERVER_URL = Setup()
     level = int(webclient.get_variable(SERVER_URL,"b_pgp_Custom"))
     if level == 1:
         start(1, False, [], int(webclient.get_variable(SERVER_URL,"i_pgp_Players")))
