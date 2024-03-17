@@ -541,6 +541,9 @@ def start(lvl, MM, cst_ldata, players):
                           start_img)
     exit_button = Button(screen_width // 2 + 150, screen_height // 2, exit_img)
 
+
+    def Update():
+        pass
     run = True
     while run:
 

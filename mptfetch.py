@@ -33,4 +33,4 @@ if __name__ == "__main__":
     while True:
         print("Main script running...")
         print("Online player data:", Online_playerdata)
-        time.sleep(1)  # Adjust sleep time as per your needs
+        time.sleep(10)  # Adjust sleep time as per your needs
