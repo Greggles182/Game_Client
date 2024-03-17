@@ -3,8 +3,7 @@ from pygame.locals import *
 from pygame.font import *
 from os import *
 from OnlineCLI import *
-import webclient
-import json 
+import mptfetch, mptupload, webclient, functionality
 #https://youtu.be/l4-0_nayHac
 
 def start(lvl, MM, cst_ldata, players):
@@ -312,42 +311,8 @@ def start(lvl, MM, cst_ldata, players):
             self.num = num
 
           async def update(self, game_over):
-            import asyncio
-            dx = self.dx
-            dy = self.dy
-            async def fetch_player_data(self):
-                async def get_data(self):
-                    # Assuming webclient.get_variable is a coroutine
-                    player_data_json = await webclient.get_variable(SERVER_URL, f"l_pgp_Player{self.num}")
-                    player_data_list = json.loads(player_data_json)
-                    return player_data_list
-                player_data = await self.get_data()
-                self.dx = player_data[0]
-                self.dy = player_data[1]
-                self.direction = player_data[2]
-
-            # import threading
-            # #[x, y, self.direction]
-            # def get_data():
-            #     global dx
-            #     global dy
-            #     global direction
-            #     print(self.num)
-            #     playerdata = json.loads(str(webclient.get_variable(SERVER_URL,f"l_pgp_Player{self.num}")))
-            #     print(playerdata) 
-            #     dx = playerdata[0]
-            #     dy = playerdata[1]
-            #     direction = playerdata[2]
-            # x = threading.Thread(target=get_data)
-            # x.start()
-            # Run the fetching process asynchronously
-            task = asyncio.create_task(self.fetch_player_data())
-            # Other update code can proceed while fetching is in progress
-            await asyncio.sleep(0)  # Allows other tasks to run
-            # Assuming other update code
-            # Access self.dx, self.dy, self.direction as needed
-            # End of other update code
-            await task  # Wait for the fetch_player_data task to complete
+            
+            
 
             walk_cooldown = 5
 
@@ -576,6 +541,9 @@ def start(lvl, MM, cst_ldata, players):
                           start_img)
     exit_button = Button(screen_width // 2 + 150, screen_height // 2, exit_img)
 
+
+    def Update():
+        mptfetch.start_player_update_thread(SERVER_URL, players, currentplayer)
     run = True
     while run:
 
@@ -677,8 +645,9 @@ def Begin():
         start("cst", False, eval(str(webclient.get_variable(SERVER_URL,"l_pgp_level-data"))), int(webclient.get_variable(SERVER_URL,"i_pgp_Players")))
 
 if __name__ == "__main__":
+    global PlayerN
     global SERVER_URL  # Declare SERVER_URL as global
-    SERVER_URL = Setup()
+    PlayerN, SERVER_URL = Setup()
     print(SERVER_URL) 
     level = int(webclient.get_variable(SERVER_URL,"b_pgp_Custom"))
     if level == 1:
