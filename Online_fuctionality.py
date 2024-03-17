@@ -543,7 +543,7 @@ def start(lvl, MM, cst_ldata, players):
 
 
     def Update():
-        pass
+        mptfetch.start_player_update_thread(SERVER_URL, players, currentplayer)
     run = True
     while run:
 
@@ -645,8 +645,9 @@ def Begin():
         start("cst", False, eval(str(webclient.get_variable(SERVER_URL,"l_pgp_level-data"))), int(webclient.get_variable(SERVER_URL,"i_pgp_Players")))
 
 if __name__ == "__main__":
+    global PlayerN
     global SERVER_URL  # Declare SERVER_URL as global
-    SERVER_URL = Setup()
+    PlayerN, SERVER_URL = Setup()
     print(SERVER_URL) 
     level = int(webclient.get_variable(SERVER_URL,"b_pgp_Custom"))
     if level == 1:

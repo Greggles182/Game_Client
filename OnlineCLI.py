@@ -32,7 +32,11 @@ def Setup():
                     returned = Setup()
                     return returned
                 print("Waiting for players...")
+                while int(webclient.get_variable(SERVER_URL, "i_pgp_Players")) != int(webclient.get_variable(SERVER_URL, "i_pgp_LobbyPlayers")):
+                    pass
+                    time.sleep(0.5)
                 webclient.update_variable(SERVER_URL, "b_pgp_Playing", "1")
+                PlayerN = 1
                 print("Game has begun!")
         else:
             print("A game is currently in progress on this URL.")
@@ -48,10 +52,12 @@ def Setup():
             if cj.lower() == "y":
                 if int(webclient.get_variable(SERVER_URL, "i_pgp_Players")) > int(webclient.get_variable(SERVER_URL, "i_pgp_LobbyPlayers")):
                     print("Joining Game...")
+                    PlayerN = int(webclient.get_variable(SERVER_URL, "i_pgp_LobbyPlayers"))+1
                     webclient.update_variable(SERVER_URL, "i_pgp_LobbyPlayers", int(webclient.get_variable(SERVER_URL, "i_pgp_LobbyPlayers"))+1)
                     print("Waiting for game to begin...")
                     while str(webclient.get_variable(SERVER_URL, "b_pgp_Playing")) == "1":
                         pass
+                        time.sleep(0.5)
                     print("Game has begun!")
                 else:
                     print("Invalid input!")
@@ -73,7 +79,7 @@ def Setup():
         print("Invalid Option! Try Again.")
         returned = Setup()
         return returned
-    return SERVER_URL
+    return PlayerN, SERVER_URL
 
 if __name__ == "__main__":
     server_url = Setup()  # Assign the returned SERVER_URL to a variable
