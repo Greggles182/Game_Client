@@ -312,21 +312,7 @@ def start(lvl, MM, cst_ldata, players):
 
           async def update(self, game_over):
             
-
-            # import threading
-            # #[x, y, self.direction]
-            # def get_data():
-            #     global dx
-            #     global dy
-            #     global direction
-            #     print(self.num)
-            #     playerdata = json.loads(str(webclient.get_variable(SERVER_URL,f"l_pgp_Player{self.num}")))
-            #     print(playerdata) 
-            #     dx = playerdata[0]
-            #     dy = playerdata[1]
-            #     direction = playerdata[2]
-            # x = threading.Thread(target=get_data)
-            # x.start()
+            
 
             walk_cooldown = 5
 

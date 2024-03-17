@@ -235,7 +235,7 @@ while running:
     ytt=str(loaded_variablet[0])
     un=str(loaded_variablet[1])
     #drop down menu:%
-    def dropdownhelll():
+    def dropdown2():
           my_dictp = webclient.get_variable(SERVER_URL,"d_pgp_LOGIN")
           print(un)
           try:
@@ -254,11 +254,11 @@ while running:
     if ytt == "0":
       create_button(540,10, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), "Sign-in", WHITE, signinuytio)
     else:
-      create_button(540,10, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), un, WHITE, dropdownhelll)
+      create_button(540,10, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), un, WHITE, dropdown2)
     # Get the mouse position
     mouse_x, mouse_y = pygame.mouse.get_pos()
     if ((mouse_x>=550 and mouse_x<=800)and(mouse_y>=10 and mouse_y<=200))and(not(ytt=="0")):
-        dropdownhelll()
+        dropdown2()
 
 
     # updates the frames of the game
