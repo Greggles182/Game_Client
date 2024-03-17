@@ -89,14 +89,17 @@ BUTTON_COLOR = GRAY
 BUTTON_TEXT_COLOR = BLACK
 BUTTON_TEXT_SIZE = 30
 # Function to create a button
-def create_button(x, y, width, height, color, text, text_color, action=None):
+def create_button(x, y, width, height, color, text, text_color, action=None,acpar=None):
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
 
     if x < mouse[0] < x + width and y < mouse[1] < y + height:
         pygame.draw.rect(screen, BLACK, (x, y, width, height))
         if click[0] == 1 and action is not None:
-            action()
+            if acpar is not None:
+                action(acpar)
+            else:
+                action()
     else:
         pygame.draw.rect(screen, color, (x, y, width, height))
 
