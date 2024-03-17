@@ -5,12 +5,6 @@ import pickle
 from os import *
 #https://youtu.be/l4-0_nayHac
 
-def update_PlayerCoins(numberOfCoins):
-    with open('rlog.pkl', 'rb') as k:
-      a = pickle.load(k)
-      print(type(a))
-      print(str(a)) 
-
 def start(lvl, MM, cst_ldata):
     print(type(lvl))
     print("starting with Level " + str(lvl))
