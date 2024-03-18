@@ -7,9 +7,9 @@ from os import *
 
 def update_PlayerCoins(numberOfCoins):
     with open('rlog.pkl', 'rb') as k:
-      a = pickle.load(k)
-      print(type(a))
-      print(str(a)) 
+        a = pickle.load(k)
+        print(type(a))
+        print(str(a)) 
 
 def start(lvl, MM, cst_ldata):
     print(type(lvl))
@@ -759,5 +759,5 @@ if __name__ == "__main__":
         print("Function call_start() is called.",sel_option)
         start(sel_option, False, [])  # Call the starty function from functions module
     elif sel_option=="4":
-        update_PlayerCoins(1)
+        update_PlayerCoins()
     
