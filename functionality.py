@@ -5,12 +5,6 @@ import pickle
 from os import *
 #https://youtu.be/l4-0_nayHac
 
-def update_PlayerCoins(numberOfCoins):
-    with open('rlog.pkl', 'rb') as k:
-        a = pickle.load(k)
-        print(type(a))
-        print(str(a)) 
-
 def start(lvl, MM, cst_ldata):
     print(type(lvl))
     print("starting with Level " + str(lvl))
@@ -758,6 +752,4 @@ if __name__ == "__main__":
         sel_option = int(sel_option)
         print("Function call_start() is called.",sel_option)
         start(sel_option, False, [])  # Call the starty function from functions module
-    elif sel_option=="4":
-        update_PlayerCoins()
     
