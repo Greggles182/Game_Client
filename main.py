@@ -1,11 +1,16 @@
 import pygame
 import sys
-from signIn import *
 import multiplayer
-import os, sys, webclient, time
+import os, sys,  time
 import pickle
 from functionality import start, leveldesign  # Import the starty function from functions module_leve = selected_option+1l
-
+try:
+    from signIn import *
+    import webclient
+    webclient.update_variable("http://gregglesthegreat.pythonanywhere.com/", "ConnectTest", "True")
+except Exception as e:
+    print(e)
+    Online = False
 # with open('rlog.pkl', 'wb') as handle:
 #     pickle.dump([1,"Greggles",0], handle, protocol=pickle.HIGHEST_PROTOCOL)
 #     handle.close()
@@ -230,28 +235,31 @@ while running:
     ytt=str(loaded_variablet[0])
     un=str(loaded_variablet[1])
     #drop down menu:%
-    def dropdown2():
-          my_dictp = webclient.get_variable(SERVER_URL,"d_pgp_LOGIN")
-          try:
-              my_coinds = my_dictp[un][1]
-          except KeyError:
-              my_coinds = "Error"
-          ayouu=("Coinds:"+str(my_coinds))
-          create_button(540,55, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), ayouu, WHITE)
-          create_button(540,102, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), "Log-out", WHITE, signoutt)
-    # Load variable from the file
-    with open('rlog.pkl', 'rb') as f:
-        loaded_variablet = pickle.load(f)
-    ytt=str(loaded_variablet[0])
-    un=str(loaded_variablet[1])
-    if ytt == "0":
-      create_button(540,10, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), "Sign-in", WHITE, signinuytio)
-    else:
-      create_button(540,10, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), un, WHITE, dropdown2)
-    # Get the mouse position
-    mouse_x, mouse_y = pygame.mouse.get_pos()
-    if ((mouse_x>=550 and mouse_x<=800)and(mouse_y>=10 and mouse_y<=200))and(not(ytt=="0")):
-        dropdown2()
+    if Online == True:
+        from signIn import *
+        import webclient
+        def dropdown2():
+            my_dictp = webclient.get_variable(SERVER_URL,"d_pgp_LOGIN")
+            try:
+                my_coinds = my_dictp[un][1]
+            except KeyError:
+                my_coinds = "Error"
+            ayouu=("Coinds:"+str(my_coinds))
+            create_button(540,55, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), ayouu, WHITE)
+            create_button(540,102, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), "Log-out", WHITE, signoutt)
+        # Load variable from the file
+        with open('rlog.pkl', 'rb') as f:
+            loaded_variablet = pickle.load(f)
+        ytt=str(loaded_variablet[0])
+        un=str(loaded_variablet[1])
+        if ytt == "0":
+            create_button(540,10, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), "Sign-in", WHITE, signinuytio)
+        else:
+            create_button(540,10, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), un, WHITE, dropdown2)
+        # Get the mouse position
+        mouse_x, mouse_y = pygame.mouse.get_pos()
+        if ((mouse_x>=550 and mouse_x<=800)and(mouse_y>=10 and mouse_y<=200))and(not(ytt=="0")):
+            dropdown2()
 
 
     # updates the frames of the game
