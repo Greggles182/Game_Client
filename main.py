@@ -1,10 +1,19 @@
 import pygame
 import sys
-from signIn import *
 import multiplayer
-import os, sys, webclient, time
 import pickle
+import main
 from functionality import start, leveldesign  # Import the starty function from functions module_leve = selected_option+1l
+
+global onile
+try:
+   from signIn import *
+   import os, sys, webclient, time
+   onile="o"
+except:
+   print("ofline")
+   onile="i"
+
 
 # with open('rlog.pkl', 'wb') as handle:
 #     pickle.dump([1,"Greggles",0], handle, protocol=pickle.HIGHEST_PROTOCOL)
@@ -239,6 +248,8 @@ while running:
           ayouu=("Coinds:"+str(my_coinds))
           create_button(540,55, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), ayouu, WHITE)
           create_button(540,102, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), "Log-out", WHITE, signoutt)
+    
+if onile =="o":
     # Load variable from the file
     with open('rlog.pkl', 'rb') as f:
         loaded_variablet = pickle.load(f)
@@ -252,6 +263,7 @@ while running:
     mouse_x, mouse_y = pygame.mouse.get_pos()
     if ((mouse_x>=550 and mouse_x<=800)and(mouse_y>=10 and mouse_y<=200))and(not(ytt=="0")):
         dropdown2()
+
 
 
     # updates the frames of the game
