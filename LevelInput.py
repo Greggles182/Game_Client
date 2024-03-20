@@ -86,6 +86,12 @@ def cli(Ldata):
             a = pickle.load(handle)
             handle.close()
         print(a)
+        if type(a) != list:
+            raise ValueError
+        if a[0] == 0:
+            print("You must sign in to use this functionality!")
+        elif a[0] == 1:
+            print("Signed In As: ", a[1])
     elif Opt == 6:
         pass
     elif Opt == 7:
