@@ -1,22 +1,26 @@
-import pygame
-import sys
-import multiplayer
-import pickle
-import main
+import os, sys, time, multiplayer, pygame, pickle
 from functionality import start, leveldesign  # Import the starty function from functions module_leve = selected_option+1l
+try:
+    from signIn import *
+    import webclient
+    webclient.update_variable("http://gregglesthegreat.pythonanywhere.com/",
+                              "ConnectTest", "True")
+    Online = True
+except Exception as e:
+    print(e)
+    Online = False
 
 global onile
 try:
-   from signIn import *
-   import os, sys, webclient, time
-   onile="o"
+    from signIn import *
+    import os, sys, webclient, time
+    onile = "o"
 except:
-   print("ofline")
-   onile="i"
-
+    print("ofline")
+    onile = "i"
 
 # with open('rlog.pkl', 'wb') as handle:
-#     pickle.dump([1,"Greggles",0], handle, protocol=pickle.HIGHEST_PROTOCOL)
+#     pickle.dump([1, "Greggles", 0, {}], handle, protocol=pickle.HIGHEST_PROTOCOL)
 #     handle.close()
 with open('rlog.pkl', 'rb') as handle:
     a = pickle.load(handle)
@@ -25,27 +29,32 @@ pygame.display.set_caption("Platformer")
 # Function to be called when Start button is clicked
 #server URL
 SERVER_URL = "http://gregglesthegreat.pythonanywhere.com/"
+
+
 #Gregory"s bit
 def call_start():
     global screen
-    if selected_option==4:
-      
-      multiplayer.Main()
+    if selected_option == 4:
+
+        multiplayer.Main()
     else:
-      if selected_option<=2:
-          start_level = selected_option+1
-          print("Function call_start() is called.",start_level)
-          start(start_level, False, [])  # Call the starty function from functions module
-          screen = pygame.display.set_mode(res)
-      elif selected_option == 3:
-          print("Custom-Level start")
-          #level selector here
-          custom_leveldata = leveldesign()
-          #then
-          print("cst-ldata: " + str(custom_leveldata))
-          start("cst", False, custom_leveldata)
-          screen = pygame.display.set_mode(res)
-  #end gregory"s bit
+        if selected_option <= 2:
+            start_level = selected_option + 1
+            print("Function call_start() is called.", start_level)
+            start(start_level, False,
+                  [])  # Call the starty function from functions module
+            screen = pygame.display.set_mode(res)
+        elif selected_option == 3:
+            print("Custom-Level start")
+            #level selector here
+            custom_leveldata = leveldesign()
+            #then
+            print("cst-ldata: " + str(custom_leveldata))
+            start("cst", False, custom_leveldata)
+            screen = pygame.display.set_mode(res)
+#end gregory"s bit
+
+
 # Initializing the constructor
 pygame.init()
 #edit
@@ -64,10 +73,15 @@ dropdown_font = pygame.font.SysFont(None, 24)  # Font for the dropdown text
 button_text = font.render("Start", True, (255, 255, 255))
 exit_text = font.render("Exit", True, (255, 255, 255))
 # Create a list of image filenames
-image_filenames = ["img/image1.png", "img/image2.png", "img/image3.png"]  # Image filenames here
+image_filenames = ["img/image1.png", "img/image2.png",
+                   "img/image3.png"]  # Image filenames here
 
 # Load images
-images = [pygame.image.load(filename).convert() for filename in image_filenames]
+images = [
+    pygame.image.load(filename).convert() for filename in image_filenames
+]
+
+
 # Function to draw text on button
 def draw_text(text, font, color, surface, x, y):
     try:
@@ -78,7 +92,8 @@ def draw_text(text, font, color, surface, x, y):
         surface.blit(textobj, textrect)
     except Exception as e:
         print("Error rendering text:", e)
-    
+
+
 # Function to perform action when button is clicked
 WIDTH, HEIGHT = 800, 600
 # Define some colors
@@ -92,8 +107,18 @@ BUTTON_HEIGHT = 50
 BUTTON_COLOR = GRAY
 BUTTON_TEXT_COLOR = BLACK
 BUTTON_TEXT_SIZE = 30
+
+
 # Function to create a button
-def create_button(x, y, width, height, color, text, text_color, action=None,acpar=None):
+def create_button(x,
+                  y,
+                  width,
+                  height,
+                  color,
+                  text,
+                  text_color,
+                  action=None,
+                  acpar=None):
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
 
@@ -109,6 +134,8 @@ def create_button(x, y, width, height, color, text, text_color, action=None,acpa
 
     font = pygame.font.SysFont(None, BUTTON_TEXT_SIZE)
     draw_text(text, font, text_color, screen, x + width / 2, y + height / 2)
+
+
 # Create a button
 
 # Load background music
@@ -127,15 +154,17 @@ delay = 500  # milliseconds
 
 background_x = 0  # Initialize background_x outside the loop
 
+
 #sign-oute
 def signoutt():
     # Save variable to a file
-          with open('rlog.pkl', 'wb') as f:
-            pickle.dump([0,""], f)
+    with open('rlog.pkl', 'wb') as f:
+        pickle.dump([0, ""], f)
+
 
 # Dropdown variables
 dropdown_rect = pygame.Rect(res[0] - 160, 10, 150, 30)
-dropdown_options = ["Level 1", "Level 2", "Level 3", "Custom","Multiplayer"]
+dropdown_options = ["Level 1", "Level 2", "Level 3", "Custom", "Multiplayer"]
 selected_option = 0
 #thihh
 while running:
@@ -158,7 +187,6 @@ while running:
                 running = False
                 exit()
 
-    
     # Update the position of the background
     background_x -= 2  # Adjust the scrolling speed as needed
 
@@ -180,10 +208,12 @@ while running:
     screen.blit(exit_text, (exit_text_x, exit_text_y))
     #Game Title:
     # Define a font for the main menu text
-    main_menu_font = pygame.font.SysFont(None, 72)  # Font for the main menu text with size 72
+    main_menu_font = pygame.font.SysFont(
+        None, 72)  # Font for the main menu text with size 72
 
     # Render the main menu text
-    main_menu_text = main_menu_font.render("Main Menu", True, (255, 255, 255))  # Render the main menu text
+    main_menu_text = main_menu_font.render(
+        "Main Menu", True, (255, 255, 255))  # Render the main menu text
 
     # Calculate the position of the button based on the screen center
     button_width, button_height = 140, 40
@@ -192,10 +222,12 @@ while running:
 
     #Game Title:
     # Define a font for the main menu text
-    main_menu_font = pygame.font.SysFont(None, 72)  # Font for the main menu text with size 72
+    main_menu_font = pygame.font.SysFont(
+        None, 72)  # Font for the main menu text with size 72
 
     # Render the main menu text
-    main_menu_text = main_menu_font.render("Main Menu", True, (255, 255, 255))  # Render the main menu text
+    main_menu_text = main_menu_font.render(
+        "Main Menu", True, (255, 255, 255))  # Render the main menu text
 
     # Calculate the position of the text based on the screen center
     screen_center_x, screen_center_y = screen.get_rect().center
@@ -214,15 +246,14 @@ while running:
     pygame.draw.rect(screen, (100, 100, 100), button_rect)
     screen.blit(button_text, (text_x, text_y))
 
-
     #Mainmenu is referenced of the button.
     # Draw the dropdown below to the button
     dropdown_rect.x = button_x
-    dropdown_rect.y = button_y - button_height + 130 # Adjust the distance between the button and dropdown
+    dropdown_rect.y = button_y - button_height + 130  # Adjust the distance between the button and dropdown
     pygame.draw.rect(screen, (100, 100, 100), dropdown_rect)
-    dropdown_text = dropdown_font.render(dropdown_options[selected_option], True, (255, 255, 255))
+    dropdown_text = dropdown_font.render(dropdown_options[selected_option],
+                                         True, (255, 255, 255))
     screen.blit(dropdown_text, (dropdown_rect.x + 5, dropdown_rect.y + 5))
-    
 
     # Check if the background has scrolled completely, reset its position
     if background_x <= -res[0]:
@@ -236,35 +267,65 @@ while running:
     # Load variable from the file
     with open('rlog.pkl', 'rb') as f:
         loaded_variablet = pickle.load(f)
-    ytt=str(loaded_variablet[0])
-    un=str(loaded_variablet[1])
+    ytt = str(loaded_variablet[0])
+    un = str(loaded_variablet[1])
     #drop down menu:%
-    def dropdown2():
-          my_dictp = webclient.get_variable(SERVER_URL,"d_pgp_LOGIN")
-          try:
-              my_coinds = my_dictp[un][1]
-          except KeyError:
-              my_coinds = "Error"
-          ayouu=("Coinds:"+str(my_coinds))
-          create_button(540,55, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), ayouu, WHITE)
-          create_button(540,102, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), "Log-out", WHITE, signoutt)
-    
-if onile =="o":
-    # Load variable from the file
-    with open('rlog.pkl', 'rb') as f:
-        loaded_variablet = pickle.load(f)
-    ytt=str(loaded_variablet[0])
-    un=str(loaded_variablet[1])
-    if ytt == "0":
-      create_button(540,10, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), "Sign-in", WHITE, signinuytio)
-    else:
-      create_button(540,10, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), un, WHITE, dropdown2)
-    # Get the mouse position
-    mouse_x, mouse_y = pygame.mouse.get_pos()
-    if ((mouse_x>=550 and mouse_x<=800)and(mouse_y>=10 and mouse_y<=200))and(not(ytt=="0")):
-        dropdown2()
+    #     def dropdown2():
+    #           my_dictp = webclient.get_variable(SERVER_URL,"d_pgp_LOGIN")
+    #           try:
+    #               my_coinds = my_dictp[un][1]
+    #           except KeyError:
+    #               my_coinds = "Error"
+    #           ayouu=("Coinds:"+str(my_coinds))
+    #           create_button(540,55, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), ayouu, WHITE)
+    #           create_button(540,102, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), "Log-out", WHITE, signoutt)
 
+    # if onile =="o":
+    #     # Load variable from the file
+    #     with open('rlog.pkl', 'rb') as f:
+    #         loaded_variablet = pickle.load(f)
+    #     ytt=str(loaded_variablet[0])
+    #     un=str(loaded_variablet[1])
+    #     if ytt == "0":
+    #       create_button(540,10, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), "Sign-in", WHITE, signinuytio)
+    #     else:
+    #       create_button(540,10, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), un, WHITE, dropdown2)
+    #     # Get the mouse position
+    #     mouse_x, mouse_y = pygame.mouse.get_pos()
+    #     if ((mouse_x>=550 and mouse_x<=800)and(mouse_y>=10 and mouse_y<=200))and(not(ytt=="0")):
+    #         dropdown2()
+    if Online == True:
+        from signIn import *
+        import webclient
 
+        def dropdown2():
+            my_dictp = webclient.get_variable(SERVER_URL, "d_pgp_LOGIN")
+            try:
+                my_coinds = my_dictp[un][1]
+            except KeyError:
+                my_coinds = "Error"
+            ayouu = ("Coinds:" + str(my_coinds))
+            create_button(540, 55, BUTTON_WIDTH, BUTTON_HEIGHT,
+                          (100, 100, 100), ayouu, WHITE)
+            create_button(540, 102, BUTTON_WIDTH, BUTTON_HEIGHT,
+                          (100, 100, 100), "Log-out", WHITE, signoutt)
+
+        # Load variable from the file
+        with open('rlog.pkl', 'rb') as f:
+            loaded_variablet = pickle.load(f)
+        ytt = str(loaded_variablet[0])
+        un = str(loaded_variablet[1])
+        if ytt == "0":
+            create_button(540, 10, BUTTON_WIDTH, BUTTON_HEIGHT,
+                          (100, 100, 100), "Sign-in", WHITE, signinuytio)
+        else:
+            create_button(540, 10, BUTTON_WIDTH, BUTTON_HEIGHT,
+                          (100, 100, 100), un, WHITE, dropdown2)
+        # Get the mouse position
+        mouse_x, mouse_y = pygame.mouse.get_pos()
+        if ((mouse_x >= 550 and mouse_x <= 800) and
+            (mouse_y >= 10 and mouse_y <= 200)) and (not (ytt == "0")):
+            dropdown2()
 
     # updates the frames of the game
     pygame.display.flip()

@@ -1,21 +1,25 @@
 #DOWNLOAD THIS
 import os
+import pickle
+import webclient
+
+
 def cli(Ldata):
     print("""Welcome to the LevelEditor CLI!
           Please type a number below to trigger the command
           1: Export the current level to file
           2: Load a level file
-          3: Print seed for current level.
+          3: Print seed for current level
           4: Paste in a level seed (must be valid)
           5: Save the current level to your user account
           6: Load a level from your user account
           7: Exit the program.
           """)
-    Opt = input("Type 1-5 then press Enter to proceed: ")
+    Opt = input("Type 1-7 then press Enter to proceed: ")
     Opt = int(Opt)
     if Opt > 7 or Opt < 1:
         print("Invalid Option")
-        raise ValueError
+        exit()
     elif Opt == 1:
         fname = input("What filename do you want to export to? ")
         PATH = f"./levels/{fname}.txt"
@@ -82,8 +86,31 @@ def cli(Ldata):
         LDLIST = eval(LDLIST)
         return LDLIST
     elif Opt == 5:
+        SERVER_URL = "http://gregglesthegreat.pythonanywhere.com/"
+        with open('rlog.pkl', 'rb') as handle:
+            a = pickle.load(handle)
+            handle.close()
+        #print(a)
+        if type(a) != list:
+            raise ValueError
+        if a[0] == 0:
+            print("You must sign in to use this functionality!")
+        elif a[0] == 1:
+            print("Signed In As: ", a[1])
+        saven = input("What name should this be saved as? ")
+        users = webclient.get_variable(SERVER_URL, "d_pgp_LOGIN")
+        userinfo = users.get(a[1])
+        OSLevels = userinfo[2]
+        print(OSLevels.keys())
+        if saven in OSLevels:
+            print("This level already exists!")
+
+        OSLevels[saven] = Ldata
+    elif Opt == 6:
+        pass
+    elif Opt == 7:
         exit()
 
 
 if __name__ == "__main__":
-    cli([])
+    print(cli([]))

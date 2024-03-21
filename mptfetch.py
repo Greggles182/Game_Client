@@ -1,5 +1,6 @@
 import threading
 import time
+import copy
 from webclient import get_variable  # Assuming get_variable function is defined in webclient.py
 
 Online_playerdata = []  # Global variable to store player data
@@ -20,6 +21,7 @@ def start_player_update_thread(SERVER_URL, players, current_player):
     update_thread = threading.Thread(target=fetch_player_info, args=(SERVER_URL, players, current_player))
     update_thread.daemon = True  # Daemonize the thread to exit when the main program exits
     update_thread.start()
+    return copy.deepcopy(Online_playerdata)
 if __name__ == "__main__":
     SERVER_URL = input("Enter server URL or press Enter to use default: ")
     if SERVER_URL == "":

@@ -128,7 +128,7 @@ def signupio():
                  # print("Username:", username)
                  # print("Password:", "***")
                  if (not(username in my_dict)):
-                     my_dict[username] = [password, "0"]
+                     my_dict[username] = [password, "0", {}]
                      webclient.update_variable(SERVER_URL,"d_pgp_LOGIN", my_dict)
                      my_test= webclient.get_variable(SERVER_URL,"d_pgp_LOGIN")
                      pygame.mixer.stop()
