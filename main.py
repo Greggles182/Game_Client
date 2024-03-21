@@ -52,8 +52,9 @@ def call_start():
             print("cst-ldata: " + str(custom_leveldata))
             start("cst", False, custom_leveldata)
             screen = pygame.display.set_mode(res)
-#end gregory"s bit
 
+
+#end gregory"s bit
 
 # Initializing the constructor
 pygame.init()
