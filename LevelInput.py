@@ -1,6 +1,7 @@
 #DOWNLOAD THIS
 import os
 import pickle
+import webclient
 def cli(Ldata):
     print("""Welcome to the LevelEditor CLI!
           Please type a number below to trigger the command
@@ -82,19 +83,29 @@ def cli(Ldata):
         LDLIST = eval(LDLIST)
         return LDLIST
     elif Opt == 5:
+        SERVER_URL = "http://gregglesthegreat.pythonanywhere.com/"
         with open('rlog.pkl', 'rb') as handle:
             a = pickle.load(handle)
             handle.close()
-        print(a)
+        #print(a)
         if type(a) != list:
             raise ValueError
         if a[0] == 0:
             print("You must sign in to use this functionality!")
         elif a[0] == 1:
             print("Signed In As: ", a[1])
+        saven = input("What name should this be saved as? ")
+        users = webclient.get_variable(SERVER_URL,"d_pgp_LOGIN")
+        userinfo = users.get(a[1])
+        OSLevels = userinfo[2]
+        print(OSLevels.keys())
+        if saven in OSLevels:
+            print("This level already exists!")
+            
+        OSLevels[saven] = Ldata
     elif Opt == 6:
         pass
     elif Opt == 7:
         exit()
 if __name__ == "__main__":
-    cli([])
+    print(cli([]))
