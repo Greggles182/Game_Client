@@ -2,6 +2,7 @@
 import os
 import pickle
 import webclient
+import time
 
 
 def cli(Ldata):
@@ -97,15 +98,27 @@ def cli(Ldata):
             print("You must sign in to use this functionality!")
         elif a[0] == 1:
             print("Signed In As: ", a[1])
+        while webclient.get_variable(SERVER_URL, "b_pgp_Users_INUSE") == "1":
+            time.sleep(0.5)
         saven = input("What name should this be saved as? ")
         users = webclient.get_variable(SERVER_URL, "d_pgp_LOGIN")
+        webclient.update_variable(SERVER_URL, "b_pgp_Users_INUSE", 1)
         userinfo = users.get(a[1])
         OSLevels = userinfo[2]
         print(OSLevels.keys())
         if saven in OSLevels:
             print("This level already exists!")
-
+            confirm = input("Do you want to continue? (y/n): ")
+            if confirm.lower() == "y":
+                pass
+            else:
+                exit()
         OSLevels[saven] = Ldata
+        print(OSLevels)
+        userinfo[2] = OSLevels
+        users[a[1]] = userinfo
+        webclient.update_variable(SERVER_URL, "d_pgp_LOGIN", users)
+        webclient.update_variable(SERVER_URL, "b_pgp_Users_INUSE", 0)
     elif Opt == 6:
         pass
     elif Opt == 7:
@@ -113,4 +126,23 @@ def cli(Ldata):
 
 
 if __name__ == "__main__":
-    print(cli([]))
+    print(cli([[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                  [8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8], 
+                  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 7, 7], 
+                  [0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 7, 1], 
+                  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 7, 7], 
+                  [0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 7, 1, 7], 
+                  [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 7, 7], 
+                  [0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0], 
+                  [0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0], 
+                  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0], 
+                  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0], 
+                  [6, 6, 6, 6, 6, 6, 6, 1, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0], 
+                  [1, 1, 1, 1, 1, 1, 1, 7, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0], 
+                  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0], 
+                  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0], 
+                  [0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+                  [0, 0, 1, 1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+                  [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+                  [0, 0, 5, 1, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6], 
+                  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]))
