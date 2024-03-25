@@ -6,16 +6,12 @@ import requests
 def get_variable(SERVER_URL,variable_name):
     response = requests.get(f"{SERVER_URL}/get_variable?name={variable_name}")
     if variable_name == "d_pgp_LOGIN":
-        if response == None:
-            requests.get(f"{SERVER_URL}/load_backup")
-            response = requests.get(f"{SERVER_URL}/get_variable?name={variable_name}")
+        f = requests.get(f"{SERVER_URL}/load_backup")
+        print(f)
+        response = requests.get(f"{SERVER_URL}/get_variable?name={variable_name}")
     return response.json().get(variable_name)
 
 def update_variable(SERVER_URL,variable_name, value):
-    if variable_name == "d_pgp_LOGIN":
-        response = requests.get(f"{SERVER_URL}/get_variable?name={variable_name}")
-        if response == None:
-            requests.get(f"{SERVER_URL}/load_backup")
     data = {"name": variable_name, "value": value}
     response = requests.post(f"{SERVER_URL}/update_variable", json=data)
     if response.ok:
