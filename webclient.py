@@ -6,8 +6,7 @@ import requests
 def get_variable(SERVER_URL,variable_name):
     response = requests.get(f"{SERVER_URL}/get_variable?name={variable_name}")
     if variable_name == "d_pgp_LOGIN":
-        f = requests.get(f"{SERVER_URL}/load_backup")
-        print(f)
+        requests.get(f"{SERVER_URL}/load_backup")
         response = requests.get(f"{SERVER_URL}/get_variable?name={variable_name}")
     return response.json().get(variable_name)
 
