@@ -105,7 +105,6 @@ def cli(Ldata):
         webclient.update_variable(SERVER_URL, "b_pgp_Users_INUSE", 1)
         userinfo = users.get(a[1])
         OSLevels = userinfo[2]
-        print(OSLevels.keys())
         if saven in OSLevels:
             print("This level already exists!")
             confirm = input("Do you want to continue? (y/n): ")
@@ -114,13 +113,27 @@ def cli(Ldata):
             else:
                 exit()
         OSLevels[saven] = Ldata
-        print(OSLevels)
         userinfo[2] = OSLevels
         users[a[1]] = userinfo
         webclient.update_variable(SERVER_URL, "d_pgp_LOGIN", users)
         webclient.update_variable(SERVER_URL, "b_pgp_Users_INUSE", 0)
     elif Opt == 6:
-        pass
+        SERVER_URL = "http://gregglesthegreat.pythonanywhere.com/"
+        with open('rlog.pkl', 'rb') as handle:
+            a = pickle.load(handle)
+            handle.close()
+        #print(a)
+        if type(a) != list:
+            raise ValueError
+        if a[0] == 0:
+            print("You must sign in to use this functionality!")
+        elif a[0] == 1:
+            print("Signed In As: ", a[1])
+        users = webclient.get_variable(SERVER_URL, "d_pgp_LOGIN")
+        print(users)
+        userinfo = users.get(a[1])
+        OSLevels = userinfo[2]
+        print(OSLevels.keys())
     elif Opt == 7:
         exit()
 
