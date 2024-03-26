@@ -6,11 +6,18 @@ from os import *
 #https://youtu.be/l4-0_nayHac
 
 
-def coinsv():
-  import webclient
-  SERVER_URL = "http://gregglesthegreat.pythonanywhere.com/"
+def coinsv(g):
+  try:
+    import webclient
+    SERVER_URL = "http://gregglesthegreat.pythonanywhere.com/"
 
-  my_dict = webclient.get_variable(SERVER_URL,"d_pgp_LOGIN")
+    my_dict = webclient.get_variable(SERVER_URL,"d_pgp_LOGIN")
+    my_coins= int(my_dict[1])
+    my_new_coins=my_coins+int(g)
+    my_dict[1]=my_new_coins
+    webclient.update_variable(SERVER_URL,"d_pgp_LOGIN", my_dict)
+  except Exception as e:
+    print("Fail: ", e)
   
 def start(lvl, MM, cst_ldata):
     print(type(lvl))
