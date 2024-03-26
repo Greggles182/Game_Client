@@ -2,6 +2,7 @@ import pygame
 from pygame.locals import *
 from pygame.font import *
 from os import *
+from functionality import coinsv
 #https://youtu.be/l4-0_nayHac
 
 def start(lvl, MM, cst_ldata):
