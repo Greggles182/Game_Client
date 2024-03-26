@@ -5,6 +5,13 @@ import pickle
 from os import *
 #https://youtu.be/l4-0_nayHac
 
+
+def coinsv():
+  import webclient
+  SERVER_URL = "http://gregglesthegreat.pythonanywhere.com/"
+
+  my_dict = webclient.get_variable(SERVER_URL,"d_pgp_LOGIN")
+  
 def start(lvl, MM, cst_ldata):
     print(type(lvl))
     print("starting with Level " + str(lvl))
