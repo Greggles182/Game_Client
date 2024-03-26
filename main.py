@@ -168,6 +168,7 @@ dropdown_rect = pygame.Rect(res[0] - 160, 10, 150, 30)
 dropdown_options = ["Level 1", "Level 2", "Level 3", "Custom", "Multiplayer"]
 selected_option = 0
 #thihh
+my_dictp = webclient.get_variable(SERVER_URL, "d_pgp_LOGIN")
 while running:
     clock.tick(30)  # Adjusted the clock speed for smooth rendering
 
@@ -270,37 +271,12 @@ while running:
         loaded_variablet = pickle.load(f)
     ytt = str(loaded_variablet[0])
     un = str(loaded_variablet[1])
-    #drop down menu:%
-    #     def dropdown2():
-    #           my_dictp = webclient.get_variable(SERVER_URL,"d_pgp_LOGIN")
-    #           try:
-    #               my_coinds = my_dictp[un][1]
-    #           except KeyError:
-    #               my_coinds = "Error"
-    #           ayouu=("Coinds:"+str(my_coinds))
-    #           create_button(540,55, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), ayouu, WHITE)
-    #           create_button(540,102, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), "Log-out", WHITE, signoutt)
-
-    # if onile =="o":
-    #     # Load variable from the file
-    #     with open('rlog.pkl', 'rb') as f:
-    #         loaded_variablet = pickle.load(f)
-    #     ytt=str(loaded_variablet[0])
-    #     un=str(loaded_variablet[1])
-    #     if ytt == "0":
-    #       create_button(540,10, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), "Sign-in", WHITE, signinuytio)
-    #     else:
-    #       create_button(540,10, BUTTON_WIDTH, BUTTON_HEIGHT,(100, 100, 100), un, WHITE, dropdown2)
-    #     # Get the mouse position
-    #     mouse_x, mouse_y = pygame.mouse.get_pos()
-    #     if ((mouse_x>=550 and mouse_x<=800)and(mouse_y>=10 and mouse_y<=200))and(not(ytt=="0")):
-    #         dropdown2()
     if Online == True:
         from signIn import *
         import webclient
 
         def dropdown2():
-            my_dictp = webclient.get_variable(SERVER_URL, "d_pgp_LOGIN")
+            # my_dictp = webclient.get_variable(SERVER_URL, "d_pgp_LOGIN")
             try:
                 my_coinds = my_dictp[un][1]
             except KeyError:

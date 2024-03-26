@@ -117,6 +117,7 @@ def cli(Ldata):
         users[a[1]] = userinfo
         webclient.update_variable(SERVER_URL, "d_pgp_LOGIN", users)
         webclient.update_variable(SERVER_URL, "b_pgp_Users_INUSE", 0)
+        return Ldata
     elif Opt == 6:
         SERVER_URL = "http://gregglesthegreat.pythonanywhere.com/"
         with open('rlog.pkl', 'rb') as handle:
