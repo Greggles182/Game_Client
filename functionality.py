@@ -6,19 +6,51 @@ from os import *
 #https://youtu.be/l4-0_nayHac
 
 
-def coinsv(g):
-  try:
-    import webclient
-    SERVER_URL = "http://gregglesthegreat.pythonanywhere.com/"
+# def coinsv(g):
+#     try:
+#         import webclient
+#         SERVER_URL = "http://gregglesthegreat.pythonanywhere.com/"
 
-    my_dict = webclient.get_variable(SERVER_URL,"d_pgp_LOGIN")
-    my_coins= int(my_dict[1])
-    my_new_coins=my_coins+int(g)
-    my_dict[1]=my_new_coins
-    webclient.update_variable(SERVER_URL,"d_pgp_LOGIN", my_dict)
-  except Exception as e:
-    print("Fail: ", e)
-  
+#         my_dict = webclient.get_variable(SERVER_URL, "d_pgp_LOGIN")
+#         my_coins = int(my_dict.get('1', 0))  # Get value associated with key '1', default to 0 if key doesn't exist or value is not convertible to int
+#         my_new_coins = my_coins + int(g)
+#         my_dict['1'] = str(my_new_coins)  # Update value associated with key '1', converted to string
+#         webclient.update_variable(SERVER_URL, "d_pgp_LOGIN", my_dict)
+#     except Exception as e:
+#         print("Fail: ", e)
+
+import threading
+
+def coinsv_thread(g):
+    #try:
+    if True:
+        import pickle
+        import webclient
+        SERVER_URL = "http://gregglesthegreat.pythonanywhere.com/"
+        with open('rlog.pkl', 'rb') as handle:
+            a = pickle.load(handle)
+            handle.close()
+        if int(a[0]) == 1:
+            my_dict = webclient.get_variable(SERVER_URL, "d_pgp_LOGIN")
+            my_user = my_dict.get(a[1])
+            my_coins = my_user[1]
+            my_new_coins = int(my_coins) + int(g)
+            my_user[1] = my_new_coins
+            my_dict[a[1]] = my_user
+            webclient.update_variable(SERVER_URL, "d_pgp_LOGIN", my_dict)
+        else:
+            print("Not logged in.")
+    #except Exception as e:
+    #    print("Fail: ", e)
+
+def coinsv(g):
+    thread = threading.Thread(target=coinsv_thread, args=(g,))
+    thread.start()
+
+# # Example usage:
+# g_value = 10  # This is just an example value
+# coinsv_threaded(g_value)
+
 def start(lvl, MM, cst_ldata):
     print(type(lvl))
     print("starting with Level " + str(lvl))

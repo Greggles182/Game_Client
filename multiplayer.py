@@ -5,12 +5,17 @@ from functionality import leveldesign # Import the starty function from function
 import subprocess
 def Main():
   def Enter(s_op):
-    if s_op==2:
+    if s_op==3:
       subprocess.run(["python", "main.py"])
-    if s_op==1:
+    elif s_op==2:
       from Online_fuctionality import Begin
       Begin()
-    if s_op == 0:
+    elif s_op==1:
+      custom_leveldata = leveldesign()
+      #then
+      print("cst-ldata: " + str(custom_leveldata))
+      start("cst", False, custom_leveldata)
+    elif s_op == 0:
       start(1, False, [])
       pygame.display.set_caption("Platformer")
   pygame.init()
@@ -50,7 +55,7 @@ def Main():
 
   # Dropdown variables
   dropdown_rect = pygame.Rect(res[0] - 160, 10, 150, 30)
-  dropdown_options = ["Local 2p","Online","Back"]
+  dropdown_options = ["Level 1-3 Local 2p","Custom Local 2p","Online","Back"]
   selected_option = 0
 
   while running:
@@ -92,12 +97,13 @@ def Main():
       exit_rect = pygame.Rect(exit_x, exit_y, exit_width, exit_height)
       pygame.draw.rect(screen, (100, 100, 100), exit_rect)
       screen.blit(exit_text, (exit_text_x, exit_text_y))
-      #Game Title:
-      # Define a font for the main menu text
-      main_menu_font = pygame.font.SysFont(None, 72)  # Font for the main menu text with size 72
+      #commented out duplicated code!
+      # #Game Title:
+      # # Define a font for the main menu text
+      # main_menu_font = pygame.font.SysFont(None, 72)  # Font for the main menu text with size 72
 
-      # Render the main menu text
-      main_menu_text = main_menu_font.render("Multiplayer Menu", True, (255, 255, 255))  # Render the main menu text
+      # # Render the main menu text
+      # main_menu_text = main_menu_font.render("Multiplayer Menu", True, (255, 255, 255))  # Render the main menu text
 
       # Calculate the position of the button based on the screen center
       button_width, button_height = 140, 40

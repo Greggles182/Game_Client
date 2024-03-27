@@ -20,7 +20,7 @@ except:
     onile = "i"
 
 # with open('rlog.pkl', 'wb') as handle:
-#     pickle.dump([1, "Greggles", 0, {}], handle, protocol=pickle.HIGHEST_PROTOCOL)
+#     pickle.dump([1, "Greggles"], handle, protocol=pickle.HIGHEST_PROTOCOL)
 #     handle.close()
 with open('rlog.pkl', 'rb') as handle:
     a = pickle.load(handle)

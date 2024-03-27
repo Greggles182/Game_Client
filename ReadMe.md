@@ -12,14 +12,14 @@ Things to do:
   3. add a level editor ✓
   4. More games?✗
   5. background music ✓
-  6. 
-  7. 
-  8. 
+  6. Multiplayer Online
+  7. Multiplayer Offline Custom level
+  8. More Blocks?
   9. 
   10. 
  Graphics:
   1. 2 more main menu images (image2 and image3) - ✓ only 1 image is being used, but the menu looks good
-  2. Player
+  2. Player ✓
   3. Background for the levels ✓
   4. Platforms and blocks ✓
   5. Level editor ✓
