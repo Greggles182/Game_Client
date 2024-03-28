@@ -2,7 +2,7 @@ import pygame
 from pygame.locals import *
 from pygame.font import *
 import pickle
-from os import *
+import os
 #https://youtu.be/l4-0_nayHac
 
 
