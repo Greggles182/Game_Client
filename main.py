@@ -1,4 +1,5 @@
-import subprocess, pygame, os#, game
+import subprocess, pygame, os  #, game
+
 print("Game starting")
 # Run git status
 process = subprocess.Popen(['git', 'fetch'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
