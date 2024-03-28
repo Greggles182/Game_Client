@@ -58,7 +58,7 @@ FONT = pygame.font.SysFont("Roboto", 100)
 CLOCK = pygame.time.Clock()
 
 # Work
-WORK = 10000000
+WORK = 100000000
 
 # Loading BG
 LOADING_BG = pygame.image.load("loading/Loading Bar Background.png")
