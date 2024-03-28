@@ -13,7 +13,7 @@ Things to do:
   4. More games?✗
   5. background music ✓
   6. Multiplayer Online
-  7. Multiplayer Offline Custom level
+  7. Multiplayer Offline Custom level ✓
   8. More Blocks?
   9. 
   10. 

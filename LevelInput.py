@@ -98,11 +98,8 @@ def cli(Ldata):
             print("You must sign in to use this functionality!")
         elif a[0] == 1:
             print("Signed In As: ", a[1])
-        while webclient.get_variable(SERVER_URL, "b_pgp_Users_INUSE") == "1":
-            time.sleep(0.5)
         saven = input("What name should this be saved as? ")
         users = webclient.get_variable(SERVER_URL, "d_pgp_LOGIN")
-        webclient.update_variable(SERVER_URL, "b_pgp_Users_INUSE", 1)
         userinfo = users.get(a[1])
         OSLevels = userinfo[2]
         if saven in OSLevels:
@@ -116,7 +113,6 @@ def cli(Ldata):
         userinfo[2] = OSLevels
         users[a[1]] = userinfo
         webclient.update_variable(SERVER_URL, "d_pgp_LOGIN", users)
-        webclient.update_variable(SERVER_URL, "b_pgp_Users_INUSE", 0)
         return Ldata
     elif Opt == 6:
         SERVER_URL = "http://gregglesthegreat.pythonanywhere.com/"
