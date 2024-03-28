@@ -1,9 +1,4 @@
-def hiytu():
-  import pickle
-  # Save variable to a file
-  with open('rlog.pkl', 'wb') as f:
-    pickle.dump([0], f)
-def signupio():
+def sign_up_f():
   import pygame
   import sys
   import subprocess
@@ -105,7 +100,7 @@ def signupio():
 
 
   # Create clickable text
-  sign_in_text = ClickableText(175, 420, "Already have an account? Sign-in!", BLUE, signinuytio)
+  sign_in_text = ClickableText(175, 420, "Already have an account? Sign-in!", BLUE, sign_in_f)
 
   # Main loop
   running = True
@@ -147,7 +142,7 @@ def signupio():
         # Function for sign-in action
       def si2gninuytio():
          pygame.display.set_caption("Signup Menu")
-         signinuytio("Signup Form:")
+         sign_in_f("Signup Form:")
 
 
 
@@ -170,7 +165,7 @@ def signupio():
 
   pygame.quit()
   sys.exit()
-def signinuytio(gop=None):
+def sign_in_f(gop=None):
   import pygame
   import sys
   import subprocess
@@ -274,7 +269,7 @@ def signinuytio(gop=None):
 
 
   # Create clickable text
-  sign_in_text = ClickableText(175, 420, "Don't have an account? Sign-up!", BLUE, signupio)
+  sign_in_text = ClickableText(175, 420, "Don't have an account? Sign-up!", BLUE, sign_up_f)
 
   # Main loop
   running = True
@@ -295,7 +290,7 @@ def signinuytio(gop=None):
         if stored_password == password:
           # Save variable to a file
           with open('rlog.pkl', 'wb') as f:
-            pickle.dump([1,username], f)   
+            pickle.dump([1,username,True], f)   
           # Stop all sound effects
           pygame.mixer.stop()
           pygame.mixer.music.stop()
@@ -314,7 +309,7 @@ def signinuytio(gop=None):
         # Function for sign-in action
       def si2gninuytio():
          pygame.display.set_caption("Signup Menu")
-         signinuytio("Signup Form:")
+         sign_in_f("Signup Form:")
 
 
 

@@ -8,4 +8,4 @@ my_dict = webclient.get_variable(SERVER_URL,"d_pgp_LOGIN")
 print(my_dict)
 # Save variable to a file
 with open('rlog.pkl', 'wb') as f:
-    pickle.dump([0,""], f)
+    pickle.dump([0,"", True], f)

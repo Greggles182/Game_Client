@@ -8,7 +8,7 @@ def prof():
   global onile
 
   # with open('rlog.pkl', 'wb') as handle:
-  #     pickle.dump([1, "Greggles"], handle, protocol=pickle.HIGHEST_PROTOCOL)
+  #     pickle.dump([1, "Greggles", True], handle, protocol=pickle.HIGHEST_PROTOCOL)
   #     handle.close()
   with open('rlog.pkl', 'rb') as handle:
       a = pickle.load(handle)
@@ -123,7 +123,7 @@ def prof():
   def signoutt():
       # Save variable to a file
       with open('rlog.pkl', 'wb') as f:
-          pickle.dump([0, ""], f)
+          pickle.dump([0, "", True], f)
   #thihh
   my_dictp = webclient.get_variable(SERVER_URL, "d_pgp_LOGIN")
   while running:

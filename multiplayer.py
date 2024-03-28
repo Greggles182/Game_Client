@@ -1,15 +1,19 @@
-import pygame
-import sys
 from local_functionality import start
 from functionality import leveldesign # Import the starty function from functions module_leve = selected_option+1l
-import subprocess
+import subprocess, pickle, sys, pygame, os
 def Main():
   def Enter(s_op):
     if s_op==3:
       subprocess.run(["python", "main.py"])
     elif s_op==2:
-      from Online_fuctionality import Begin
-      Begin()
+      with open("rlog.pkl", "rb") as f:
+        a = pickle.load(f)
+        f.close()
+      if a[2] == True:
+        from Online_fuctionality import Begin
+        Begin()
+      else:
+         print("You are offline. Multiplayer can only be played while online.")
     elif s_op==1:
       custom_leveldata = leveldesign()
       #then
@@ -159,7 +163,5 @@ def Main():
 
   pygame.quit()
   sys.exit()
-  #hi
-#heeeeeeeeeeeelllllllloooooooo    wooorrrlllllddddd!!!!!!!!!!!!!!!!!!1
 if __name__ == "__main__":
    Main()
