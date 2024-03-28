@@ -276,15 +276,18 @@ while running:
         import webclient
 
         def dropdown2():
+            from profileish import prof
             # my_dictp = webclient.get_variable(SERVER_URL, "d_pgp_LOGIN")
             try:
                 my_coinds = my_dictp[un][1]
             except KeyError:
                 my_coinds = "Error"
-            ayouu = ("Coinds:" + str(my_coinds))
             create_button(540, 55, BUTTON_WIDTH, BUTTON_HEIGHT,
-                          (100, 100, 100), ayouu, WHITE)
+                          (100, 100, 100), "Profile", WHITE, prof)
+            ayouu = ("Coinds:" + str(my_coinds))
             create_button(540, 102, BUTTON_WIDTH, BUTTON_HEIGHT,
+                          (100, 100, 100), ayouu, WHITE)
+            create_button(540, 149, BUTTON_WIDTH, BUTTON_HEIGHT,
                           (100, 100, 100), "Log-out", WHITE, signoutt)
 
         # Load variable from the file
