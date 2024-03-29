@@ -25,15 +25,15 @@ def Chk():
     except Exception as e:
         print(e)
     #Hello World!
-    # try:
-    import webclient
-    webclient.update_variable("http://gregglesthegreat.pythonanywhere.com/",
-                            "ConnectTest", "True")
-    webclient.get_variable("http://gregglesthegreat.pythonanywhere.com/","ConnectTest")
-    Online = True
-    # except Exception as e:
-    #     print(e)
-    #     Online = False
+    try:
+        import webclient
+        webclient.update_variable("http://gregglesthegreat.pythonanywhere.com/",
+                                "ConnectTest", "True")
+        webclient.get_variable("http://gregglesthegreat.pythonanywhere.com/","ConnectTest")
+        Online = True
+    except Exception as e:
+        print(e)
+        Online = False
     # with open('rlog.pkl', 'wb') as handle:
     #     pickle.dump([1, "Greggles", True], handle, protocol=pickle.HIGHEST_PROTOCOL)
     #     handle.close()
@@ -46,6 +46,9 @@ def Chk():
         elif Online == True:
             print("You are online")
             a[2] = True
+    with open("rlog.pkl", "wb") as f:
+        pickle.dump(a,f)
+        f.close()
 pygame.init()
 
 # Screen and font
@@ -61,11 +64,13 @@ CLOCK = pygame.time.Clock()
 WORK = 100000000
 
 # Loading BG
-LOADING_BG = pygame.image.load("loading/Loading Bar Background.png")
+LOADING_BG = pygame.image.load("img/Loading Bar Background.png")
 LOADING_BG_RECT = LOADING_BG.get_rect(center=(640, 360))
-
+# Loading BG
+LOADING_TEXT = pygame.image.load("img/Platformer.png")
+LOADING_TEXT_RECT = LOADING_TEXT.get_rect(center=(640, 200))
 # Loading Bar and variables
-loading_bar = pygame.image.load("loading/Loading Bar.png")
+loading_bar = pygame.image.load("img/Loading Bar.png")
 loading_bar_rect = loading_bar.get_rect(midleft=(280, 360))
 loading_finished = False
 loading_progress = 0
@@ -90,6 +95,7 @@ threading.Thread(target=doWork).start()
 # Game loop
 a = True
 CHkThr = threading.Thread(target=Chk)
+CHkThr.daemon = True
 CHkThr.start()
 while a:
     for event in pygame.event.get():
@@ -117,6 +123,7 @@ while a:
 
     screen.blit(LOADING_BG, LOADING_BG_RECT)
     screen.blit(loading_bar, loading_bar_rect)
+    screen.blit(LOADING_TEXT, LOADING_TEXT_RECT)
 
     pygame.display.update()
     CLOCK.tick(60)

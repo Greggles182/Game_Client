@@ -22,29 +22,33 @@ import os
 import threading
 
 def coinsv_thread(g):
-    #try:
-    if True:
-        import pickle
-        import webclient
-        SERVER_URL = "http://gregglesthegreat.pythonanywhere.com/"
-        with open('rlog.pkl', 'rb') as handle:
-            a = pickle.load(handle)
-            handle.close()
-        if int(a[0]) == 1:
-            my_dict = webclient.get_variable(SERVER_URL, "d_pgp_LOGIN")
-            my_user = my_dict.get(a[1])
-            my_coins = my_user[1]
-            my_new_coins = int(my_coins) + int(g)
-            my_user[1] = my_new_coins
-            my_dict[a[1]] = my_user
-            webclient.update_variable(SERVER_URL, "d_pgp_LOGIN", my_dict)
-        else:
-            print("Not logged in.")
-    #except Exception as e:
-    #    print("Fail: ", e)
+    try:
+        if True:
+            import pickle
+            import webclient
+            SERVER_URL = "http://gregglesthegreat.pythonanywhere.com/"
+            with open('rlog.pkl', 'rb') as handle:
+                a = pickle.load(handle)
+                handle.close()
+            if bool(a[2]):
+                if int(a[0]) == 1:
+                    my_dict = webclient.get_variable(SERVER_URL, "d_pgp_LOGIN")
+                    my_user = my_dict.get(a[1])
+                    my_coins = my_user[1]
+                    my_new_coins = int(my_coins) + int(g)
+                    my_user[1] = my_new_coins
+                    my_dict[a[1]] = my_user
+                    webclient.update_variable(SERVER_URL, "d_pgp_LOGIN", my_dict)
+                else:
+                    print("Not logged in.")
+            else:
+                print("Not online. Try again later.")
+    except Exception as e:
+        print("Fail: ", e)
 
 def coinsv(g):
     thread = threading.Thread(target=coinsv_thread, args=(g,))
+    thread.daemon = True
     thread.start()
 
 # # Example usage:
