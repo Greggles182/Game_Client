@@ -11,33 +11,34 @@ def Setup():
         PlayingQ = str(webclient.get_variable(SERVER_URL, "b_pgp_Playing"))
         if PlayingQ == "None" or PlayingQ == "0":
             print("PlayerCheck complete")
-            playersQ = int(input("How many players do you want(2-4): "))
-            if playersQ < 2 or playersQ > 4:
-                print("Invalid number of players!")
-                returned = Setup()  # Recursively call Setup() on invalid input
-                return returned
-            else:
-                print("Connecting...")
-                webclient.update_variable(SERVER_URL, "i_pgp_LobbyPlayers", "1")
-                webclient.update_variable(SERVER_URL, "i_pgp_Players", playersQ)
-                cstQ = input("Do you want to start normal levels (1) or custom ones (2): ")
-                if cstQ == "1" or cstQ == "2":
-                    webclient.update_variable(SERVER_URL, "b_pgp_Custom", cstQ)
-                    if cstQ == "2":
-                        print("Please draw a level in the opened window.")
-                        from functionality import leveldesign
-                        webclient.update_variable(SERVER_URL, "l_pgp_level-data", leveldesign())
-                else:
-                    print("Invalid input!")
-                    returned = Setup()
-                    return returned
-                print("Waiting for players...")
-                while int(webclient.get_variable(SERVER_URL, "i_pgp_Players")) != int(webclient.get_variable(SERVER_URL, "i_pgp_LobbyPlayers")):
-                    pass
-                    time.sleep(0.5)
-                webclient.update_variable(SERVER_URL, "b_pgp_Playing", "1")
-                PlayerN = 1
-                print("Game has begun!")
+            # playersQ = int(input("How many players do you want(2-4): "))
+            # if playersQ < 2 or playersQ > 4:
+            #     print("Invalid number of players!")
+            #     returned = Setup()  # Recursively call Setup() on invalid input
+            #     return returned
+            # else:
+            print("Connecting...")
+            webclient.update_variable(SERVER_URL, "i_pgp_LobbyPlayers", "1")
+            print("Starting with level 1...")
+            # webclient.update_variable(SERVER_URL, "i_pgp_Players", playersQ)
+            # cstQ = input("Do you want to start normal levels (1) or custom ones (2): ")
+            # if cstQ == "1" or cstQ == "2":
+            #     webclient.update_variable(SERVER_URL, "b_pgp_Custom", cstQ)
+            #     if cstQ == "2":
+            #         print("Please draw a level in the opened window.")
+            #         from functionality import leveldesign
+            #         webclient.update_variable(SERVER_URL, "l_pgp_level-data", leveldesign())
+            # else:
+            #     print("Invalid input!")
+            #     returned = Setup()
+            #     return returned
+            # print("Waiting for players...")
+            while int(webclient.get_variable(SERVER_URL, "i_pgp_Players")) != int(webclient.get_variable(SERVER_URL, "i_pgp_LobbyPlayers")):
+                pass
+                time.sleep(0.5)
+            webclient.update_variable(SERVER_URL, "b_pgp_Playing", "1")
+            PlayerN = 1
+            print("Game has begun!")
         else:
             print("A game is currently in progress on this URL.")
             returned = Setup()

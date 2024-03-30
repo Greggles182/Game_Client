@@ -10,8 +10,8 @@ def Main():
         a = pickle.load(f)
         f.close()
       if a[2] == True:
-        from Online_fuctionality import Begin
-        Begin()
+        from OnlineCLI import Setup
+        Setup()
       else:
          print("You are offline. Multiplayer can only be played while online.")
     elif s_op==1:
