@@ -1,9 +1,7 @@
-import webclient
-
 def Setup():
-    import os, sys, time
+    import os, sys, time, webclient, subprocess
     SERVER_URL = None  # Initialize SERVER_URL to None
-    funct = int(input("Enter 1 to host a game, or 2 to join a game: "))
+    funct = int(input("Enter 1 to host a game, 2 to join a game, or 3 to go back: "))
     if funct == 1:
         SERVER_URL = input("Enter server URL or press Enter to use default: ")
         if SERVER_URL == "":
@@ -19,7 +17,8 @@ def Setup():
             # else:
             print("Connecting...")
             webclient.update_variable(SERVER_URL, "i_pgp_LobbyPlayers", "1")
-            print("Starting with level 1...")
+            webclient.update_variable(SERVER_URL, "b_pgp_Playing", "1")
+            print("Will start with level 1...")
             # webclient.update_variable(SERVER_URL, "i_pgp_Players", playersQ)
             # cstQ = input("Do you want to start normal levels (1) or custom ones (2): ")
             # if cstQ == "1" or cstQ == "2":
@@ -33,10 +32,10 @@ def Setup():
             #     returned = Setup()
             #     return returned
             # print("Waiting for players...")
-            while int(webclient.get_variable(SERVER_URL, "i_pgp_Players")) != int(webclient.get_variable(SERVER_URL, "i_pgp_LobbyPlayers")):
+            while 2 != int(webclient.get_variable(SERVER_URL, "i_pgp_LobbyPlayers")):
                 pass
                 time.sleep(0.5)
-            webclient.update_variable(SERVER_URL, "b_pgp_Playing", "1")
+            webclient.update_variable(SERVER_URL, "b_pgp_Playing", "2")
             PlayerN = 1
             print("Game has begun!")
         else:
@@ -76,6 +75,8 @@ def Setup():
             print("Game cannot be joined at this point in time. Please try again later.")
             returned = Setup()
             return returned
+    elif funct == 3:
+        return True, True
     else:
         print("Invalid Option! Try Again.")
         returned = Setup()
