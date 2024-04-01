@@ -1,12 +1,5 @@
-def sign_up_f():
-  import pygame
-  import sys
-  import subprocess
-  import os, sys, webclient, time
-  import pickle
-
-  
-
+def sign_up_f(a):
+  import pygame, game, sys, webclient, time, os, pickle
 
   #server URL
   SERVER_URL = "http://gregglesthegreat.pythonanywhere.com/"
@@ -123,15 +116,14 @@ def sign_up_f():
                  # print("Username:", username)
                  # print("Password:", "***")
                  if (not(username in my_dict)):
-                     my_dict[username] = [password, "0", {}]
-                     webclient.update_variable(SERVER_URL,"d_pgp_LOGIN", my_dict)
-                     my_test= webclient.get_variable(SERVER_URL,"d_pgp_LOGIN")
-                     pygame.mixer.stop()
-                     pygame.mixer.music.stop()
-                    #  Run another Python file
-                     subprocess.run(["python", "main.py"])
+                        my_dict[username] = [password, "0", {}]
+                        webclient.update_variable(SERVER_URL,"d_pgp_LOGIN", my_dict)
+                        my_test= webclient.get_variable(SERVER_URL,"d_pgp_LOGIN")
+                        pygame.mixer.stop()
+                        pygame.mixer.music.stop()
+                        game.start_game(True, a)
                  else:
-                     print("Username already in use")
+                        print("Username already in use")
                     
     
         
@@ -142,7 +134,7 @@ def sign_up_f():
         # Function for sign-in action
       def si2gninuytio():
          pygame.display.set_caption("Signup Menu")
-         sign_in_f("Signup Form:")
+         sign_in_f(a, "Signup Form:")
 
 
 
@@ -165,12 +157,8 @@ def sign_up_f():
 
   pygame.quit()
   sys.exit()
-def sign_in_f(gop=None):
-  import pygame
-  import sys
-  import subprocess
-  import os, sys, webclient, time
-  import pickle
+def sign_in_f(a, gop=None):
+  import pygame, game, sys, webclient, time, os, pickle
 
   #gopping
   str(gop)
@@ -269,7 +257,7 @@ def sign_in_f(gop=None):
 
 
   # Create clickable text
-  sign_in_text = ClickableText(175, 420, "Don't have an account? Sign-up!", BLUE, sign_up_f)
+  sign_in_text = ClickableText(175, 420, "Don't have an account? Sign-up!", BLUE, sign_up_f(a))
 
   # Main loop
   running = True
@@ -295,7 +283,7 @@ def sign_in_f(gop=None):
           pygame.mixer.stop()
           pygame.mixer.music.stop()
           # Run another Python file
-          subprocess.run(["python", "main.py"])
+          game.start_game(True, a)
         
 
 
@@ -309,7 +297,7 @@ def sign_in_f(gop=None):
         # Function for sign-in action
       def si2gninuytio():
          pygame.display.set_caption("Signup Menu")
-         sign_in_f("Signup Form:")
+         sign_in_f(a, "Signup Form:")
 
 
 

@@ -253,7 +253,8 @@ def start_game(Online, a):
                 from profileish import prof
                 # my_dictp = webclient.get_variable(SERVER_URL, "d_pgp_LOGIN")
                 try:
-                    my_coinds = my_dictp[un][1]
+                    my_lists= my_dictp.get(un)
+                    my_coinds = my_lists[1]
                 except KeyError:
                     my_coinds = "Error"
                 create_button(540, 55, BUTTON_WIDTH, BUTTON_HEIGHT,
@@ -271,7 +272,7 @@ def start_game(Online, a):
             un = str(loaded_variablet[1])
             if ytt == "0":
                 create_button(540, 10, BUTTON_WIDTH, BUTTON_HEIGHT,
-                            (100, 100, 100), "Sign-in", WHITE, sign_in_f)
+                            (100, 100, 100), "Sign-in", WHITE, sign_in_f(a))
             else:
                 create_button(540, 10, BUTTON_WIDTH, BUTTON_HEIGHT,
                             (100, 100, 100), un, WHITE, dropdown2)
@@ -287,3 +288,8 @@ def start_game(Online, a):
     pygame.quit()
     sys.exit()
     #hi
+if __name__ == "__main__":
+    with open('rlog.pkl', 'rb') as f:
+        log = pickle.load(f)
+        f.close()
+        start_game(log[2], [])
