@@ -1,6 +1,6 @@
-import subprocess, pygame, os, game, sys, threading, webclient, pickle, random
+import subprocess, pygame, os, game, sys, threading, webclient, pickle, random, time
 def Chk():
-    import subprocess, pygame, os, game, sys, threading, webclient, pickle, random
+    import subprocess, pygame, os, game, sys, threading, webclient, pickle, random, time
     global Online, a
     # Run git status
     try:
@@ -61,7 +61,7 @@ FONT = pygame.font.SysFont("Roboto", 100)
 CLOCK = pygame.time.Clock()
 
 # Work
-WORK = 100000000
+WORK = 50000000
 
 # Loading BG
 LOADING_BG = pygame.image.load("img/Loading Bar Background.png")
@@ -82,6 +82,7 @@ def doWork():
 
     for i in range(WORK):
         math_equation = 523687 / 789456 * 89456
+        #time.sleep(0.000001)
         loading_progress = i 
 
     loading_finished = True
