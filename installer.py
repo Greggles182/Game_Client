@@ -1,13 +1,11 @@
 try:
-    import subprocess
-    process = subprocess.Popen(['git', 'fetch'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    stdout, stderr = process.communicate()
-
-    if process.returncode == 0:
-        print('Git status output:')
-        print(stdout.decode())
-    else:
-        print('Error:')
-        print(stderr.decode())
+    import os
+    destination_path = "Game/"
+    clone_command = "git clone https://github.com/Greggles182/Assesment-Y7.git"
+    clone_with_path = clone_command + " " + destination_path
+    os.system(clone_with_path)
+    os.chdir(destination_path)
+    with open("requirements.txt", "w") as f:
+        f.write("""""")
 except Exception as e:
     print(e)
