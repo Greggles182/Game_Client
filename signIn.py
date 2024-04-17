@@ -93,7 +93,7 @@ def sign_up_f(a):
 
 
   # Create clickable text
-  sign_in_text = ClickableText(175, 420, "Already have an account? Sign-in!", BLUE, sign_in_f)
+  sign_in_text = ClickableText(175, 420, "Already have an account? Sign-in!", BLUE, sign_in_f, pyt=a)
 
   # Main loop
   running = True
@@ -257,7 +257,7 @@ def sign_in_f(a, gop=None):
 
 
   # Create clickable text
-  sign_in_text = ClickableText(175, 420, "Don't have an account? Sign-up!", BLUE, sign_up_f(a))
+  sign_in_text = ClickableText(175, 420, "Don't have an account? Sign-up!", BLUE, sign_up_f, pyt=a)
 
   # Main loop
   running = True
