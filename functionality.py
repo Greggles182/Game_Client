@@ -552,7 +552,13 @@ def start(lvl, MM, cst_ldata):
             #if player has died
             if game_over == -1:
                 if exit_button_smol.draw():
-                    exit()
+                    # Stop all sound effects
+                    pygame.mixer.stop()
+                    pygame.mixer.music.stop()
+                    # Run another Python file
+                    import game
+                    game.start_game(True, 0)
+        
                 if restart_button.draw():
                     if lvl == "cst":
                         print("Restarting custom level")
@@ -574,7 +580,12 @@ def start(lvl, MM, cst_ldata):
                       draw_text("YOU WIN!", font, lime,
                                 (screen_width // 2) - 140, screen_height // 2)
                       if exit_button_smol.draw():
-                        exit()
+                          # Stop all sound effects
+                          pygame.mixer.stop()
+                          pygame.mixer.music.stop()
+                          # Run another Python file
+                          import game
+                          game.start_game(True, 0)
                       if restart_button.draw():
                           #reset lvl
                           lvl = 1
@@ -585,7 +596,13 @@ def start(lvl, MM, cst_ldata):
                     draw_text("YOU WIN!", font, lime,
                                 (screen_width // 2) - 140, screen_height // 2)
                     if exit_button_smol.draw():
-                      exit()
+                      # Stop all sound effects
+                      pygame.mixer.stop()
+                      pygame.mixer.music.stop()
+                      # Run another Python file
+                      import game
+                      game.start_game(True, 0)
+        
                     if restart_button.draw():
                         #reset lvl
                         game_over = 0
