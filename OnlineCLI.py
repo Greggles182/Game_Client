@@ -19,6 +19,20 @@ def Setup():
               if stg=="":
                   print("break")
                   break
+        else:
+            sw= input("Waiting for host to start.Press exit and enter to exit queue.")
+            time.sleep(0.5)
+            server_hhost = webclient.get_variable(SERVER_URL,"hhost")
+            server_hhost[1]+=1
+            time.sleep(0.5)
+            webclient.update_variable_variable(SERVER_URL, "hhost", server_hhost)
+    else:
+        sw= input("Waiting for host to start.Press exit and enter to exit queue.")
+        time.sleep(0.5)
+        server_hhost = webclient.get_variable(SERVER_URL,"hhost")
+        server_hhost[1]+=1
+        time.sleep(0.5)
+        webclient.update_variable_variable(SERVER_URL, "hhost", server_hhost)
             
 
 if __name__=="__main__":
