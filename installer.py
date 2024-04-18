@@ -23,7 +23,7 @@ try:
             shutil.copy(src_path, dst_path)
             print('Created backup of local levels and signin status')
             shutil.rmtree(destination_path, ignore_errors=True)
-            input("Please ensure the folder 'Game' no longer exists. Then, press enter to continue")
+            input("Please ensure the folder 'Game' no longer exists, THEN press Enter")
         clone_command = "git clone https://github.com/Greggles182/Game_Client.git"
         clone_with_path = clone_command + " " + destination_path
         os.system(clone_with_path)
@@ -54,10 +54,14 @@ try:
         print("Install complete. Please run main.py in the Game directory to launch")
     if inst == "2" or inst == "3":
         destination_path = "Server/"
+        if os.path.isdir(destination_path):
+            shutil.rmtree(destination_path, ignore_errors=True)
+            input("Please ensure the server folder no longer exists, THEN press Enter")
         clone_command = "git clone https://github.com/Greggles182/Game_Server.git"
         clone_with_path = clone_command + " " + destination_path
         os.system(clone_with_path)
         os.chdir(destination_path)
+        print("Install Success!")
     else:
         raise ValueError
 except Exception as e:
