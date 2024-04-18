@@ -1,5 +1,5 @@
 def Setup():
-    import os, sys, time, webclient, subprocess
+    import os, sys, time, webclient, subprocess, online_funtionality, functionality
     #server URL
     SERVER_URL = "http://gregglesthegreat.pythonanywhere.com/"
     # Creating a dictionary
@@ -17,22 +17,46 @@ def Setup():
               stg= input(f"""You have {nopil} people in lobby. Press enter to start or press space and enter to refresh!""")
               print(stg)
               if stg=="":
-                  print("break")
-                  break
+                  ytuo= input("What do you want to do?lvl1/lvl2/lvl3/cst")
+                  if ytuo=="lvl1":
+                      print("lvl1")
+                      online_funtionality.start(1, False, [])
+                  elif ytuo=="lvl2":
+                      print("lvl2")
+                      online_funtionality.start(2, False, [])
+                  elif ytuo=="lvl3":
+                      print("lvl3")
+                      online_funtionality.start(3, False, [])
+                  elif ytuo=="cst":
+                      custom_leveldata = functionality.leveldesign()
+                      print("cst")
+                      online_funtionality.start("cst", False, custom_leveldata)
+                  else:
+                      print("fail")
         else:
-            sw= input("Waiting for host to start.Press exit and enter to exit queue.")
+            print("Waiting for host to start.Press exit and enter to exit queue.")
             time.sleep(0.5)
             server_hhost = webclient.get_variable(SERVER_URL,"hhost")
             server_hhost[1]+=1
             time.sleep(0.5)
-            webclient.update_variable_variable(SERVER_URL, "hhost", server_hhost)
+            webclient.update_variable(SERVER_URL, "hhost", server_hhost)
+            while True:
+              time.sleep(0.5)
+              server_hhost = webclient.get_variable(SERVER_URL,"hhost")
+              if server_hhost[2]==1:
+                  print("commence")
     else:
-        sw= input("Waiting for host to start.Press exit and enter to exit queue.")
+        print("Waiting for host to start.Press exit and enter to exit queue.")
         time.sleep(0.5)
         server_hhost = webclient.get_variable(SERVER_URL,"hhost")
         server_hhost[1]+=1
         time.sleep(0.5)
-        webclient.update_variable_variable(SERVER_URL, "hhost", server_hhost)
+        webclient.update_variable(SERVER_URL, "hhost", server_hhost)
+        while True:
+          time.sleep(0.5)
+          server_hhost = webclient.get_variable(SERVER_URL,"hhost")
+          if server_hhost[2]==1:
+              print("commence")
             
 
 if __name__=="__main__":
