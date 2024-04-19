@@ -109,6 +109,9 @@ def cli(Ldata):
                 pass
             else:
                 exit()
+        users = webclient.get_variable(SERVER_URL, "d_pgp_LOGIN")
+        userinfo = users.get(a[1])
+        OSLevels = userinfo[2]
         OSLevels[saven] = Ldata
         userinfo[2] = OSLevels
         users[a[1]] = userinfo
@@ -135,9 +138,12 @@ def cli(Ldata):
             print(f"{i}: {key}")
             i += 1
             levels.append(key)
+        print(levels)
         def getIndex(levels):
             load = input("Type the number of the level you want to play: ")
             try:
+                if load.lower() == "exit":
+                    return True
                 load = int(load)
                 if load > len(levels) or load < 1:
                     raise Exception
@@ -146,7 +152,10 @@ def cli(Ldata):
                 print("You have entered an invalid option.")
                 getIndex(levels)
         loadItm = getIndex(levels)
-        keyed = levels[loadItm - 1]
+
+        if loadItm == True:
+            return {}
+        keyed = levels[int(loadItm) - 1]
         finalGet = OSLevels.get(keyed)
         return finalGet
     elif Opt == 7:

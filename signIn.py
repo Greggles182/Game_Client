@@ -10,7 +10,7 @@ def sign_up_f(a):
   pygame.init()
 
   # Creating a dictionary
-  my_dict = webclient.get_variable(SERVER_URL,"d_pgp_LOGIN")
+  USERS_DICT = webclient.get_variable(SERVER_URL,"d_pgp_LOGIN")
 
   # Set up display
   WIDTH, HEIGHT = 750, 500
@@ -115,10 +115,12 @@ def sign_up_f(a):
                  password = password_box.text
                  # print("Username:", username)
                  # print("Password:", "***")
-                 if (not(username in my_dict)):
-                        my_dict[username] = [password, "0", {}]
-                        webclient.update_variable(SERVER_URL,"d_pgp_LOGIN", my_dict)
-                        my_test= webclient.get_variable(SERVER_URL,"d_pgp_LOGIN")
+                 if (not(username in USERS_DICT)):
+                        USERS_DICT = webclient.get_variable(SERVER_URL,"d_pgp_LOGIN")
+                        import hasher
+                        HASHpassword = hasher.hash(password)
+                        USERS_DICT[username] = [HASHpassword, "0", {}]
+                        webclient.update_variable(SERVER_URL,"d_pgp_LOGIN", USERS_DICT)
                         pygame.mixer.stop()
                         pygame.mixer.music.stop()
                         game.start_game(True, a)
@@ -174,7 +176,7 @@ def sign_in_f(a, gop=None):
   pygame.init()
 
   # Creating a dictionary
-  my_dict = webclient.get_variable(SERVER_URL,"d_pgp_LOGIN")
+  USERS_DICT = webclient.get_variable(SERVER_URL,"d_pgp_LOGIN")
 
   # Set up display
   WIDTH, HEIGHT = 750, 500
@@ -272,10 +274,11 @@ def sign_in_f(a, gop=None):
       password = password_box.text
       # print("Username:", username)
       # print("Password:", "***")
-      if username in my_dict:
+      if username in USERS_DICT:
     # Retrieve the password associated with the username
-        stored_password =  my_dict[username][0]
-        if stored_password == password:
+        stored_password =  USERS_DICT[username][0]
+        import hasher
+        if hasher.verify(password, stored_password):
           # Save variable to a file
           with open('rlog.pkl', 'wb') as f:
             pickle.dump([1,username,True], f)   

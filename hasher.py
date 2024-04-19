@@ -1,6 +1,7 @@
 # Hashing password using passlib
-from passlib.hash import sha256_crypt
+
 def hash(password):
+    from passlib.hash import sha256_crypt
     # hash the password using sha256_crypt with 5000 rounds and a random salt
     hashed = sha256_crypt.using(rounds=5000).hash(password)
 
@@ -8,6 +9,7 @@ def hash(password):
     if (sha256_crypt.verify(password, hashed)):
         return hashed
 def verify(password, hash):
+    from passlib.hash import sha256_crypt
     # verify the hashed password against the plain password
     if (sha256_crypt.verify(password, hash)):
         return True
