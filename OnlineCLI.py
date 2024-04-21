@@ -34,24 +34,36 @@ def Setup():
                   else:
                       print("fail")
         else:
-            print("Waiting for host to start.Press exit and enter to exit queue.")
+            print("Waiting for host to start.")
             time.sleep(0.5)
             server_hhost = webclient.get_variable(SERVER_URL,"hhost")
             server_hhost[1]+=1
             time.sleep(0.5)
             webclient.update_variable(SERVER_URL, "hhost", server_hhost)
+            time.sleep(0.5)
+            server_hhosrt = webclient.get_variable(SERVER_URL,"num_p")
+            pnum=server_hhost[1]
+            server_hhosrt["player", pnum]=["img/guy1", (0, 0)]
+            time.sleep(0.5)
+            webclient.update_variable(SERVER_URL, "num_p", server_hhosrt)
             while True:
               time.sleep(0.5)
               server_hhost = webclient.get_variable(SERVER_URL,"hhost")
               if server_hhost[2]==1:
                   print("commence")
     else:
-        print("Waiting for host to start.Press exit and enter to exit queue.")
+        print("Waiting for host to start.")
         time.sleep(0.5)
         server_hhost = webclient.get_variable(SERVER_URL,"hhost")
         server_hhost[1]+=1
         time.sleep(0.5)
         webclient.update_variable(SERVER_URL, "hhost", server_hhost)
+        time.sleep(0.5)
+        server_hhosrt = webclient.get_variable(SERVER_URL,"num_p")
+        pnum=server_hhost[1]
+        server_hhosrt["player", pnum]=["img/guy1", (0, 0)]
+        time.sleep(0.5)
+        webclient.update_variable(SERVER_URL, "num_p", server_hhosrt)
         while True:
           time.sleep(0.5)
           server_hhost = webclient.get_variable(SERVER_URL,"hhost")

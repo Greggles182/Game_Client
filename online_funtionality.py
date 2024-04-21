@@ -2,8 +2,6 @@ import pygame
 from pygame.locals import *
 from pygame.font import *
 from os import *
-
-from pygame.sprite import _Group
 from functionality import coinsv
 #https://youtu.be/l4-0_nayHac
 
