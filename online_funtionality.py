@@ -2,8 +2,6 @@ import pygame
 from pygame.locals import *
 from pygame.font import *
 from os import *
-
-from pygame.sprite import _Group
 from functionality import coinsv
 #https://youtu.be/l4-0_nayHac
 
@@ -159,7 +157,7 @@ def start(lvl, MM, cst_ldata):
 
             return action
 
-    class OtherPlayers(pygame.sprite.Sprite):
+    class OtherPlayers():
           def __init__(self, x, y, img):
               screen.blit(img, x,y)
               
@@ -444,8 +442,6 @@ def start(lvl, MM, cst_ldata):
             self.rect.y = y
 
     player = Player(100, screen_height - 130, {"jump": pygame.K_UP, "left": pygame.K_LEFT, "right": pygame.K_RIGHT})
-    player2 = Player(100, screen_height - 130, {"jump": pygame.K_w, "left": pygame.K_a, "right": pygame.K_d})
-
 
 
     blob_group = pygame.sprite.Group()
@@ -485,6 +481,8 @@ def start(lvl, MM, cst_ldata):
         else:
             world.draw()
 
+            OtherPlayers( 300, 200, "img/guy1")
+
             if game_over == 0:
                 blob_group.update()
                 platform_group.update()
@@ -498,10 +496,6 @@ def start(lvl, MM, cst_ldata):
                     score += 1
                 draw_text("X " + str(score) + "   Level: " + str(lvl), font_score, white, tile_size - 10,
                           10)
-                if pygame.sprite.spritecollide(player2, coin_group, True):
-                  score += 1
-                  draw_text("X " + str(score) + "   Level: " + str(lvl), font_score, white, tile_size - 10,
-                      10)
 
             blob_group.draw(screen)
             platform_group.draw(screen)
@@ -509,7 +503,7 @@ def start(lvl, MM, cst_ldata):
             coin_group.draw(screen)
             exit_group.draw(screen)
 
-            game_over = player.update(game_over) or player2.update(game_over)
+            game_over = player.update(game_over)
             #if player has died
             if game_over == -1:
                 if exit_button_smol.draw():
