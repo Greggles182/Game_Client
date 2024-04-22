@@ -142,19 +142,14 @@ def cli(Ldata):
         def getIndex(levels):
             load = input("Type the number of the level you want to play: ")
             try:
-                if load.lower() == "exit":
-                    return True
                 load = int(load)
                 if load > len(levels) or load < 1:
-                    raise Exception
+                    getIndex(levels)
                 return load
-            except Exception:
+            except ValueError:
                 print("You have entered an invalid option.")
                 getIndex(levels)
         loadItm = getIndex(levels)
-
-        if loadItm == True:
-            return {}
         keyed = levels[int(loadItm) - 1]
         finalGet = OSLevels.get(keyed)
         return finalGet
