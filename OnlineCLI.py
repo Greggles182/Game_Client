@@ -36,40 +36,47 @@ def Setup():
         else:
             print("Waiting for host to start.")
             time.sleep(0.5)
-            server_hhost = webclient.get_variable(SERVER_URL,"hhost")
-            server_hhost[1]+=1
+            server_hhost = webclient.get_variable(SERVER_URL, "hhost")
+            server_hhost[1] += 1
             time.sleep(0.5)
+            print(type(server_hhost))
             webclient.update_variable(SERVER_URL, "hhost", server_hhost)
             time.sleep(0.5)
-            server_hhosrt = webclient.get_variable(SERVER_URL,"num_p")
-            pnum=server_hhost[1]
-            server_hhosrt["player", pnum]=["img/guy1", (0, 0)]
+            server_hhosrt = webclient.get_variable(SERVER_URL, "num_p")
+            pnum = server_hhost[1]
+            key = f"player_{pnum}"
+            server_hhosrt[key] = {"img": "img/guy1", "posX": 0, "posY": 0}
             time.sleep(0.5)
+            print(type(server_hhosrt))
             webclient.update_variable(SERVER_URL, "num_p", server_hhosrt)
             while True:
-              time.sleep(0.5)
-              server_hhost = webclient.get_variable(SERVER_URL,"hhost")
-              if server_hhost[2]==1:
-                  print("commence")
+                time.sleep(0.5)
+                server_hhost = webclient.get_variable(SERVER_URL, "hhost")
+                if server_hhost[2] == 1:
+                    print("commence")
+                    break
     else:
         print("Waiting for host to start.")
         time.sleep(0.5)
-        server_hhost = webclient.get_variable(SERVER_URL,"hhost")
-        server_hhost[1]+=1
+        server_hhost = webclient.get_variable(SERVER_URL, "hhost")
+        server_hhost[1] += 1
         time.sleep(0.5)
+        print(type(server_hhost))
         webclient.update_variable(SERVER_URL, "hhost", server_hhost)
         time.sleep(0.5)
-        server_hhosrt = webclient.get_variable(SERVER_URL,"num_p")
-        pnum=server_hhost[1]
-        server_hhosrt["player", pnum]=["img/guy1", (0, 0)]
+        server_hhosrt = webclient.get_variable(SERVER_URL, "num_p")
+        pnum = server_hhost[1]
+        key = f"player_{pnum}"
+        server_hhosrt[key] = {"img": "img/guy1", "posX": 0, "posY": 0}
         time.sleep(0.5)
+        print(type(server_hhosrt))
         webclient.update_variable(SERVER_URL, "num_p", server_hhosrt)
         while True:
-          time.sleep(0.5)
-          server_hhost = webclient.get_variable(SERVER_URL,"hhost")
-          if server_hhost[2]==1:
-              print("commence")
-            
+            time.sleep(0.5)
+            server_hhost = webclient.get_variable(SERVER_URL, "hhost")
+            if server_hhost[2] == 1:
+                print("commence")
+                break
 
 if __name__=="__main__":
     Setup()
