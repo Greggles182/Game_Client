@@ -2,7 +2,7 @@ import threading
 import time
 import copy
 from webclient import get_variable  # Assuming get_variable function is defined in webclient.py
-
+from tk1 import TKinput as input
 Online_playerdata = []  # Global variable to store player data
 
 def fetch_player_info(SERVER_URL, players, current_player):
@@ -14,7 +14,7 @@ def fetch_player_info(SERVER_URL, players, current_player):
                 data = get_variable(SERVER_URL, f"l_pgp_Player_{i+1}")
                 player_info.append(data)
         Online_playerdata = player_info  # Update the global variable
-        print("Player info updated:", Online_playerdata)
+
         time.sleep(0.2)  # Adjust sleep time as per your needs
 
 def start_player_update_thread(SERVER_URL, players, current_player):
@@ -33,6 +33,4 @@ if __name__ == "__main__":
 
     # Now you can access Online_playerdata in your main script
     while True:
-        print("Main script running...")
-        print("Online player data:", Online_playerdata)
         time.sleep(10)  # Adjust sleep time as per your needs

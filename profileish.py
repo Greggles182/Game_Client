@@ -55,7 +55,8 @@ def prof():
           surface.blit(textobj, textrect)
           surface.blit(textobj, textrect)
       except Exception as e:
-          print("Error rendering text:", e)
+        import tkinter.messagebox as box
+        box.showerror("Error", "Error rendering text: " + str(e))
 
 
   # Function to perform action when button is clicked

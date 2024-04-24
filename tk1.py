@@ -2,7 +2,7 @@ import tkinter as tk
 
 
 
-def create_tkinter_window(texts):
+def TKinput(texts):
     root = tk.Tk()
     root.title("CLI App")
 
@@ -26,7 +26,7 @@ def create_tkinter_window(texts):
     return command_var.get()  # Return the value of command_var
 
 def main():
-    command = create_tkinter_window("Enter Command")
+    command = TKinput("Enter Command")
     print("Command entered:", command)
 
 if __name__ == "__main__":

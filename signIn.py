@@ -125,7 +125,8 @@ def sign_up_f(a):
                         pygame.mixer.music.stop()
                         game.start_game(True, a)
                  else:
-                        print("Username already in use")
+                    import tkinter.messagebox as box
+                    box.showwarning("Error","Username already in use")
                     
     
         

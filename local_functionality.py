@@ -3,11 +3,10 @@ from pygame.locals import *
 from pygame.font import *
 from os import *
 from functionality import coinsv
+
 #https://youtu.be/l4-0_nayHac
 
 def start(lvl, MM, cst_ldata):
-    print(type(lvl))
-    print("starting with Level " + str(lvl))
     pygame.init()
     pygame.font.init()
     clock = pygame.time.Clock()
@@ -27,7 +26,6 @@ def start(lvl, MM, cst_ldata):
     tile_size = 50
     game_over = 0
     main_menu = MM
-    print(main_menu)
     max_lvls = 3
     score = 0
 
@@ -120,7 +118,6 @@ def start(lvl, MM, cst_ldata):
     elif lvl == "cst":  #custom lvl
         lvl_data = cst_ldata
     else:
-        print("We have not made. That level yet. ")
         raise ValueError
 
     def draw_text(text, font, text_col, x, y):
@@ -485,10 +482,7 @@ def start(lvl, MM, cst_ldata):
                 #update score
                 #check if a coin has been collected
                 if pygame.sprite.spritecollide(player, coin_group, True):
-                    try:
-                      coinsv(1)
-                    except Exception as e:
-                      print("ofline")
+                    coinsv(1)
                     score += 1
                 draw_text("X " + str(score) + "   Level: " + str(lvl), font_score, white, tile_size - 10,
                           10)
@@ -515,10 +509,8 @@ def start(lvl, MM, cst_ldata):
                     game.start_game(True, 0)
                 if restart_button.draw():
                     if lvl == "cst":
-                        print("Restarting custom level")
                         start("cst", False, cst_ldata)
                     elif isinstance(lvl, int):
-                      print("Restarting with Level " + str(lvl))
                       start(lvl, False, [])
 
             #if player has completed the lvl
@@ -560,7 +552,6 @@ def start(lvl, MM, cst_ldata):
                         #reset lvl
                         game_over = 0
                         score = 0
-                        print("Restarting custom level")
                         start("cst", False, cst_ldata)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -761,19 +752,4 @@ def leveldesign():
                 run = False
 
         pygame.display.update()
-
-        #Designs a single level.
-if __name__ == "__main__":
-    sel_option = input('Enter level number (1-3) or "cst" to continue: ')
-    if sel_option == "cst":
-        print("Custom-Level start")
-        #level selector here
-        custom_leveldata = leveldesign()
-        #then
-        print("cst-ldata: " + str(custom_leveldata))
-        start("cst", False, custom_leveldata)
-    elif int(sel_option)<=3:
-        sel_option = int(sel_option)
-        print("Function call_start() is called.",sel_option)
-        start(sel_option, False, [])  # Call the starty function from functions module
     

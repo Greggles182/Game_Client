@@ -1,23 +1,24 @@
 from local_functionality import start
 from functionality import leveldesign # Import the starty function from functions module_leve = selected_option+1l
 import subprocess, pickle, sys, pygame, os
+import tkinter.messagebox as box
 def Main():
   def Enter(s_op):
     if s_op==3:
-      subprocess.run(["python", "main.py"])
+      pass
     elif s_op==2:
-      with open("rlog.pkl", "rb") as f:
-        a = pickle.load(f)
-        f.close()
-      if a[2] == True:
-        from OnlineCLI import Setup
-        Setup()
-      else:
-         print("You are offline. Multiplayer can only be played while online.")
+       box.showwarning("Feature in development", "This cannot be played yet.")
+      # with open("rlog.pkl", "rb") as f:
+      #   a = pickle.load(f)
+      #   f.close()
+      # if a[2] == True:
+      #   from OnlineCLI import Setup
+      #   Setup()
+      # else:
+      #    box.showerror("Error:","You are offline. Multiplayer can only be played while online.")
     elif s_op==1:
       custom_leveldata = leveldesign()
       #then
-      print("cst-ldata: " + str(custom_leveldata))
       start("cst", False, custom_leveldata)
     elif s_op == 0:
       start(1, False, [])
@@ -160,8 +161,5 @@ def Main():
 
       # updates the frames of the game
       pygame.display.flip()
-
-  pygame.quit()
-  sys.exit()
 if __name__ == "__main__":
    Main()

@@ -1,29 +1,10 @@
 import subprocess, pygame, os, game, sys, threading, webclient, pickle, random, time
+import tkinter.messagebox as box
 def Chk():
     import subprocess, pygame, os, game, sys, threading, webclient, pickle, random, time
+    import tkinter.messagebox as box
     global Online, a
     # Run git status
-    try:
-        process = subprocess.Popen(['git', 'fetch'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        stdout, stderr = process.communicate()
-
-        if process.returncode == 0:
-            print('Git status output:')
-            print(stdout.decode())
-        else:
-            print('Error:')
-            print(stderr.decode())
-        process = subprocess.Popen(['git', 'pull'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        stdout, stderr = process.communicate()
-
-        if process.returncode == 0:
-            print('Git fetch output:')
-            print(stdout.decode())
-        else:
-            print('Error:')
-            print(stderr.decode())
-    except Exception as e:
-        print(e)
     #Hello World!
     try:
         import webclient
@@ -32,7 +13,6 @@ def Chk():
         webclient.get_variable("http://gregglesthegreat.pythonanywhere.com/","ConnectTest")
         Online = True
     except Exception as e:
-        print(e)
         Online = False
     # with open('rlog.pkl', 'wb') as handle:
     #     pickle.dump([1, "Greggles", True], handle, protocol=pickle.HIGHEST_PROTOCOL)
@@ -41,10 +21,10 @@ def Chk():
         a = pickle.load(handle)
         handle.close()
         if Online == False:
-            print("You are offline")
+            box.showinfo("Info","You are offline")
             a[2] = False
         elif Online == True:
-            print("You are online")
+            box.showinfo("Info","You are online")
             a[2] = True
     with open("rlog.pkl", "wb") as f:
         pickle.dump(a,f)
