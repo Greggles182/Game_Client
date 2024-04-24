@@ -2,8 +2,10 @@ import pygame
 from pygame.locals import *
 from pygame.font import *
 from os import *
+import webclient
 from functionality import coinsv
 #https://youtu.be/l4-0_nayHac
+SERVER_URL = "http://gregglesthegreat.pythonanywhere.com/"
 
 def start(lvl, MM, cst_ldata):
     print(type(lvl))
@@ -126,6 +128,13 @@ def start(lvl, MM, cst_ldata):
     def draw_text(text, font, text_col, x, y):
         img = font.render(text, True, text_col)
         screen.blit(img, (x, y))
+    
+    def OtherPlayers(screen, image_path, x, y):
+        # Load the image
+        image = pygame.image.load(image_path)
+        image = pygame.transform.scale(image, (40, 80))
+        # Blit the image onto the screen at the specified position
+        screen.blit(image, (x, y))
 
     class Button():
 
@@ -157,9 +166,7 @@ def start(lvl, MM, cst_ldata):
 
             return action
 
-    class OtherPlayers():
-          def __init__(self, x, y, img):
-              screen.blit(img, x,y)
+        
               
     class Player(pygame.sprite.Sprite):
           def __init__(self, x, y, keys):
@@ -441,7 +448,7 @@ def start(lvl, MM, cst_ldata):
             self.rect.x = x
             self.rect.y = y
 
-    player = Player(100, screen_height - 130, {"jump": pygame.K_UP, "left": pygame.K_LEFT, "right": pygame.K_RIGHT})
+    player = Player(100, screen_height - 130, {"jump": pygame.K_SPACE, "left": pygame.K_LEFT, "right": pygame.K_RIGHT})
 
 
     blob_group = pygame.sprite.Group()
@@ -481,7 +488,15 @@ def start(lvl, MM, cst_ldata):
         else:
             world.draw()
 
-            OtherPlayers( 300, 200, "img/guy1")
+            hh = webclient.get_variable(SERVER_URL,"num_p")
+            numk=1
+            for key, value in hh.items():
+                numj="player",numk
+                k=hh[numj][1]
+                l=(player.rect.x,player.rect.x)
+                if k != l:
+                  OtherPlayers(screen,hh[numj][0],k)
+                numk+=1
 
             if game_over == 0:
                 blob_group.update()
