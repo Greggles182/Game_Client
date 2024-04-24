@@ -1,5 +1,6 @@
 import os, sys, time, multiplayer, pygame, pickle, webclient
 from functionality import start, leveldesign  # Import the starty function from functions module_leve = selected_option+1l
+import tkinter.messagebox as box
 def start_game(Online, a):
     pygame.display.set_caption("Platformer")
     SERVER_URL = "http://gregglesthegreat.pythonanywhere.com/"
@@ -12,16 +13,13 @@ def start_game(Online, a):
         else:
             if selected_option <= 2:
                 start_level = selected_option + 1
-                print("Function call_start() is called.", start_level)
                 start(start_level, False,
                     [])  # Call the starty function from functions module
                 screen = pygame.display.set_mode(res)
             elif selected_option == 3:
-                print("Custom-Level start")
                 #level selector here
                 custom_leveldata = leveldesign()
                 #then
-                print("cst-ldata: " + str(custom_leveldata))
                 start("cst", False, custom_leveldata)
                 screen = pygame.display.set_mode(res)
 
@@ -64,7 +62,7 @@ def start_game(Online, a):
             surface.blit(textobj, textrect)
             surface.blit(textobj, textrect)
         except Exception as e:
-            print("Error rendering text:", e)
+            box.showerror("Error:","Text could not be rendered")
 
 
     # Function to perform action when button is clicked

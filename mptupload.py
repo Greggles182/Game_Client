@@ -1,7 +1,7 @@
 import threading
 import time
 from webclient import update_variable  # Assuming update_variable function is defined in webclient.py
-
+from tk1 import TKinput as input
 def update_player_variables(SERVER_URL, current_player, player_data):
     update_variable(SERVER_URL, f"l_pgp_Player_{current_player}", player_data)
 

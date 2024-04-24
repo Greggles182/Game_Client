@@ -1,5 +1,6 @@
 def Setup():
     import os, sys, time, webclient, subprocess, online_funtionality, functionality
+    from tk1 import TKinput as input
     #server URL
     SERVER_URL = "http://gregglesthegreat.pythonanywhere.com/"
     # Creating a dictionary
