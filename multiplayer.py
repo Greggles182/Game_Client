@@ -7,15 +7,15 @@ def Main():
     if s_op==3:
       pass
     elif s_op==2:
-       box.showwarning("Feature in development", "This cannot be played yet.")
-      # with open("rlog.pkl", "rb") as f:
-      #   a = pickle.load(f)
-      #   f.close()
-      # if a[2] == True:
-      #   from OnlineCLI import Setup
-      #   Setup()
-      # else:
-      #    box.showerror("Error:","You are offline. Multiplayer can only be played while online.")
+       #box.showwarning("Feature in development", "This cannot be played yet.")
+       with open("rlog.pkl", "rb") as f:
+         a = pickle.load(f)
+         f.close()
+       if a[2] == True:
+         from OnlineCLI import Setup
+         Setup()
+       else:
+          box.showerror("Error:","You are offline. Multiplayer can only be played while online.")
     elif s_op==1:
       custom_leveldata = leveldesign()
       #then

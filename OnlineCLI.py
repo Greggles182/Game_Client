@@ -11,6 +11,13 @@ def Setup():
             time.sleep(0.5)
             server_hhost[0]=1
             webclient.update_variable(SERVER_URL,"hhost", server_hhost)
+            time.sleep(0.5)
+            server_hhosrt = webclient.get_variable(SERVER_URL, "num_p")
+            key = f"player_0"
+            server_hhosrt[key] = ["img/guy1", (0, 0)]
+            time.sleep(0.5)
+            print(type(server_hhosrt))
+            webclient.update_variable(SERVER_URL, "num_p", server_hhosrt)
             while True:
               time.sleep(0.5)
               server_hhost = webclient.get_variable(SERVER_URL,"hhost")

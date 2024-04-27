@@ -485,10 +485,16 @@ def start(lvl, MM, cst_ldata):
             world.draw()
 
             hh = webclient.get_variable(SERVER_URL,"num_p")
-            numk=1
+            numk=0
             for key, value in hh.items():
-                numj="player",numk
-                k=hh[numj][1]
+                numj=("player_",numk)
+                try:
+                    k = hh[numj][1]
+                    # Continue with processing k if key exists
+                except KeyError:
+                    # Handle case where key ('player', 1) does not exist in hh dictionary
+                    print(f"Key ('player', {numj}) not found in hh dictionary.")
+                    # Optionally provide fallback behavior or raise an exception
                 l=(player.rect.x,player.rect.x)
                 if k != l:
                   OtherPlayers(screen,hh[numj][0],k)
