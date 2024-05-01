@@ -51,11 +51,7 @@ def graphicdesign():
     for row in range(ROWS):
         r = [0] * MAX_COLS
         world_data.append(r)
-
-    #create ground
-    for tile in range(0, MAX_COLS):
-        world_data[ROWS - 1][tile] = 2
-
+    
     class Button():
 
         def __init__(self, x, y, image, scale):
@@ -203,9 +199,7 @@ def create():
         input("Now we need to create a graphic.", False)
         maps[i] = graphicdesign()
         input("Now that we have the graphic, we need to create code.\n See http://gregglesthegreat.pythonanywhere.com/help for assistance.", False)
-        f=open(f"levels/code/{name}{i}.py", "wt")
-        f.close()
-        startfile(f"./levels/code/{name}{i}.py")
+        os.system(f"start notepad.exe ./levels/code/{name}{i}.py")
         input("Press Ctrl+S on the code to save, close the editor and then press Submit.", False)
     if os.path.isfile(f"levels/{name}.pkl"):
         if box.askokcancel("File Exists!", "Continue?") == 1:
