@@ -623,16 +623,16 @@ def leveldesign():
     #pine2_img = pygame.image.load("img2/Background/pine2.png").convert_alpha()
     #mountain_img = pygame.image.load("img2/Background/mountain.png").convert_alpha()
     sky_img = pygame.image.load(
-        "img2/Background/background.png").convert_alpha()
+        "img/Background/background.png").convert_alpha()
     #store tiles in a list
     img_list = []
     for x in range(TILE_TYPES):
-        img = pygame.image.load(f"img2/tile/{x}.png").convert_alpha()
+        img = pygame.image.load(f"img/tile/{x}.png").convert_alpha()
         img = pygame.transform.scale(img, (TILE_SIZE, TILE_SIZE))
         img_list.append(img)
 
-    save_img = pygame.image.load("img2/save_btn.png").convert_alpha()
-    load_img = pygame.image.load("img2/load_btn.png").convert_alpha()
+    save_img = pygame.image.load("img/play_btn.png").convert_alpha()
+    load_img = pygame.image.load("img/CLI_btn.png").convert_alpha()
 
     #define colours
     GREEN = (144, 201, 120)

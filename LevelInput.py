@@ -11,11 +11,10 @@ def cli(Ldata):
           Please type a number below to trigger the command
           1: Export the current level to file
           2: Load a level file
-          3: Print seed for current level
-          4: Paste in a level seed (must be valid)
-          5: Save the current level to your user account
-          6: Load a level from your user account
-          7: Exit the program.
+          3: Paste in a level seed (must be valid)
+          4: Save the current level to your user account
+          5: Load a level from your user account
+          6: Exit the program.
             Type 1-7 then press Enter to proceed: """)
     
     Opt = int(Opt)
@@ -74,13 +73,10 @@ def cli(Ldata):
             box.showerror("Error:","That was an invalid option.")
             exit()
     elif Opt == 3:
-        input(Ldata)
-        return Ldata
-    elif Opt == 4:
         LDLIST = input("Enter a valid level data list: ")
         LDLIST = eval(LDLIST)
         return LDLIST
-    elif Opt == 5:
+    elif Opt == 4:
         SERVER_URL = "http://gregglesthegreat.pythonanywhere.com/"
         with open('rlog.pkl', 'rb') as handle:
             a = pickle.load(handle)
@@ -109,7 +105,7 @@ def cli(Ldata):
         users[a[1]] = userinfo
         webclient.update_variable(SERVER_URL, "d_pgp_LOGIN", users)
         return Ldata
-    elif Opt == 6:
+    elif Opt == 5:
         SERVER_URL = "http://gregglesthegreat.pythonanywhere.com/"
         with open('rlog.pkl', 'rb') as handle:
             a = pickle.load(handle)
@@ -144,5 +140,5 @@ def cli(Ldata):
         keyed = levels[int(loadItm) - 1]
         finalGet = OSLevels.get(keyed)
         return finalGet
-    elif Opt == 7:
+    elif Opt == 6:
         exit()
