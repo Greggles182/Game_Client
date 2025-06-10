@@ -1,4 +1,4 @@
 Flask==3.0.3
 passlib==1.7.4
 pygame==2.5.2
-Requests==2.32.2
+Requests==2.32.4
